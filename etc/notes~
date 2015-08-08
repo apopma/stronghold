@@ -1,0 +1,75 @@
+Auth and login
+	Site-specific, possibly through Google also
+	Google account for Docs integration
+
+Users
+	Have a profile page
+	Page shows recent activity
+	Page shows uncompleted to-dos
+	Page shows your uploaded files (and text docs?)
+	
+	
+
+Projects, containing many things: 
+	To-do lists
+		Descriptions, checkboxes, deadlines
+		List and task order can be changed with drag-and-drop
+		New tasks get added by hitting Enter or button click
+		Clickable calendar pop-out for deadlines
+		Attachable files (and text docs?)
+		Each item, and list as a whole, are commentable
+		Finished tasks live in a different place
+		Finished tasks show who completed them and when
+		Finished tasks can be undone
+		Finished tasks return to their previous location
+		Filter shown tasks by assignment or deadline
+
+	Individual to-do list items
+		Have a show page; Basecamp does it with a RESTful URL
+		Can be edited and deleted from the page
+		Have a history
+		Can be completed from the page; name strikes out
+
+	Discussion boards
+		Commentable, file attachments
+		Top level message with one layer of comments
+		Messages can be moved to other projects
+			
+	
+	Comments
+		Can have files attached
+		Basic formatting: bold/italic, UL/OL, blockquote
+		Keyboard shortcuts for B/I
+
+	Latest updates
+		List of contributors
+		Log of all uploads, edits, deletions, etc.
+		Links to 5 most recently updated discussion boards
+		All your to-do lists
+		Six most recent files and text docs
+
+	Project calendar
+		Events at a specified time
+		Can go on for multiple days
+		Can repeat
+		Mailable reminders to specific users
+		Reminders go out at a specified time before the event
+		Events are marked complete or go away after they happen
+
+	Text documents
+		Editable, formattable (MD?), and commentable
+		Multiple users can edit concurrently
+		Document updates in-place for all when one user saves
+		No autosave
+
+	File attachment
+		From filesystem or Google Docs
+
+
+Possible later things
+	Project templates based off previous projects	
+	Informative pop-ups for new users
+	Video links that black out the rest of the page
+	Invites
+	Timeline for events in all of your projects
+	"Everything" pages for aspects of your projects
