@@ -97,18 +97,11 @@ For ease of workflow, the partial to upload a file should probably be a Backbone
 [Details][phase-six]
 
 ### Phase 7: Invites (~2 days, time permitting)
-I'll implement a Rails route to display a form for inviting new or existing users to a project.
-Users can type email addresses or existing usernames into a text field; this field will automatically
-add new columns as more addresses are entered. Admins and the project owner have the ability to set
-administrator flags on invitees, giving that user the ability to set admin powers on other users,
-invite new users, and delete existing users from a project.
+I'll implement a Rails route to display a form for inviting new or existing users to a project. In earlier phases, I'll use the console to associate fake users with a project in order to provide attractive seed data, and provide a couple demo users already associated with a project or two in case I can't make it this far.
 
-Invitees will receive a welcome email; upon clicking
-a link in the email, they'll be routed to a welcome page asking them to sign up or sign in.
-After authentication, the user will be added to this project with relevant flags set.
-While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users, and account owners have super-admin rights on all associated projects),
-I won't. Any user can create projects, invite users to projects they created or are admins on,
-and be invited to an existing project.
+Users can type email addresses or existing usernames into a text field; this field will automatically add new columns as more addresses are entered. Admins and the project owner have the ability to set administrator flags on invitees, giving that user the ability to set admin powers on other users, invite new users, and delete existing users from a project.
+
+Invitees will receive a welcome email; upon clicking a link in the email, they'll be routed to a welcome page asking them to sign up or sign in. After authentication, the user will be added to this project with relevant flags set. While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users, and account owners have super-admin rights on all associated projects), I won't. Any user can create projects, invite users to projects they created or are admins on, and be invited to an existing project.
 [Details][phase-seven]
 
 

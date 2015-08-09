@@ -32,3 +32,10 @@ UploadForm (composite subview to be inserted into CommentForm, TaskForm, or Proj
 
 FilesIndexItem (subview for FilesIndex, ProjectFilesIndex, and LabelIndex)
 UploadItem (subview for UploadForm)
+
+## Gems/Libraries
+Several possible:
+- Cloudinary
+- Paperclip
+- Filepicker
+- Others?
