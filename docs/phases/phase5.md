@@ -4,6 +4,7 @@
 ### Models
 
 ### Controllers
+StaticPagesController (about, contact)
 
 ### Views
 
