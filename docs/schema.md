@@ -8,6 +8,7 @@ username        | string    | not null, unique
 email           | string    | not null, unique(?)
 password_digest | string    | not null
 session_token   | string    | not null
+gravatar_url    | string    | default: placeholder image
 
 ## projects
 column_name | data type | details

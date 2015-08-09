@@ -21,20 +21,15 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
   - [] On a task
   - [] On a text document
   - [] As replies to top-level postings
-- [] Invite other users to projects via email
-- [] Be invited to another user's project via email
+- [] Invite other users to projects
+- [] Be invited to another user's project
 - [] Attach files from the local filesystem:
   - [] To the project itself
   - [] To a to-do list or checklist item
   - [] To a comment
   - [] Tag files with a text label
-- [] Search projects
-  - [] For todo lists, tasks, users, documents, and files
-  - [] Filter searches by project, component, and associated user
-  - [] Search in a particular project, or all projects
 - [] Post text documents:
-  - [] Formattable using Markdown, or an in-line editor
-
+  - [] Formattable using wysiHTML, like comments
 
 ## Design Docs
 * [View Wireframes][views]
@@ -89,7 +84,13 @@ Once discussions are up and running, I'll add the ability to add comments to a d
 After comments on discussions are working, I'll implement the same functionality on checklists and tasks. Users will be able to comment on a checklist or any of its component tasks, and these comments will be visible from the checklist or task's show page.
 [Details][phase-four]
 
-### Phase 5: Invites (~2 days)
+### Phase 5: Style! (~2 days)
+Checklists, tasks, and comments are the core of this app. Once they're implemented to my satisfaction, I'll start making things look pretty. I'll piggyback on Bootstrap and implement a consistent color scheme and font style across the entire app. Index and show pages will use Bootstrap's grid feature to display everything nicely on the page, and clickable UI elements (task reassignments, links, buttons) will display visual feedback to the user that something has happened. Where applicable, I'll also style flashes from Rails (probably form errors), although most of the real-time feedback will be through instantly posting Backbone views to the DOM. And, just for flavor, I'll write some static pages - home, about, contact us - that explain to the interested supervillain just /why/ they might want a web app to manage their next nefarious scheme.
+[Details][phase-five]
+
+### Phase 6: File Uploads and Text Documents (~2 days, time permitting)
+
+### Phase 6: Invites (~2 days, time permitting)
 I'll implement a Rails route to display a form for inviting new or existing users to a project.
 Users can type email addresses or existing usernames into a text field; this field will automatically
 add new columns as more addresses are entered. Admins and the project owner have the ability to set
@@ -102,11 +103,14 @@ After authentication, the user will be added to this project with relevant flags
 While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users, and account owners have super-admin rights on all associated projects),
 I won't. Any user can create projects, invite users to projects they created or are admins on,
 and be invited to an existing project.
-[Details][phase-five]
 
-### Phase 6: Style! (~2 days)
+
 
 ### Bonus Features (TBD)
+- [] Search projects
+  - [] For todo lists, tasks, users, documents, and files
+  - [] Filter searches by project, component, and associated user
+  - [] Search in a particular project, or all projects
 - [] Users can drag and drop checklists and task items using jQuery UI
 - [] Users can assign multiple users to a task item, using the search feature instead of a dropdown
 - [] Create calendar events for a project

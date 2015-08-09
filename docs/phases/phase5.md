@@ -1,4 +1,4 @@
-# Phase 5: Searching for Blogs and Posts
+# Phase 5: Style!
 
 ## Rails
 ### Models
@@ -15,3 +15,5 @@
 ### Views
 
 ## Gems/Libraries
+Bootstrap CSS
+Various art assets
