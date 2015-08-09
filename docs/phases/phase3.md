@@ -1,4 +1,4 @@
-# Phase 3:
+# Phase 3: Checklists and Tasks
 
 ## Rails
 ### Models
@@ -28,6 +28,7 @@ ChecklistIndex
 ChecklistIndexItem
 ChecklistTaskItem
 ChecklistForm
-TodoForm
+TaskForm
+TaskAssignmentForm
 
 ## Gems/Libraries

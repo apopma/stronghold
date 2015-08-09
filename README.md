@@ -13,7 +13,7 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
 - [] Create projects
 - [] Create to-do checklists for a project
     - [] Add individual tasks within a checklist
-    - [] Assign tasks to zero or more users
+    - [] Assign tasks to a particular user
     - [] Assign deadlines to tasks
 - [] Post comments:
   - [] On a discussion board
@@ -29,7 +29,7 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
   - [] To a comment
   - [] Tag files with a text label
 - [] Search projects
-  - [] For todo lists, tasks, documents, and files
+  - [] For todo lists, tasks, users, documents, and files
   - [] Filter searches by project, component, and associated user
   - [] Search in a particular project, or all projects
 - [] Post text documents:
@@ -48,9 +48,7 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
 ### Phase 1: Auth, Sessions, Heroku (~1 day)
 I'll implement authentication using BCrypt and cookie-based logins using the
 Rails patterns we've already learned. Upon completion, users will be able to
-create an account, log into it, and log out. I'll also stub out
-the top-level landing page for the app, from which Backbone will boot,
-and get a live version running on Heroku.
+create an account, log into it, and log out. Once logged in, users can edit their information and view information for them and other users. In future phases, a user's show page will also display which tasks are assigned to them and which have been completed. I'll also stub out the top-level landing page for the app, from which Backbone will boot, and get a live version running on Heroku.
 [Details][phase-one]
 
 ### Phase 2: Projects (~1 day)
@@ -70,14 +68,25 @@ recently-updated checklists (or all of them, if fewer than six exist),
 and ChecklistIndexItem/ChecklistTaskItem sub-subviews to live inside the ChecklistsIndex.
 Creation/editing/deleting of checklists and tasks will be implemented using form subviews in Backbone.
 
+I'll implement a Backbone subview to reassign users and deadlines to tasks, visible by
+hovering over a task partial at any point in the app. This partial will contain a dropdown
+and a calendar, and a submit button which will update the database with the assignment
+and deadline once the user has made their selection. Users will also be able to set
+this info from the TaskForm subview. The assigned user and deadline will be visible from
+the task subview, and clicking on this information will reopen the assignment subview.
+
 I'll then add new Rails routes to serve HTML data for checklist and task show pages,
 which in future phases will serve as places for comments and associated files to live.
 I may also add a Rails route to serve data for a dedicated checklists index page,
 instead of only displaying this information at the project index level.
 [Details][phase-three]
 
-### Phase 4: Comments (~2 days)
+### Phase 4: Comments and Discussions (~2-3 days)
+I'll implement a polymorphic comment model which will live in several portions of the app. Discussions will come first: still basically a comment, but one which is only attached to a project. A subview for this will be visible at the project index page and at a discussions index page. I'll use an updated version of the WYSIHTML library Basecamp uses to allow users to format their discussion and comment bodies nicely, and Font Awesome to give the formatting options a good-looking GUI.
 
+Once discussions are up and running, I'll add the ability to add comments to a discussion. Users can see all the comments for a discussion from its show page, and add a new comment using an inline Backbone form. No nested replies will be implemented: there are only discussions (or other commentable things) and a list of comments for that commentable.
+
+After comments on discussions are working, I'll implement the same functionality on checklists and tasks. Users will be able to comment on a checklist or any of its component tasks, and these comments will be visible from the checklist or task's show page.
 [Details][phase-four]
 
 ### Phase 5: Invites (~2 days)
@@ -90,14 +99,16 @@ invite new users, and delete existing users from a project.
 Invitees will receive a welcome email; upon clicking
 a link in the email, they'll be routed to a welcome page asking them to sign up or sign in.
 After authentication, the user will be added to this project with relevant flags set.
-While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users,
-and account owners have super-admin rights on all associated projects),
+While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users, and account owners have super-admin rights on all associated projects),
 I won't. Any user can create projects, invite users to projects they created or are admins on,
 and be invited to an existing project.
 [Details][phase-five]
 
+### Phase 6: Style! (~2 days)
+
 ### Bonus Features (TBD)
 - [] Users can drag and drop checklists and task items using jQuery UI
+- [] Users can assign multiple users to a task item, using the search feature instead of a dropdown
 - [] Create calendar events for a project
   - [] Receive email reminders at a specified time before the event
   - [] Filter calendar events by project, or view all events
