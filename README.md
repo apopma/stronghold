@@ -88,9 +88,15 @@ After comments on discussions are working, I'll implement the same functionality
 Checklists, tasks, and comments are the core of this app. Once they're implemented to my satisfaction, I'll start making things look pretty. I'll piggyback on Bootstrap and implement a consistent color scheme and font style across the entire app. Index and show pages will use Bootstrap's grid feature to display everything nicely on the page, and clickable UI elements (task reassignments, links, buttons) will display visual feedback to the user that something has happened. Where applicable, I'll also style flashes from Rails (probably form errors), although most of the real-time feedback will be through instantly posting Backbone views to the DOM. And, just for flavor, I'll write some static pages - home, about, contact us - that explain to the interested supervillain just /why/ they might want a web app to manage their next nefarious scheme.
 [Details][phase-five]
 
-### Phase 6: File Uploads and Text Documents (~2 days, time permitting)
+### Phase 6: File Uploads with Labels (~2-3 days, time permitting)
+I'll implement the ability for users to upload files to a project. I'm not yet sure what I could do to implement this - there seem to be several possible solutions. What I want is to have a clickable button, visible in several places (new task creation form, task partial within a checklist view, new comment form, project files index) which, when clicked, opens up a dialogue for the user to select a file from their local filesystem. The file won't be stored until the new task or comment has actually been persisted to the database. Users will also be able to access a project-level file upload form, to upload files not associated with any particular checklist, task, or comment. Files will be commentable and have their own show page if uploaded to a project; otherwise, they'll be seen as part of the comments for a commentable.
 
-### Phase 6: Invites (~2 days, time permitting)
+Users can tag files with text labels before or after upload; if the label doesn't exist upon tagging, it'll be created when the file is uploaded. After a label's created, users will be able to view a show page for the label by clicking on its element, which will display subviews for all files tagged with that label. Label show pages will also expose a subview for users to change the label's name or delete it. Deleted labels are removed from all files so labeled, and a label with no files associated with it will automatically be deleted.
+
+For ease of workflow, the partial to upload a file should probably be a Backbone subview, but handling asynchronous file uploads from Backbone seems difficult at best. I see several gems to handle uploading (like Paperclip), but these look like they only work in the Rails world, not from a Backbone XHR. Cloudinary also looks like they offer plugins for jQuery and Rails to handle uploads, either to the server and then to their cloud, or straight to the cloud via browser - but they only handle images, and I'd like to support uploading of documents like PDFs and spreadsheets, as well as images. When this is seen: could I get some advice on how best to handle this?
+[Details][phase-six]
+
+### Phase 7: Invites (~2 days, time permitting)
 I'll implement a Rails route to display a form for inviting new or existing users to a project.
 Users can type email addresses or existing usernames into a text field; this field will automatically
 add new columns as more addresses are entered. Admins and the project owner have the ability to set
@@ -103,7 +109,7 @@ After authentication, the user will be added to this project with relevant flags
 While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users, and account owners have super-admin rights on all associated projects),
 I won't. Any user can create projects, invite users to projects they created or are admins on,
 and be invited to an existing project.
-
+[Details][phase-seven]
 
 
 ### Bonus Features (TBD)
@@ -135,3 +141,5 @@ and be invited to an existing project.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-six]: ./docs/phases/phase6.md
+[phase-seven]: ./docs/phases/phase7.md
