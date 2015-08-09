@@ -15,25 +15,25 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
     - [] Add individual tasks within a checklist
     - [] Assign tasks to zero or more users
     - [] Assign deadlines to tasks
-- [] Invite other users to projects via email
-- [] Be invited to another user's project via email
 - [] Post comments:
   - [] On a discussion board
   - [] On a to-do list
   - [] On a task
   - [] On a text document
   - [] As replies to top-level postings
+- [] Invite other users to projects via email
+- [] Be invited to another user's project via email
 - [] Attach files from the local filesystem:
   - [] To the project itself
   - [] To a to-do list or checklist item
   - [] To a comment
   - [] Tag files with a text label
-- [] Post text documents:
-  - [] Formattable using Markdown, or an in-line editor
 - [] Search projects
   - [] For todo lists, tasks, documents, and files
   - [] Filter searches by project, component, and associated user
   - [] Search in a particular project, or all projects
+- [] Post text documents:
+  - [] Formattable using Markdown, or an in-line editor
 
 
 ## Design Docs
@@ -72,16 +72,32 @@ Creation/editing/deleting of checklists and tasks will be implemented using form
 
 I'll then add new Rails routes to serve HTML data for checklist and task show pages,
 which in future phases will serve as places for comments and associated files to live.
+I may also add a Rails route to serve data for a dedicated checklists index page,
+instead of only displaying this information at the project index level.
 [Details][phase-three]
 
-### Phase 4:
+### Phase 4: Comments (~2 days)
+
 [Details][phase-four]
 
-### Phase 5:
+### Phase 5: Invites (~2 days)
+I'll implement a Rails route to display a form for inviting new or existing users to a project.
+Users can type email addresses or existing usernames into a text field; this field will automatically
+add new columns as more addresses are entered. Admins and the project owner have the ability to set
+administrator flags on invitees, giving that user the ability to set admin powers on other users,
+invite new users, and delete existing users from a project.
+
+Invitees will receive a welcome email; upon clicking
+a link in the email, they'll be routed to a welcome page asking them to sign up or sign in.
+After authentication, the user will be added to this project with relevant flags set.
+While Basecamp has a hierarchy extending beyond projects (accounts have an owner and many associated projects/users,
+and account owners have super-admin rights on all associated projects),
+I won't. Any user can create projects, invite users to projects they created or are admins on,
+and be invited to an existing project.
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [] Users can re-order to-do lists and tasks using drag-and-drop
+- [] Users can drag and drop checklists and task items using jQuery UI
 - [] Create calendar events for a project
   - [] Receive email reminders at a specified time before the event
   - [] Filter calendar events by project, or view all events
@@ -89,9 +105,12 @@ which in future phases will serve as places for comments and associated files to
 - [] Integrate Google accounts:
   - [] Users with a Google account can upload files from Google Drive
   - [] When a user signs up, try to sign them into Google with those credentials
-  - [] If it actually works, send them a helpful email about infosec
+  - [] If it actually works, send them a helpful email about password security; then promptly delete their info from the DB
 - [] Email notifications
+- [] Breadcrumbs: show the route a user took to get to a certain page
 - [] Multiple users can edit a text document concurrently
+- [] Administrator and project-creator flags on users
+  - [] Tie projects and users to an account with one owner
 - [] "Everything" pages for all of a user's projects: files, comments, etc.
 - [] Historical data for darn near everything
 - [] Timeline view for a given project, or for all of a user's projects

@@ -20,12 +20,12 @@ description | text      | not null
 ## project_memberships
 A project's creator is automatically an admin for that project.
 Enforce uniqueness on [user_id, project_id] combination.
-column_name | data type | details
-------------|-----------|----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users)
-project_id  | integer   | not null, foreign key (references projects)
-admin       | boolean   | not null, default: false
+column_name| data type | details
+-----------|-----------|----------------------
+id         | integer   | not null, primary key
+user_id    | integer   | not null, foreign key (references users)
+project_id | integer   | not null, foreign key (references projects)
+admin      | boolean   | not null, default: false
 
 ## checklists
 column_name | data type | details
