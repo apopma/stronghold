@@ -10,8 +10,8 @@ DiscussionsController(index, show)
 Api::DiscussionsController (new, create, edit, update, destroy)
 
 ### Views
-/projects/:id/discussions.html.erb
-/projects/:id/discussions/:discussion_id.html.erb
+/projects/:id/discussions/index.html.erb
+/projects/:id/discussions/:discussion_id/show.html.erb
 
 ## Backbone
 ### Models
@@ -22,8 +22,10 @@ Discussions, Comments
 
 ### Views
 DiscussionForm
+DiscussionShow
 DiscussionIndexItem
-Comment
+CommentsShow (composite subview to appear on the show pages of anything commentable: checklists, tasks, discussions, files; will contain Comment subviews)
+Comment (subview for CommentsShow)
 CommentForm
 
 
