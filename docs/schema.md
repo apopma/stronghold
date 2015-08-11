@@ -53,6 +53,7 @@ ord          | integer   | for drag-and-drop stretch goal
 
 ## task_assignments
 Enforce uniqueness on [task_id, user_id] combination.
+
 column_name | data type | details
 ------------|-----------|----------------------
 id          | integer   | not null, primary key
@@ -62,6 +63,7 @@ user_id     | integer   | not null, foreign key (references users)
 ## comments
 Polymorphic association: comments are possible on discussions, checklists,
 tasks, text documents, and uploaded files.
+
 column_name      | data type | details
 -----------------|-----------|----------------------
 id               | integer   | not null, primary key
