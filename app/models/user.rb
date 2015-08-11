@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
 
   after_initialize :ensure_session_token!
-  after_save :set_gravatar!
+  before_save :set_gravatar!
+  before_update :set_gravatar!
 
   def self.find_by_credentials(creds)
     usr = User.find_by_username(creds[:username])
