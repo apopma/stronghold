@@ -8,8 +8,8 @@
 
 Stronghold is a clone of Basecamp built by and for supervillains. Users can:
 
-- [] Create accounts
-- [] Login and logout
+- [x] Create accounts
+- [x] Login and logout
 - [] Create projects
 - [] Create to-do checklists for a project
     - [] Add individual tasks within a checklist

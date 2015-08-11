@@ -1,10 +1,12 @@
 <aside class='session-info'>
 
   <% if logged_in? %>
+    <a href='<%= user_url(current_user) %>'>
     <img src="<%= current_user.gravatar_url %>"
          alt="http://www.gravatar.com/avatar/?d=mm"
          class='img-circle'
          height='40', width='40' />
+   </a>
 
     Logged in as <strong><%= current_user.username %>.</strong>
 
