@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
-      redirect_to root_url
+      redirect_to user_url(@user)
     else
       flash.now[:danger] = @user.errors.full_messages
       render :new

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
     render :new
   end
 
@@ -11,7 +12,8 @@ class SessionsController < ApplicationController
       flash[:success] = ["Welcome back, #{@user.username}."]
       redirect_to user_url(@user)
     else
-      flash.now[:warning] = @user.errors.full_messages
+      flash.now[:warning] = ["Sorry, we didn't recognize your credentials."]
+      @user = User.new
       render :new
     end
   end
