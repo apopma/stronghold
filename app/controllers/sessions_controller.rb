@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      flash[:notice] = ["Welcome back, #{@user.username}."]
+      flash[:success] = ["Welcome back, #{@user.username}."]
       redirect_to user_url(@user)
     else
-      flash.now[:notice] = @user.errors.full_messages
+      flash.now[:warning] = @user.errors.full_messages
       render :new
     end
   end

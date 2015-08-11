@@ -1,0 +1,16 @@
+<% unless flash.blank? %>
+  <% flash.each do |type, flashcontent| %>
+    <div class='alert bg-<%= type %> alert-dismissable fade in'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+
+      <% unless flashcontent.blank? %>
+        <ul class="flashmsg flashmsg-<%= type %>">
+          <% flashcontent.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </div>
+  <% end %>
+<% end %>

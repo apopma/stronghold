@@ -8,10 +8,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = ["Welcome to Stronghold, #{@user.username}."]
+      flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
       redirect_to root_url
     else
-      flash.now[:notice] = @user.errors.full_messages
+      flash.now[:danger] = @user.errors.full_messages
+      render :new
     end
   end
 
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update
-      flash[:notice] = ["#{@user.username} was successfully edited."]
+      flash[:success] = ["#{@user.username} was successfully edited."]
       redirect_to user_url(@user)
     else
       flash.now[:notice] = @user.errors.full_messages
