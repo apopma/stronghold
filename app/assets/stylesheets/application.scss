@@ -19,4 +19,14 @@
 
 .nav.navbar-nav.navbar-right {
   margin-right: 0px;
+  p {
+    margin: -15px 0 0 54px;
+    padding-top: 2px;
+  }
+}
+
+.session-info img {
+  position: relative;
+  transform: translateY(10%);
+  margin: 0 5px;
 }

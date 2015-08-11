@@ -14,7 +14,13 @@
       <%= render "shared/auth" %>
       <input type="hidden" name="_method" value="delete">
       <input class='btn btn-xs btn-danger' type="submit" value="logout">
-    </form>
+    </form> <br>
+
+    <a href="<%= edit_user_url(current_user) %>">
+      <p class='text-left'>        
+        Edit your info
+      </p>
+    </a>
 
   <% else %>
     Not logged in.
