@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user
       login!(@user)
       flash[:success] = ["Welcome back, #{@user.username}."]
-      redirect_to user_url(@user)
+      redirect_to home_url
     else
       flash.now[:warning] = ["Sorry, we didn't recognize your credentials."]
       @user = User.new
