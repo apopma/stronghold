@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates_uniqueness_of :username, :email
 
-  after_initialize :set_gravatar!, :ensure_session_token!
-  after_update :set_gravatar!
+  after_initialize :ensure_session_token!
+  after_save :set_gravatar!
 
   def self.find_by_credentials(creds)
     usr = User.find_by_username(creds[:username])
