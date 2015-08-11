@@ -1,0 +1,22 @@
+<aside class='session-info'>
+
+  <% if logged_in? %>
+    <img src="<%= current_user.gravatar_url %>"
+         alt="http://www.gravatar.com/avatar/?d=mm"
+         class='img-circle'
+         height='40', width='40' />
+
+    Logged in as <strong><%= current_user.username %>.</strong>
+
+    <form action='<%= session_url %>' style='display: inline;' method='post'>
+      <%= render "shared/auth" %>
+      <input type="hidden" name="_method" value="delete">
+      <input class='btn btn-xs btn-danger' type="submit" value="logout">
+    </form>
+
+  <% else %>
+    Not logged in.
+    <a href="<%= new_session_url %>" class="btn btn-default btn-xs">login</a>
+  <% end %>
+
+</aside>

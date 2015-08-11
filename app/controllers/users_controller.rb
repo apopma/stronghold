@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_is_current_user!, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -42,5 +43,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :password, :email)
+  end
+
+  def require_is_current_user!
+    unless current_user == User.find(params[:id])
+      redirect_to root_url, status: 403
+    end
   end
 end
