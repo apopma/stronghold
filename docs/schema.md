@@ -21,6 +21,7 @@ description | text      | not null
 ## project_memberships
 A project's creator is automatically an admin for that project.
 Enforce uniqueness on [user_id, project_id] combination.
+
 column_name| data type | details
 -----------|-----------|----------------------
 id         | integer   | not null, primary key
@@ -72,6 +73,7 @@ body             | text      | markdown formatting?
 ## discussions
 Basically a comment not attached to any other part of the project.
 Does this really need its own table?
+
 column_name | data type | details
 ------------|-----------|----------------------
 id          | integer   | not null, primary key
@@ -98,6 +100,7 @@ tasks, comments, or text documents.
 Should the file exist persisted to the DB (as ```blob``` or ```bytea``` datatype?), or
 should the DB just store a reference to its server-side location, i.e.
 in ```app/assets/images``` or some other directory?
+
 column_name       | data type | details
 ------------------|-----------|----------------------
 id                | integer   | not null, primary key
@@ -118,6 +121,7 @@ This might be a polymorphic association as a stretch goal: give
 tasks, events, or checklists a particular label, i.e. "Logistics", "Security", "Engineering"...
 Enforce uniqueness on [label, file] combination.
 No file can have the same label twice, and vice versa.
+
 column_name | data type | details
 ------------|-----------|----------------------
 id          | integer   | not null, primary key
