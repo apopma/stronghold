@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
   before_save :set_gravatar!
   before_update :set_gravatar!
 
+  has_many :projects, through: :project_memberships, source: :project
+  has_many :project_memberships, dependent: :destroy
+  has_many(:created_projects,
+    class_name: "Project", foreign_key: "creator_id", dependent: :destroy)
+
   def self.find_by_credentials(creds)
     usr = User.find_by_username(creds[:username])
     usr && usr.is_password?(creds[:password]) ? usr : nil
