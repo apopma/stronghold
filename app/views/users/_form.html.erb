@@ -1,5 +1,17 @@
-<form action="<%= users_url %>" method='post'>
+<% if req_method == :patch %>
+  <% action = user_url %>
+  <% button_text = "Submit changes" %>
+<% else %>
+  <% action = users_url %>
+  <% button_text = "Sign up" %>
+<% end %>
+
+<form action="<%= action %>" method='post'>
   <%= render "shared/auth" %>
+
+  <% if req_method == :patch %>
+    <input type="hidden" name="_method" value="<%= req_method %>">
+  <% end %>
 
   <div class='form-group'>
     <label for='user_username'>Username: </label>
@@ -16,5 +28,7 @@
     <input type='email' class='form-control' name='user[email]' value='<%= @user.email %>'>
   </div>
 
-  <button type='submit class btn btn-primary btn-lg'>Sign up!</button>
+  <button type='submit class btn btn-primary btn-lg'>
+    <%= button_text %>
+  </button>
 </form>
