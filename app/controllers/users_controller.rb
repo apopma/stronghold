@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_is_current_user!, only: [:edit, :update]
+  before_action :require_login, except: [:new, :create]
 
   def new
     @user = User.new
@@ -45,9 +46,17 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password, :email)
   end
 
+  def require_login
+    unless logged_in?
+      flash[:notice] = ["Please login before doing that."]
+      redirect_to new_session_url
+    end
+  end
+
   def require_is_current_user!
     unless current_user == User.find(params[:id])
-      redirect_to root_url, status: 403
+      flash[:danger] = ["You're not cleared for that."]
+      redirect_to root_url
     end
   end
 end
