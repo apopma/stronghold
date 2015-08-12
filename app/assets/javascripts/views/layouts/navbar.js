@@ -17,7 +17,15 @@ Stronghold.Views.Navbar = Backbone.View.extend ({
   },
 
   logout: function() {
-    $.ajax("/session", { method: "DELETE" });
+    $.ajax("/session", {
+      method: "DELETE",
+      success: function() {
+        // redirects make AJAX make the same request to the redirect!
+        // without this callback, AJAX will try and DELETE "/home"
+        // doing this ensures the logout flash shows up nicely
+        window.location = "/";
+      }
+    });
   },
 
   updateActiveNav: function(route, params) {

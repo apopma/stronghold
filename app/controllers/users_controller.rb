@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
-      redirect_to home_url
+      redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages
       render :new
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:success] = ["#{@user.username} was successfully edited."]
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages
       render :edit

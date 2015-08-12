@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user
       login!(@user)
       flash[:success] = ["Welcome back, #{@user.username}."]
-      redirect_to home_url
+      redirect_to root_url
     else
       flash.now[:warning] = ["Sorry, we didn't recognize your credentials."]
       @user = User.new
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     logout!
     flash[:info] = ["You've been logged out."]
-    redirect_to root_url
+    render json: {} # AJAX performs the redirect over in navbar.js
   end
 
   private
