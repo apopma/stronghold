@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      login!(@user)
       flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
       redirect_to root_url
     else
@@ -44,13 +45,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :password, :email)
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:warning] = ["Please login before doing that."]
-      redirect_to new_session_url
-    end
   end
 
   def require_is_current_user!

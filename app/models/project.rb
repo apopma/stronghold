@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   after_create :set_creator_as_admin
 
   belongs_to(:creator, class_name: "User")
-  has_many :project_memberships
+  has_many :project_memberships, dependent: :destroy
   has_many :members, through: :project_memberships, source: :user
 
   private
