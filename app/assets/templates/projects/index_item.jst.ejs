@@ -1,13 +1,15 @@
-<h3><%= project.escape("title") %></h3>
-<h5><%= project.escape("description") %></h5>
-<h5>Updated at: <%= project.escape("updated_at") %></h5>
+<a href='<%= "#projects/" + project.escape("id") %>'>
+  <h3><%= project.escape("title") %></h3>
+  <h5><%= project.escape("description") %></h5>
+  <h5>Updated at: <%= project.escape("updated_at") %></h5>
 
-<ul class='members'>
-  <% project.members().each(function (member) { %>
-    <li>
-      <img src="<%= member.escape("gravatar_url") %>"
-           alt="<%= member.escape("username") %>"
-           title=" <%= member.escape("username") %>"/>
-    </li>
-  <% }) %>
-</ul>
+  <ul class='members'>
+    <% project.members().each(function (member) { %>
+      <li>
+        <img src="<%= member.escape("gravatar_url") %>"
+             alt="<%= member.escape("username") %>"
+             title=" <%= member.escape("username") %>"/>
+      </li>
+    <% }) %>
+  </ul>
+</a>
