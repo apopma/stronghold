@@ -27,6 +27,15 @@
 
 .projects-index {
   position: relative;
+
+  .projects {
+    background-color: lightblue;
+    float: left;
+
+    .project-index-item {
+      height: 350px;
+    }
+  }
 }
 
 .session-info img {
@@ -35,12 +44,9 @@
   margin: 0 5px;
 }
 
-.projects {
-  background-color: lightblue;
-}
-
 #sidebar {
   background-color: lightgreen;
   width: 150px;
   height: 100%;
+  float: left;
 }

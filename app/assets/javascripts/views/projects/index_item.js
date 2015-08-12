@@ -1,7 +1,7 @@
 Stronghold.Views.ProjectIndexItem = Backbone.View.extend ({
   template: JST['projects/index_item'],
   tagName: "article",
-  className: "col-xs-4",
+  className: "col-md-4 project-index-item",
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);

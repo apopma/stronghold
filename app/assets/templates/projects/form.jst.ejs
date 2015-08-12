@@ -1,0 +1,23 @@
+<form>
+  <div class="form-group">
+    <input type="text" name="project[title]" class='form-control'
+           placeholder='Name your new evil plan'>
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="project[description]" class='form-control'
+           placeholder='Add some extra details (optional)'>
+  </div>
+
+  <section class='invitees'>
+    <h4>Invite other people to your project</h4>
+    <p>
+      Type in some usernames or emails. Anybody you add will be able to view
+      and make changes to this project.
+    </p>
+    <input type="text" name="project[invitees][]">
+    <!-- more input fields added dynamically as these fill up -->
+  </section>
+
+  <input type="submit" value="Start plotting">
+</form>

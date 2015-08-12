@@ -6,7 +6,8 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
 
   routes: {
     "": "projectsIndex",
-    "projects/:id": "projectShow"
+    "projects/new": "newProject",
+    "projects/:id": "projectShow",
   },
 
   projectsIndex: function () {
@@ -18,6 +19,15 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
   projectShow: function(id) {
     var project = this.projects.getOrFetch(id);
     var view = new Stronghold.Views.ProjectShow({ model: project });
+    this._swapView(view);
+  },
+
+  newProject: function () {
+    var view = new Stronghold.Views.ProjectForm({
+      model: new Stronghold.Models.Project({
+        collection: this.projects
+      })
+    });
     this._swapView(view);
   },
 
