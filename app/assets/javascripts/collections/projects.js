@@ -1,5 +1,6 @@
 Stronghold.Collections.Projects = Backbone.Collection.extend({
   model: Stronghold.Models.Project,
+  url: "api/projects",
 
   getOrFetch: function (id) {
     var model = this.get(id);

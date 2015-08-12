@@ -22,7 +22,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     var content = view.render().$el;
-    this.$el.html(content);
+    this.$rootEl.html(content);
     this._currentView = view;
   }
 });
