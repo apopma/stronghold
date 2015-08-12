@@ -1,5 +1,7 @@
 Stronghold.Views.Navbar = Backbone.View.extend ({
   template: JST['layouts/navbar'],
+  tagName: 'nav',
+  className: 'navbar navbar-default',
 
   initialize: function (options) {
     this.router = options.router;

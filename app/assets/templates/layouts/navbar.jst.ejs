@@ -1,50 +1,48 @@
-<nav class="navbar navbar-default">
-  <div class='navbar-header'>
-    <a href="/" class=''>
-      <img src="/owl.png" alt="[+]" height='50' width='50' />
-      <strong>Stronghold</strong>
-    </a>
-  </div>
+<div class='navbar-header'>
+  <a href="/" class=''>
+    <img src="/owl.png" alt="[+]" height='50' width='50' />
+    <strong>Stronghold</strong>
+  </a>
+</div>
 
-  <ul class='nav navbar-nav navbar-left'>
-    <li><a href="#">Projects</a></li>
-    <li>
-      <a href="javascript:void(0)">Placeholder</a>
-    </li>
-    <li>
-      <a href="javascript:void(0)">Placeholder</a>
-    </li>
-    <li>
-      <a href="javascript:void(0)">Placeholder</a>
-    </li>
-    <li>
-      <a href="javascript:void(0)">Placeholder</a>
-    </li>
-  </ul>
+<ul class='nav navbar-nav navbar-left'>
+  <li><a href="#">Projects</a></li>
+  <li>
+    <a href="javascript:void(0)">Placeholder</a>
+  </li>
+  <li>
+    <a href="javascript:void(0)">Placeholder</a>
+  </li>
+  <li>
+    <a href="javascript:void(0)">Placeholder</a>
+  </li>
+  <li>
+    <a href="javascript:void(0)">Placeholder</a>
+  </li>
+</ul>
 
-  <ul class='nav navbar-nav navbar-right'>
-    <li>
-      <aside class='session-info'>
-          <a href="<%= 'users/' + Stronghold.CURRENT_USER.id %>">
-          <img src="<%= Stronghold.CURRENT_USER.gravatar_url %>"
-               alt="http://www.gravatar.com/avatar/?d=mm"
-               class='img-circle'
-               height='40', width='40' />
-         </a>
+<ul class='nav navbar-nav navbar-right'>
+  <li>
+    <aside class='session-info'>
+        <a href="<%= 'users/' + Stronghold.CURRENT_USER.id %>">
+        <img src="<%= Stronghold.CURRENT_USER.gravatar_url %>"
+             alt="http://www.gravatar.com/avatar/?d=mm"
+             class='img-circle'
+             height='40', width='40' />
+       </a>
 
-          Logged in as <strong><%= Stronghold.CURRENT_USER.username %>.</strong>
+        Logged in as <strong><%= Stronghold.CURRENT_USER.username %>.</strong>
 
-          <form class='logout' style='display: inline;'>
-            <input class='btn btn-xs btn-danger' type="submit" value="logout">
-          </form> <br>
+        <form class='logout' style='display: inline;'>
+          <input class='btn btn-xs btn-danger' type="submit" value="logout">
+        </form> <br>
 
-          <a href="<%= 'users/' + Stronghold.CURRENT_USER.id + '/edit' %>">
-            <p class='text-left'>
-              Edit your info
-            </p>
-          </a>
-      </aside>
+        <a href="<%= 'users/' + Stronghold.CURRENT_USER.id + '/edit' %>">
+          <p class='text-left'>
+            Edit your info
+          </p>
+        </a>
+    </aside>
 
-    </li>
-  </ul>
-</nav>
+  </li>
+</ul>
