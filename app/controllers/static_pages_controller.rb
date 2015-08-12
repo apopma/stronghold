@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    redirect_to root_url and return unless logged_in?
     render :home
   end
 

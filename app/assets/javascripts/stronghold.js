@@ -4,6 +4,12 @@ window.Stronghold = {
   Views: {},
   Routers: {},
   initialize: function() {
-    console.log('Hello from Backbone!');
+    var router = new Stronghold.Routers.Router({
+      $rootEl: $("#content")
+    });
+
+    Backbone.history.start();
+
+    console.log(Stronghold.CURRENT_USER);
   }
 };

@@ -1,7 +1,15 @@
 <%= render "layouts/navbar" %>
 
+<main class='container' id='content'></main>
+
 <script type="text/javascript">
   $(document).ready(function(){
+    Stronghold.CURRENT_USER = {
+      username: "<%= current_user.username %>",
+      email: "<%= current_user.email %>",
+      gravatar_url: "<%= current_user.gravatar_url %>"
+    };
+
     Stronghold.initialize();
   });
 </script>
