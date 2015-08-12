@@ -25,8 +25,22 @@
   }
 }
 
+.projects-index {
+  position: relative;
+}
+
 .session-info img {
   position: relative;
   transform: translateY(10%);
   margin: 0 5px;
+}
+
+.projects {
+  background-color: lightblue;
+}
+
+#sidebar {
+  background-color: lightgreen;
+  width: 150px;
+  height: 100%;
 }
