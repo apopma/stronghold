@@ -16,7 +16,9 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
   },
 
   projectShow: function(id) {
-
+    var project = this.projects.getOrFetch(id);
+    var view = new Stronghold.Views.ProjectShow({ model: project });
+    this._swapView(view);
   },
 
   _swapView: function (view) {
