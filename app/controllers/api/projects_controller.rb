@@ -17,7 +17,23 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
+    @project = Project.new(project_params)
+    @project.creator = current_user
+    invitees = params[:invitees]
 
+    if @project.save
+      invitees.map! do |invitee|
+        User.find_by_username_or_email(invitee)
+      end.compact!
+
+      invitees.each do |invitee|
+        ProjectMembership.create!(user: invitee, project: @project)
+      end
+
+      render json: @project
+    else
+      render json: @project.errors.full_messages, status: 422
+    end
   end
 
   def edit
@@ -34,6 +50,6 @@ class Api::ProjectsController < ApplicationController
 
   private
   def project_params
-
+    params.require(:project).permit(:title, :description)
   end
 end

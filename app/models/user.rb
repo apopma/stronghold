@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     usr && usr.is_password?(creds[:password]) ? usr : nil
   end
 
+  def self.find_by_username_or_email(query)
+    User.find_by_username(query) || User.find_by_email(query)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
