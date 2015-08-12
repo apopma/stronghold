@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages
       render :new
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:success] = ["#{@user.username} was successfully edited."]
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages
       render :edit
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def require_login
     unless logged_in?
-      flash[:notice] = ["Please login before doing that."]
+      flash[:warning] = ["Please login before doing that."]
       redirect_to new_session_url
     end
   end
