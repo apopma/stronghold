@@ -1,5 +1,6 @@
 Stronghold.Views.ProjectIndexItem = Backbone.View.extend ({
   template: JST['projects/index_item'],
+  tagName: "li",
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -7,5 +8,7 @@ Stronghold.Views.ProjectIndexItem = Backbone.View.extend ({
 
   render: function () {
     var content = this.template({ project: this.model, members: this.model.members() });
+    this.$el.html(content);
+    return this;
   }
 });

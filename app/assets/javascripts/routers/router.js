@@ -1,17 +1,17 @@
 Stronghold.Routers.Router = Backbone.Router.extend ({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.collection = new Stronghold.Collections.Projects();
+    this.projects = new Stronghold.Collections.Projects();
   },
 
   routes: {
     "": "projectsIndex",
-    "/projects/:id": "projectShow"
+    "projects/:id": "projectShow"
   },
 
   projectsIndex: function () {
-    this.collection.fetch();
-    var view = new Stronghold.Views.ProjectsIndex({ collection: this.collection });
+    this.projects.fetch();
+    var view = new Stronghold.Views.ProjectsIndex({ collection: this.projects });
     this._swapView(view);
   },
 

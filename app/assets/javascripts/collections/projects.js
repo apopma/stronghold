@@ -12,11 +12,7 @@ Stronghold.Collections.Projects = Backbone.Collection.extend({
       model.fetch({
         success: function () {
           this.add(model);
-        }.bind(this),
-
-        error: function () {
-          this.remove(model);
-        }
+        }.bind(this)
       });
     }
 

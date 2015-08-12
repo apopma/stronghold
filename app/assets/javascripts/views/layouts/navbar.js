@@ -3,7 +3,7 @@ Stronghold.Views.Navbar = Backbone.View.extend ({
 
   initialize: function (options) {
     this.router = options.router;
-    this.listenTo(this.router, "route", this.updateActiveNav);
+    // this.listenTo(this.router, "route", this.updateActiveNav);
   },
 
   events: {
