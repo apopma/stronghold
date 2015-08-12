@@ -20,6 +20,7 @@ class Api::ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.creator = current_user
     invitees = params[:invitees]
+    # strip out current user if exists
 
     if @project.save
       invitees.map! do |invitee|
@@ -30,7 +31,7 @@ class Api::ProjectsController < ApplicationController
         ProjectMembership.create!(user: invitee, project: @project)
       end
 
-      render json: @project
+      render :show
     else
       render json: @project.errors.full_messages, status: 422
     end
