@@ -32,11 +32,13 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   },
 
   newInputField: function() {
+    // TODO: make this not be terrible
     return '<div class="invitee-field"> <input type="text" name="project[invitees][]"> <button class="remove-invitee">&times;</button> </div>';
   },
 
   createNewProject: function(event) {
     event.preventDefault();
+    this.$("input").prop("disabled", false);
     var formData = this.$el.serializeJSON().project;
 
     var newProject = new Stronghold.Models.Project();
