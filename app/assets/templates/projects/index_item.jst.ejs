@@ -1,9 +1,5 @@
 <h3><%= project.escape("title") %></h3>
-<h5>
-  <% if (project.description) { %>
-    <%= project.escape("description") %>
-  <% } %>
-</h5>
+<h5><%= project.escape("description") %></h5>
 <h5>Updated at: <%= project.escape("updated_at") %></h5>
 
 <ul class='members'>
