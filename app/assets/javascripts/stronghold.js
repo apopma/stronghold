@@ -8,6 +8,9 @@ window.Stronghold = {
       $rootEl: $("#content")
     });
 
+    var navbar = new Stronghold.Views.Navbar({ router: router });
+    $('#navbar').html(navbar.render().$el);
+
     Backbone.history.start();
 
     console.log(Stronghold.CURRENT_USER);
