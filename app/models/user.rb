@@ -11,16 +11,15 @@ class User < ActiveRecord::Base
 
   has_many :projects, through: :project_memberships, source: :project
   has_many :project_memberships, dependent: :destroy
+
   has_many(:created_projects,
     class_name: "Project", foreign_key: "creator_id", dependent: :destroy)
+  has_many(:created_checklists,
+    class_name: "Checklist", foreign_key: "creator_id", dependent: :destroy)
 
   def self.find_by_credentials(creds)
     usr = User.find_by_username(creds[:username])
     usr && usr.is_password?(creds[:password]) ? usr : nil
-  end
-
-  def self.find_by_username_or_email(query)
-    User.find_by_username(query) || User.find_by_email(query)
   end
 
   def password=(password)
