@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     resources :checklists, only: [:create, :update, :destroy]
     resources :tasks, only: [:create, :update, :destroy]
+    resources :task_assignments, only: [:create, :update, :destroy]
     resources :project_memberships, only: [:create, :update, :destroy]
   end
 
