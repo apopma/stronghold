@@ -5,7 +5,6 @@ class CreateChecklists < ActiveRecord::Migration
       t.text :description
       t.integer :project_id, null: false
       t.integer :creator_id, null: false
-      t.boolean :done, null: false, default: false
       t.timestamps null: false
     end
 
