@@ -9,7 +9,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     "projects/new": "newProject",
     "projects/:id": "projectShow",
     "projects/:id/edit": "editProject",
-    "projects/:id/checklists/": "checklistIndex"
+    "projects/:id/checklists": "checklistIndex"
   },
 
   projectsIndex: function () {
