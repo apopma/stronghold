@@ -25,7 +25,7 @@ Stronghold.Models.Project = Backbone.Model.extend({
     }
 
     if (response.checklists) {
-      this.checklists().set(response.checklists);
+      this.checklists().set(response.checklists, { parse: true });
       delete response.checklists;
     }
 

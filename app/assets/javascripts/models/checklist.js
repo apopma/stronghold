@@ -10,10 +10,9 @@ Stronghold.Models.Checklist = Backbone.Model.extend ({
 
   parse: function(response) {
     if (response.tasks) {
-      this.tasks().set(response.tasks);
+      this.tasks().set(response.tasks, { parse: true });
       delete response.tasks;
     }
-
 
     return response;
   }
