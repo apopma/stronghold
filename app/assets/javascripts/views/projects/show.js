@@ -4,7 +4,7 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   // model has collections: checklists, discussions, files
 
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.model, "sync", this.render);
   },
 
   events: {
@@ -13,8 +13,8 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     "submit form.new-invites-form": "submitNewInvitees",
 
     "dblclick .project-info": "openInfoEdit",
-    "click submit": "submitEditedInfo",
-    "click cancel": "cancelInfoEdit"
+    "click .submit": "submitEditedInfo",
+    "click .cancel": "cancelInfoEdit"
   },
 
   addInviteeField: function (event) {
@@ -58,19 +58,27 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     var prevTitle = $targetEl.find(".project-title").text();
     var prevDesc = $targetEl.find(".project-description").text();
 
-    debugger;
-
     $targetEl.html(inputTemplate({
       prevTitle: prevTitle, prevDesc: prevDesc
     }));
   },
 
   submitEditedInfo: function(event) {
-    event.preventDefault();
+    event.preventDefault;
+
+    var $targetEl = $(event.currentTarget).parent();
+    var $header = $targetEl.parent();
+    var updatedAttrs = $targetEl.serializeJSON();
+
+    $header.html("<h1 class='project-title'></h1> <h3 class='project-description'></h3>");
+    $header.find(".project-title").text(updatedAttrs.title);
+    $header.find(".project-description").text(updatedAttrs.description);
+
+    debugger;
   },
 
   cancelInfoEdit: function (event) {
-    event.preventDefault();
+    event.preventDefault;
   },
 
   render: function () {
