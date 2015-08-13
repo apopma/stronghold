@@ -1,5 +1,4 @@
-json.extract! @task, :id, :description, :done
-json.deadline @task.deadline ? task.deadline : nil
+json.extract! @task, :id, :description, :done, :deadline
 
 json.assigned_to do
   json.array! @task.assigned_users do |user|
