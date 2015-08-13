@@ -10,7 +10,11 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   events: {
     "change .invitees :last-child": "addInviteeField",
     "click .remove-invitee": "removeInviteeField",
-    "submit form": "submitNewInvitees"
+    "submit form.new-invites-form": "submitNewInvitees",
+
+    "dblclick .project-info": "openInfoEdit",
+    "click submit": "submitEditedInfo",
+    "click cancel": "cancelInfoEdit"
   },
 
   addInviteeField: function (event) {
@@ -46,6 +50,27 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
       membership.save(); // TODO: inform user if records don't exist
     });
+  },
+
+  openInfoEdit: function() {
+    var inputTemplate = JST['projects/_info'];
+    var $targetEl = $(event.target).parent().parent(); // header
+    var prevTitle = $targetEl.find(".project-title").text();
+    var prevDesc = $targetEl.find(".project-description").text();
+
+    debugger;
+
+    $targetEl.html(inputTemplate({
+      prevTitle: prevTitle, prevDesc: prevDesc
+    }));
+  },
+
+  submitEditedInfo: function(event) {
+    event.preventDefault();
+  },
+
+  cancelInfoEdit: function (event) {
+    event.preventDefault();
   },
 
   render: function () {

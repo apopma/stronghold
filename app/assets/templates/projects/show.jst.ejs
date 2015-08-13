@@ -1,5 +1,9 @@
-<h1><%= project.escape("title") %></h1>
-<h3><%= project.escape("description") %></h3>
+<header>
+  <div class="project-info">
+    <h1 class='project-title'><%= project.escape("title") %></h1>
+    <h3 class='project-description'><%= project.escape("description") %></h3>
+  </div>
+</header>
 
 <br>
 
@@ -22,7 +26,7 @@
 </footer>
 
 
-<form>
+<form class='new-invites-form'>
   <section class='form-group invitees'>
     <h4>Invite more people to your project</h4>
     <p>
