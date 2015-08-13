@@ -1,0 +1,14 @@
+<input type="checkbox" name="done" <%= isDone ? "checked" : "" %>>
+
+<%= task.escape("description") %> <br>
+
+Assigned to:
+<% assignments.each(function (assignment) { %>
+  <%= assignment.escape("username") %>
+<% }) %>
+<br>
+
+<% if task.get("deadline") { %>
+  Due on:
+  <%= task.escape("deadline") %>
+<% } %>
