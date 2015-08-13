@@ -15,17 +15,10 @@ class Api::ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.creator = current_user
-    invitees = params[:invitees]
-    # strip out current user if exists
 
     if @project.save
-      invitees.map! do |invitee|
-        User.find_by_username_or_email(invitee)
-      end.compact!
-
-      invitees.each do |invitee|
-        ProjectMembership.create!(user: invitee, project: @project)
-      end
+      invitee_ids = User.where(username: params[:invitees]).pluck(:id)
+      @project.member_ids = @project.member_ids.concat invitee_ids
 
       render :show
     else

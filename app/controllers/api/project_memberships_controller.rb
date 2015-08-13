@@ -5,7 +5,7 @@ class Api::ProjectMembershipsController < ApplicationController
     @membership = ProjectMembership.new(project: @project, user: @user)
 
     if @membership.save
-      render json: @membership
+      render "api/projects/show"
     else
       render json: @membership.errors.full_messages, status: 422
     end
