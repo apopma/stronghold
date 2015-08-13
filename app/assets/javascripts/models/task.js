@@ -6,7 +6,7 @@ Stronghold.Models.Task = Backbone.Model.extend ({
 
   assignedUsers: function() {
     if (!this._assignedUsers) {
-      this._assignedUsers = new Stronghold.Collections.TaskAssignments([], { task: this });
+      this._assignedUsers = new Stronghold.Collections.Users([], { task: this });
     }
     return this._assignedUsers;
   },
