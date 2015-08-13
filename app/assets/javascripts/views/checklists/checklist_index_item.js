@@ -11,6 +11,18 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
     this.listenTo(this.collection, "remove", this.removeTaskView);
   },
 
+  addTaskView: function (task) {
+    var subSubview = new Stronghold.Views.ChecklistTaskItem({
+      model: task,
+      collection: task.assignedUsers()
+    });
+    this.addSubview('.tasks', subSubview);
+  },
+
+  removeTaskView: function (task) {
+    this.removeModelSubview('.tasks', task);
+  },
+
   render: function () {
     var index = this;
     var content = this.template({ checklist: this.model });
