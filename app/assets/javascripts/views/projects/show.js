@@ -44,7 +44,12 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
         project_id: project.model.id
       });
 
-      membership.save({}, {}); // TODO: inform user if records don't exist
+      membership.save({}, {
+        success: function() {
+          // ensures project's members show up in index w/o refresh
+          project.model.members().add(membership);
+        }.bind(this)
+      }); // TODO: inform user if records don't exist
     });
 
     this.render();
