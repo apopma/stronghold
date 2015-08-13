@@ -55,11 +55,11 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   openInfoEdit: function() {
     var inputTemplate = JST['projects/_info'];
     var $targetEl = $(event.target).parent().parent(); // header
-    var prevTitle = $targetEl.find(".project-title").text();
-    var prevDesc = $targetEl.find(".project-description").text();
+    this._prevTitle = $targetEl.find(".project-title").text();
+    this._prevDesc = $targetEl.find(".project-description").text();
 
     $targetEl.html(inputTemplate({
-      prevTitle: prevTitle, prevDesc: prevDesc
+      prevTitle: this._prevTitle, prevDesc: this._prevDesc
     }));
   },
 
@@ -69,9 +69,8 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     var $targetEl = $(event.currentTarget).parent();
     var $header = $targetEl.parent();
     var updatedAttrs = $targetEl.serializeJSON();
-    debugger;
 
-    // TODO: make this be less terriba
+    // TODO: make this be less terribad
     $header.html("<h1 class='project-title'></h1> <h3 class='project-description'></h3>");
     $header.find(".project-title").text(updatedAttrs.title);
     $header.find(".project-description").text(updatedAttrs.description);
@@ -82,6 +81,13 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
   cancelInfoEdit: function (event) {
     event.preventDefault;
+
+    var $targetEl = $(event.currentTarget).parent();
+    var $header = $targetEl.parent();
+
+    $header.html("<h1 class='project-title'></h1> <h3 class='project-description'></h3>");
+    $header.find(".project-title").text(this._prevTitle);
+    $header.find(".project-description").text(this._prevDesc);
   },
 
   render: function () {
