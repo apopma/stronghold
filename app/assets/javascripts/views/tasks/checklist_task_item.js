@@ -13,7 +13,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       task: this.model, assignments: this.collection,
-      isDone: this.model.get("done");
+      isDone: this.model.get("done")
     });
     this.$el.html(content);
     return this;
