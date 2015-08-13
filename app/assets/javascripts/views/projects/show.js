@@ -69,12 +69,15 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     var $targetEl = $(event.currentTarget).parent();
     var $header = $targetEl.parent();
     var updatedAttrs = $targetEl.serializeJSON();
+    debugger;
 
+    // TODO: make this be less terriba
     $header.html("<h1 class='project-title'></h1> <h3 class='project-description'></h3>");
     $header.find(".project-title").text(updatedAttrs.title);
     $header.find(".project-description").text(updatedAttrs.description);
 
-    debugger;
+    this.model.set(updatedAttrs);
+    this.model.save({}, {});
   },
 
   cancelInfoEdit: function (event) {

@@ -12,10 +12,6 @@ class Api::ProjectsController < ApplicationController
     render :show
   end
 
-  def new
-
-  end
-
   def create
     @project = Project.new(project_params)
     @project.creator = current_user
@@ -37,12 +33,14 @@ class Api::ProjectsController < ApplicationController
     end
   end
 
-  def edit
-
-  end
-
   def update
+    @project = Project.find(params[:id])
 
+    if @project.update(project_params)
+      render :show
+    else
+      render json: @project.errors.full_messages, status: 422
+    end
   end
 
   def destroy
