@@ -11,19 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813173126) do
+ActiveRecord::Schema.define(version: 20150813175714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checklists", force: :cascade do |t|
-    t.string   "title",                       null: false
+    t.string   "title",       null: false
     t.text     "description"
-    t.integer  "project_id",                  null: false
-    t.integer  "creator_id",                  null: false
-    t.boolean  "done",        default: false, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "project_id",  null: false
+    t.integer  "creator_id",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "checklists", ["creator_id"], name: "index_checklists_on_creator_id", using: :btree
@@ -46,6 +45,19 @@ ActiveRecord::Schema.define(version: 20150813173126) do
   end
 
   add_index "projects", ["creator_id"], name: "index_projects_on_creator_id", using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.text     "description",                  null: false
+    t.boolean  "done",         default: false, null: false
+    t.date     "deadline"
+    t.integer  "checklist_id",                 null: false
+    t.integer  "creator_id",                   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "tasks", ["checklist_id"], name: "index_tasks_on_checklist_id", using: :btree
+  add_index "tasks", ["creator_id"], name: "index_tasks_on_creator_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",                                                                      null: false
