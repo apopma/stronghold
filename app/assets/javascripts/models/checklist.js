@@ -1,5 +1,5 @@
 Stronghold.Models.Checklist = Backbone.Model.extend ({
-  urlRoot: "api/projects/:project_id/checklists",
+  urlRoot: "api/checklists",
 
   tasks: function() {
     if (!this._tasks) {
