@@ -5,6 +5,10 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
   // collection: project.checklists()
 
   initialize: function () {
+    this.collection.each(function (checklist) {
+      this.addChecklistView(checklist);
+    }.bind(this));
+
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add", this.addChecklistView);
     this.listenTo(this.collection, "remove", this.removeChecklistView);
