@@ -18,6 +18,19 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+#sidebar {
+  background-color: lightgreen;
+  width: 150px;
+  height: 100%;
+  float: left;
+}
+
+.session-info img {
+  position: relative;
+  transform: translateY(10%);
+  margin: 0 5px;
+}
+
 .nav.navbar-nav.navbar-right {
   margin-right: 0px;
   p {
@@ -39,15 +52,9 @@
   }
 }
 
-.session-info img {
-  position: relative;
-  transform: translateY(10%);
-  margin: 0 5px;
-}
-
-#sidebar {
-  background-color: lightgreen;
-  width: 150px;
-  height: 100%;
-  float: left;
+.checklist-index-item {
+  .info {
+    // width is otherwise 100%, due to these being col-12
+    width: 20pc;
+  }
 }

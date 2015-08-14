@@ -1,17 +1,19 @@
-<% if (!isShowView) { %>
-  <a href="#projects/<%= project.escape('id') %>/checklists/<%= checklist.escape('id') %>">
-<% } %>
+<header class='info'>
+  <% if (!isShowView) { %>
+    <a href="#projects/<%= project.escape('id') %>/checklists/<%= checklist.escape('id') %>">
+  <% } %>
 
-<h4><%= checklist.escape("title") %></h4>
-<h5><%= checklist.escape("description") %></h5>
+  <h4><%= checklist.escape("title") %></h4>
+  <h5><%= checklist.escape("description") %></h5>
 
-<% if (!isShowView) { %>
-  </a>
-<% } else { %>
-  <a href="#projects/<%= project.escape("id") %>/checklists">
-    Back to all checklists
-  </a> <br><br>
-<% } %>
+  <% if (!isShowView) { %>
+    </a>
+  <% } else { %>
+    <a href="#projects/<%= project.escape("id") %>/checklists">
+      Back to all checklists
+    </a> <br><br>
+  <% } %>
+</header>
 
 <ul class='tasks'>
   task partials go here!

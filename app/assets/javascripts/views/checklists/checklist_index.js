@@ -43,8 +43,6 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
     event.preventDefault();
     var form = $(event.currentTarget).parent();
     var formData = form.serializeJSON();
-
-    // can't just send the ID, or backbone sends :project_id instead. very stupid.
     var checklist = new Stronghold.Models.Checklist({ project_id: this.model.id });
 
     checklist.save(formData, {

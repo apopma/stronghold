@@ -5,6 +5,7 @@
   Assigned to:
   <br>
   Due on:
+  <input type="text" name="deadline" class='datepicker'>
 
   <button type="submit" class='new-task-submit btn btn-success btn-sm' name="button">
     Add this task
@@ -14,3 +15,10 @@
     cancel
   </button>
 </form>
+
+
+<script type="text/javascript">
+  $(function () {
+    $(".datepicker").datepicker();
+  });
+</script>
