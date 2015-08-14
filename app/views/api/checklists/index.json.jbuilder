@@ -2,7 +2,8 @@ json.array! @checklists do |checklist|
   json.extract! checklist, :id, :title, :description
 
   json.tasks checklist.tasks do |task|
-    json.extract! task, :id, :description, :done, :deadline
+    json.extract! task, :id, :description, :done
+    json.deadline task.deadline.strftime("%m/%d/%Y")
 
     json.assigned_to do
       json.array! task.assigned_users do |user|
