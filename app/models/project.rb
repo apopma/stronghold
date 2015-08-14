@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
   def admins
     User.find_by_sql(<<-SQL)
-      SELECT *
+      SELECT u.*
       FROM users u
       JOIN project_memberships pm
       ON pm.user_id = u.id

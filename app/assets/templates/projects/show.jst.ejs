@@ -42,3 +42,9 @@
 
   <input type="submit" value="Add new invitees">
 </form>
+
+<% if (project.attributes.is_admin) { %>
+  you're an admin!
+<% } else { %>
+  you're not an admin! woe is you
+<% } %>

@@ -16,3 +16,5 @@ json.checklists @project.checklists do |checklist|
     end
   end
 end
+
+json.is_admin @project.admins.include?(current_user)
