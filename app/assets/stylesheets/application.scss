@@ -17,6 +17,7 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
@@ -62,7 +63,21 @@
 }
 
 .new-task-form {
+  .inner-addon {
+    position: relative;
+    .fa {
+      position: absolute;
+      padding: 5px;
+      pointer-events: none;
+    }
+  }
+
   .search {
     min-width: 15pc;
   }
 }
+
+.left-addon .fa { left: 0px; }
+.right-addon .fa { right: 0px; }
+.left-addon input { padding-left: 30px; }
+.right-addon input { padding-right: 30px; }
