@@ -1,10 +1,10 @@
 class TaskAssignment < ActiveRecord::Base
-  validates :task, :user, presence: true
+  validates :task, :user, :project, presence: true
   validate :user_is_project_member
 
   belongs_to :task
   belongs_to :user
-  has_one :project, through: :task
+  has_one :project, through: :task, source: :project
 
   private
   def user_is_project_member

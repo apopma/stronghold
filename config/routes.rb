@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get "/home" => "static_pages#home", as: :home
 
   namespace :api, defaults: { format: :json } do
+
     resources :projects, except: [:new, :edit] do
+      resources :users, only: :index
       resources :checklists, only: :index
       resources :tasks, only: :show
     end
