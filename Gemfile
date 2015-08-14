@@ -6,6 +6,7 @@ gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'backbone-on-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'serialize_json-rails'
