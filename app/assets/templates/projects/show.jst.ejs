@@ -44,7 +44,18 @@
 </form>
 
 <% if (project.attributes.is_admin) { %>
-  you're an admin!
-<% } else { %>
-  you're not an admin! woe is you
+  <br><br>
+  <p>
+    <h5>Add administrators to this project</h5>
+    Admins can create other admins, remove admin rights, and delete the entire project.
+  </p>
+
+  <p>
+    <h5>Remove administrators</h5>
+  </p>
+
+  <p><em>Danger Zone</em></p>
+  <button class='btn btn-danger btn-md delete-project' type="button">
+    Delete this project
+  </button>
 <% } %>

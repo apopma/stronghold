@@ -1,7 +1,8 @@
 Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   template: JST['projects/show'],
   className: 'project-show',
-  // model has collections: checklists, discussions, files
+  // model: project
+  // several collections: checklists, discussions, files
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -14,7 +15,9 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
     "dblclick .project-info": "openInfoEdit",
     "click .submit": "submitEditedInfo",
-    "click .cancel": "cancelInfoEdit"
+    "click .cancel": "cancelInfoEdit",
+
+    "click .delete-project": "deleteProject"
   },
 
   addInviteeField: function (event) {
@@ -80,6 +83,19 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   cancelInfoEdit: function (event) {
     event.preventDefault();
     this.render();
+  },
+
+  deleteProject: function (event) {
+    event.preventDefault()
+    var c = window.confirm("Do you really want to abandon your evil plan?\nEverything about this project will be permanently deleted.");
+    if (c) {
+      this.model.destroy({
+        success: function() {
+          this.model.clear();
+          Backbone.history.navigate("#", { trigger: true });
+        }.bind(this)
+      });
+    }
   },
 
   render: function () {
