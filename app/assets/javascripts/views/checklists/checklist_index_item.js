@@ -38,7 +38,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   },
 
   openTaskForm: function (event) {
-    var form = JST['tasks/form']();
+    var form = JST['tasks/form']({ checklist: this.model });
     this._newTaskBtn = this.$(".task-create").html();
     this.$(".task-create").html(form);
   },
@@ -46,6 +46,24 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   cancelTaskForm: function (event) {
     event.preventDefault();
     this.$(".task-create").html(this._newTaskBtn);
+  },
+
+  submitNewTask: function(event) {
+    event.preventDefault();
+    var form = $(event.currentTarget).parent();
+    var formData = form.serializeJSON();
+
+    var task = new Stronghold.Models.Task({ checklist_id: this.model.id });
+    task.save(formData, {
+      success: function() {
+        this.collection.add(task);
+        this.$('task-create').html(this._newTaskBtn);
+      }.bind(this),
+
+      error: function(model, resp, opts) {
+        debugger;
+      }.bind(this)
+    });
   },
 
   render: function () {

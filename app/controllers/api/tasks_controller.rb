@@ -5,7 +5,14 @@ class Api::TasksController < ApplicationController
   end
 
   def create
+    @task = current_user.created_tasks.new(task_params)
+    @task.done = false # could also be a callback?
 
+    if @task.save
+      render json: @task
+    else
+      render json: @task.errors.full_messages, status: 422
+    end
   end
 
   def update
@@ -14,5 +21,10 @@ class Api::TasksController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+  def task_params
+    params.require(:task).permit(:description, :deadline, :checklist_id)
   end
 end
