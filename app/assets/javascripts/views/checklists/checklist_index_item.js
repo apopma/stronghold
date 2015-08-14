@@ -38,9 +38,13 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   },
 
   openTaskForm: function (event) {
-    var form = JST['tasks/form']({ checklist: this.model });
+    var form = new Stronghold.Views.TaskForm({
+      model: new Stronghold.Models.Task({ checklist_id: this.model_id }),
+      collection: this.collection
+    });
+
     this._newTaskBtn = this.$(".task-create").html();
-    this.$(".task-create").html(form);
+    this.$(".task-create").html(form.render().$el);
   },
 
   cancelTaskForm: function (event) {

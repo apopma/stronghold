@@ -1,27 +1,37 @@
-<form class="new-task-form">
-  <input type="checkbox" disabled>
-  <input type="text" name="description" placeholder="Add a new task">
+  <div class="form-group">
+    <input type="checkbox" disabled>
+    <input type="text" name="description" value='<%= task.escape("description") %>'
+      placeholder="Add a new task">
+  </div>
 
-  <!-- Assigned to:
-  search ChecklistIndexItem.project.members()
-  autocomplete? dynamic display? -->
 
-  <br>
-  Due on:
-  <input type="text" name="deadline" class='datepicker'>
+  <div class="form-group">
+    Assign to:
+    <input type="text" name="query" class='search'
+           placeholder='Search for project members'>
 
-  <button type="submit" class='new-task-submit btn btn-success btn-sm' name="button">
-    Add this task
-  </button>
-  or
-  <button type="cancel" class='new-task-cancel btn btn-danger btn-link' name="button">
-    cancel
-  </button>
-</form>
+      <ul class='assignments'>
+        <li>new assignments...</li>
+      </ul>
+    <br>
 
+    Due on:
+    <input type="text" name="deadline" class='datepicker'>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class='new-task-submit btn btn-success btn-sm' name="button">
+      Add this task
+    </button>
+    or
+    <button type="cancel" class='new-task-cancel btn btn-danger btn-link' name="button">
+      cancel
+    </button>
+  </div>
 
 <script type="text/javascript">
   $(function () {
+    // options?
     $(".datepicker").datepicker();
   });
 </script>
