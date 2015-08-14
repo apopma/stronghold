@@ -8,3 +8,13 @@
 <button type="button" class='new-task btn btn-link' data-id='<%= checklist.escape("id") %>'>
   Create a new task
 </button>
+
+<% if (isShowView) { %>
+  <br>
+  <p>
+    this is a show view! comments and things will go here
+  </p>
+  <a href="#projects/<%= project.escape("id") %>/checklists">
+    Back to all checklists
+  </a>
+<% } %>

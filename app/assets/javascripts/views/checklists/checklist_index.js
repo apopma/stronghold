@@ -16,6 +16,7 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
 
   addChecklistView: function(checklist) {
     var subview = new Stronghold.Views.ChecklistIndexItem({
+      project: this.model,
       model: checklist,
       collection: checklist.tasks()
     });
