@@ -4,6 +4,6 @@ class Task < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
   has_one :project, through: :checklist
 
-  has_many :assignments, class_name: "TaskAssignment"
+  has_many :assignments, class_name: "TaskAssignment", dependent: :destroy
   has_many :assigned_users, through: :assignments, source: :user
 end
