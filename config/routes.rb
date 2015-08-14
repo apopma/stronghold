@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :projects, except: [:new, :edit] do
-      resources :checklists, only: [:index, :show]
+      resources :checklists, only: :index
       resources :tasks, only: :show
     end
 
-    resources :checklists, only: [:create, :update, :destroy]
+    resources :checklists, only: [:show, :create, :update, :destroy]
     resources :tasks, only: [:create, :update, :destroy]
     resources :task_assignments, only: [:create, :update, :destroy]
     resources :project_memberships, only: [:create, :update, :destroy]
