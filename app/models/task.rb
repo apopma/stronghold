@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   validates :description, :checklist, :creator, presence: true
   validate :done_is_boolean?
-  
+
   belongs_to :checklist
   belongs_to :creator, class_name: "User"
   has_one :project, through: :checklist
