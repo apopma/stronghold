@@ -35,8 +35,8 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
 
   openChecklistForm: function(){
     var form = JST['checklists/form']();
-    this._newChecklistBtn = this.$('.create').html();
-    this.$('.create').html(form);
+    this._newChecklistBtn = this.$('.checklist-create').html();
+    this.$('.checklist-create').html(form);
   },
 
   submitNewChecklist: function (event) {
@@ -50,7 +50,7 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
     checklist.save(formData, {
       success: function() {
         this.collection.add(checklist);
-        this.$('.create').html(this._newChecklistBtn);
+        this.$('.checklist-create').html(this._newChecklistBtn);
       }.bind(this),
 
       error: function(model, resp, opts) {
@@ -61,7 +61,7 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
 
   cancelChecklistForm: function (event) {
     event.preventDefault();
-    this.$('.create').html(this._newChecklistBtn);
+    this.$('.checklist-create').html(this._newChecklistBtn);
   },
 
   render: function () {

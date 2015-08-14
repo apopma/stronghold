@@ -20,7 +20,9 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   },
 
   events: {
-    "click .new-task": "openTaskForm"
+    "click .new-task": "openTaskForm",
+    "click .new-task-submit": "submitNewTask",
+    "click .new-task-cancel": "cancelTaskForm"
   },
 
   addTaskView: function (task) {
@@ -37,8 +39,13 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
 
   openTaskForm: function (event) {
     var form = JST['tasks/form']();
-    this._newTaskBtn = this.$(".create").html();
-    this.$(".create").html(form);
+    this._newTaskBtn = this.$(".task-create").html();
+    this.$(".task-create").html(form);
+  },
+
+  cancelTaskForm: function (event) {
+    event.preventDefault();
+    this.$(".task-create").html(this._newTaskBtn);
   },
 
   render: function () {
