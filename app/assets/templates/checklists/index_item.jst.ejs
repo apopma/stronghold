@@ -17,9 +17,11 @@
   task partials go here!
 </ul>
 
-<button type="button" class='new-task btn btn-link' data-id='<%= checklist.escape("id") %>'>
-  Create a new task
-</button>
+<div class="create">
+  <button type="button" class='new-task btn btn-link' data-id='<%= checklist.escape("id") %>'>
+    Create a new task
+  </button>
+</div>
 
 <% if (isShowView) { %>
   <br>
