@@ -8,8 +8,8 @@ class Api::TasksController < ApplicationController
     @task = current_user.created_tasks.new(task_params)
     @task.done = false # could also be a callback?
     # some stupid bug with Rails prevents below being set through task_params
-    unless params[:deadline].empty?
-      @task.deadline = Date.strptime(params[:deadline], "%m/%d/%Y") 
+    if params[:deadline]
+      @task.deadline = Date.strptime(params[:deadline], "%m/%d/%Y")
     end
 
     if @task.save

@@ -54,10 +54,12 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
 
   submitNewTask: function(event) {
     event.preventDefault();
-    var form = $(event.currentTarget).parent();
+    var form = $(event.currentTarget).parent().parent();
     var formData = form.serializeJSON();
 
     var task = new Stronghold.Models.Task({ checklist_id: this.model.id });
+
+    debugger;
     task.save(formData, {
       success: function() {
         this.collection.add(task);
