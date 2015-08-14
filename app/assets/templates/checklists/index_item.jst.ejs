@@ -7,6 +7,10 @@
 
 <% if (!isShowView) { %>
   </a>
+<% } else { %>
+  <a href="#projects/<%= project.escape("id") %>/checklists">
+    Back to all checklists
+  </a> <br><br>
 <% } %>
 
 <ul class='tasks'>
@@ -22,7 +26,4 @@
   <p>
     this is a show view! comments and things will go here
   </p>
-  <a href="#projects/<%= project.escape("id") %>/checklists">
-    Back to all checklists
-  </a>
 <% } %>
