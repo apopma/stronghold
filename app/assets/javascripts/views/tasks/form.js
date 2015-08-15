@@ -2,6 +2,9 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   template: JST['tasks/form'],
   tagName: 'form',
   className: 'new-task-form',
+  // model: task,
+  // collection: checklist's tasks from owning checklist
+  // project: owning project
 
   initialize: function(options) {
     this.project = options.project;
@@ -14,14 +17,15 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   },
 
   events: {
-    "change .search": "searchMembers"
+    "change .search": "searchMembers",
+    "click .search-results": "addUserToAssignees"
   },
 
   searchMembers: function(event) {
-    var val = this.$('.search').val();
+    var query = this.$('.search').val();
     $.ajax({
       url: ("api/projects/" + this.project.id + "/users"),
-      data: { query: val },
+      data: { query: query },
 
       success: function(response) {
         this.$('.search-results').empty();
@@ -30,8 +34,18 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
           var $assignment = $("<li>").html(searchResult.username);
           $assignment.attr("data-id", searchResult.id);
           this.$('.search-results').append($assignment);
-        }.bind(this))
+        }.bind(this));
       }.bind(this)
     });
+  },
+
+  addUserToAssignees: function (event) {
+    var userId = $(event.target).data("id");
+    var user = this.project.members().get(userId);
+    var newAssigneeEl = JST['tasks/assignee']({
+      user: user, task: this.model
+    });
+
+    this.$('.assignments').append(newAssigneeEl);
   }
 });
