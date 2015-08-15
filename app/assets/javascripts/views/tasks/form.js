@@ -18,7 +18,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
 
   events: {
     "change .search": "searchMembers",
-    "click .search-results": "addUserToAssignees"
+    "click .search-results li": "addUserToAssignees"
   },
 
   searchMembers: function(event) {
