@@ -53,6 +53,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
     this.$(".task-create").html(this._newTaskBtn);
   },
 
+  // TODO: finish task+assignee submission
   submitNewTask: function(event) {
     event.preventDefault();
     var form = $(event.currentTarget).parent().parent();
