@@ -1,5 +1,6 @@
 Stronghold.Views.TaskOptions = Backbone.View.extend({
   template: JST["tasks/options"],
+  className: 'options-bar',
 
   initialize: function() {
 
