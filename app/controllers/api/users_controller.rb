@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def index
-
+    # Fuzzy-search a project's members by username or email, case insensitive.
     if params[:query].present?
       @project = Project.find(params[:project_id])
       results_by_name = @project.members.where("username ~* ?", params[:query])
@@ -11,5 +11,10 @@ class Api::UsersController < ApplicationController
     end
 
     render :index
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render :show, locals: { user: @user }
   end
 end

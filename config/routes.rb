@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :tasks, only: :show
     end
 
+    resources :users, only: :show
     resources :checklists, only: [:show, :create, :update, :destroy]
     resources :tasks, only: [:create, :update, :destroy]
     resources :task_assignments, only: [:create, :update, :destroy]
