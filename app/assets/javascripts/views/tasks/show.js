@@ -1,7 +1,10 @@
 Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   template: JST['tasks/checklist_item'],
   tagName: 'li',
-  className: 'task col-md-12',
+  className: function() { // for to style the view nicely
+    var classes = 'task col-md-12';
+    return this.model.get('done') ? classes + " done" : classes;
+  },
   // model: task
   // collection: task.assignedUsers()
 
@@ -12,12 +15,13 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add remove", this.render);
+    this.isDone = this.model.get('done');
   },
 
   render: function () {
     var content = this.template({
       task: this.model, assignments: this.collection,
-      isDone: this.model.get("done")
+      isDone: this.model.get('done')
     });
     this.$el.html(content);
     return this;
