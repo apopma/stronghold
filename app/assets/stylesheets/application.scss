@@ -84,7 +84,13 @@
 .right-addon input { padding-right: 30px; }
 
 .tasks {
+  list-style-type: none;
+
   .done {
     .task-desc { text-decoration: line-through; }
+  }
+
+  .task {
+    padding: 5px 0;
   }
 }
