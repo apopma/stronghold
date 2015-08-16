@@ -2,7 +2,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   template: JST['tasks/form'],
   tagName: 'form',
   className: 'new-task-form',
-  // model: task,
+  // model: new or existing Task,
   // collection: checklist's tasks from owning checklist
   // project: owning project
 

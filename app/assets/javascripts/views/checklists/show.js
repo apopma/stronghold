@@ -5,6 +5,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   // project: owning project
   // model: checklist
   // collection: checklist.tasks()
+  // isShowView: true when routed to projects/:project_id/checklists/:id
 
   initialize: function (options) {
     this.collection.each(function (task) {
@@ -58,10 +59,17 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
     event.preventDefault();
     var form = $(event.currentTarget).parent().parent();
     var formData = form.serializeJSON();
+    delete formData.query;
 
-    var task = new Stronghold.Models.Task({ checklist_id: this.model.id });
+    var newAssignments = this.$('.assignments').children().map(function (_, el) {
+       return $(el).data("user-id");
+     });
 
-    debugger;
+    var task = new Stronghold.Models.Task({
+      checklist_id: this.model.id,
+      assignees: $.makeArray(newAssignments)
+     });
+
     task.save(formData, {
       success: function() {
         this.collection.add(task);
