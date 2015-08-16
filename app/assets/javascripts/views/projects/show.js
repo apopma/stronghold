@@ -21,7 +21,6 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   },
 
   addInviteeField: function (event) {
-    console.log("add field!");
     $(event.target).prop("disabled", true);
     var $newInputField = JST['projects/_invitee_form']();
     this.$('.invitees').append($newInputField);
@@ -29,7 +28,6 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
   removeInviteeField: function (event) {
     event.preventDefault();
-    console.log("field remove!");
   },
 
   submitNewInvitees: function(event) {

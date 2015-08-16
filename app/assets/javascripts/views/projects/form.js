@@ -20,7 +20,6 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   },
 
   addInviteeField: function (event) {
-    console.log("add field!");
     $(event.target).prop("disabled", true);
     var $newInputField = this.newInputField();
     this.$('.invitees').append($newInputField);
@@ -28,7 +27,6 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
 
   removeInviteeField: function (event) {
     event.preventDefault();
-    console.log("field remove!");
   },
 
   newInputField: function() {
