@@ -54,7 +54,6 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
     this.$(".task-create").html(this._newTaskBtn);
   },
 
-  // TODO: finish task+assignee submission
   submitNewTask: function(event) {
     event.preventDefault();
     var form = $(event.currentTarget).parent().parent();
@@ -67,13 +66,19 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
 
     var task = new Stronghold.Models.Task({
       checklist_id: this.model.id,
-      assignees: $.makeArray(newAssignments)
+      assignees: $.makeArray(newAssignments) // Rails sees jQuery objs otherwise
      });
 
     task.save(formData, {
       success: function() {
+        // update the task model client-side too
+        var users = newAssignments.map(function (_, id) {
+          return this.project.members().getOrFetch(id);
+        }.bind(this));
+        users.each(function (_, user) { task.assignedUsers().add(user); });
+
         this.collection.add(task);
-        this.$('task-create').html(this._newTaskBtn);
+        this.$('.task-create').html(this._newTaskBtn);
       }.bind(this),
 
       error: function(model, resp, opts) {
