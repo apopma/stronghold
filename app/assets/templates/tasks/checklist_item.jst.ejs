@@ -1,14 +1,25 @@
 <% var done = isDone ? "checked" : "" %>
-<input type="checkbox" name="done" <%= done %>>
+<% var usernames = assignments.map(function (assignment) { %>
+  <% return assignment.escape("username") %>
+<% }); %>
 
-<%= task.escape("description") %> <br>
+<input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
+  name="done" <%= done %>>
 
-Assigned to:
-<% assignments.each(function (assignment) { %>
-  <%= assignment.escape("username") %>
-<% }) %>
+<span class='task-desc' name='description'>
+  <%= task.escape("description") %>
+</span>
+
+ <br>
+
+<span class='task-assignments' name='assigned_users'>
+  Assigned to: <%= usernames.join(", ") %>
+</span>
+
 <br>
 
 <% if (task.get("deadline")) { %>
-  Due on: <%= task.escape("deadline") %>
+  <span class='task-deadline' name='deadline'>
+    Due on: <%= task.escape("deadline") %>
+  </span>
 <% } %>

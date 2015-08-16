@@ -20,7 +20,13 @@ class Api::TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(params[:id])
 
+    if @task.update(task_params)
+      render json: @task
+    else
+      render json: @task.errors.full_messages, status: 422
+    end
   end
 
   def destroy
@@ -29,6 +35,6 @@ class Api::TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:description, :deadline, :checklist_id)
+    params.require(:task).permit(:description, :done, :deadline, :checklist_id)
   end
 end
