@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :assigned_tasks, through: :task_assignments, source: :task
   has_many :task_assignments, dependent: :destroy
 
+  has_many :comments
+
   def self.find_by_credentials(creds)
     usr = User.find_by_username(creds[:username])
     usr && usr.is_password?(creds[:password]) ? usr : nil

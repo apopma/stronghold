@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817225555) do
+ActiveRecord::Schema.define(version: 20150817230203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20150817225555) do
   add_index "checklists", ["creator_id"], name: "index_checklists_on_creator_id", using: :btree
   add_index "checklists", ["project_id"], name: "index_checklists_on_project_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",          null: false
+    t.text     "body",             null: false
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "discussions", force: :cascade do |t|
     t.string   "title",      null: false
     t.text     "body",       null: false
@@ -36,6 +48,9 @@ ActiveRecord::Schema.define(version: 20150817225555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "discussions", ["creator_id"], name: "index_discussions_on_creator_id", using: :btree
+  add_index "discussions", ["project_id"], name: "index_discussions_on_project_id", using: :btree
 
   create_table "project_memberships", force: :cascade do |t|
     t.integer "user_id",                    null: false
