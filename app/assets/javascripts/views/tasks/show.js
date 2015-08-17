@@ -5,6 +5,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     var classes = 'task col-md-7';
     return this.model.get('done') ? classes + " done" : classes;
   },
+  // project: owning project, through owning checklist
   // model: task
   // collection: task.assignedUsers()
 
@@ -13,10 +14,11 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     "mouseenter": "displayOptionButtons",
     "mouseleave": "removeOptionButtons",
     "click .delete-task": 'delete',
-    "click .edit-task": "edit"
+    "click .edit-task": "openEditForm"
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.project = options.project;
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add remove", this.render);
   },
@@ -72,7 +74,11 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     }
   },
 
-  edit: function (event) {
-    
+  openEditForm: function (event) {
+    var view = new Stronghold.Views.TaskForm({
+      model: this.model, project: this.project
+    });
+    this._taskView = $(event.delegateTarget).html();
+    this.$el.html(view.render().$el);
   }
 });
