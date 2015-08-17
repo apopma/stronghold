@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   has_one :project, through: :checklist, source: :project
 
   has_many :assignments, class_name: "TaskAssignment", dependent: :destroy
-  has_many :assigned_users, through: :assignments, source: :user
+  has_many :assigned_users, -> { distinct }, through: :assignments, source: :user
 
   private
   def done_is_boolean?

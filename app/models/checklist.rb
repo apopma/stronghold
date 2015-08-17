@@ -3,4 +3,5 @@ class Checklist < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
   belongs_to :project
   has_many :tasks, dependent: :destroy
+  has_many :assigned_users, -> { distinct }, through: :tasks
 end
