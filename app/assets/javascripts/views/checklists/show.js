@@ -15,7 +15,7 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
       this.addTaskView(task);
     }.bind(this));
 
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync change", this.render);
     this.listenTo(this.collection, "add", this.addTaskView);
     this.listenTo(this.collection, "remove", this.removeTaskView);
   },
@@ -90,7 +90,8 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   },
 
   cancelInfoEdit: function (event) {
-    debugger;
+    event.preventDefault();
+    this.render();
   },
 
   // ---------------------------------------------------------------------------
@@ -129,7 +130,10 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   },
 
   submitEditedInfo: function (event) {
-
+    event.preventDefault();
+    var formData = $(event.currentTarget).parent().serializeJSON();
+    this.model.set(formData);
+    this.model.save({}, {});
   },
 
   // ---------------------------------------------------------------------------

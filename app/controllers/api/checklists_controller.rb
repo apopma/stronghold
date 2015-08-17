@@ -23,7 +23,13 @@ class Api::ChecklistsController < ApplicationController
   end
 
   def update
+    @checklist = Checklist.includes(:assigned_users).find(params[:id])
 
+    if @checklist.update(checklist_params)
+      render :show
+    else
+      render json: @checklist.errors.full_messages, status: 422
+    end
   end
 
   def destroy
