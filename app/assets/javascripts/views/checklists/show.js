@@ -29,7 +29,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
 
   addTaskView: function (task) {
     var subSubview = new Stronghold.Views.ChecklistTaskItem({
-      model: task,
+      model: task, checklist: this.model,
       collection: task.assignedUsers(),
       project: this.project
     });
@@ -75,7 +75,6 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
     task.save(formData, {
       success: function() {
         // update the task model client-side too
-        console.log("checklist create save!")
         var users = newAssignments.map(function (_, id) {
           return this.project.members().getOrFetch(id);
         }.bind(this));

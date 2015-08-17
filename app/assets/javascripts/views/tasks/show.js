@@ -5,6 +5,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
 
   initialize: function (options) {
     this.project = options.project;
+    this.checklist = options.checklist;
     this.isShowView = options.isShowView;
     this.listenTo(this.model, "sync change", this.render);
     this.listenTo(this.collection, "add remove", this.render);
@@ -26,7 +27,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       task: this.model, assignments: this.collection,
-      project: this.project,
+      project: this.project, checklist: this.checklist,
       isDone: this.model.get('done'), isShowView: this.isShowView
     });
     this.$el.html(content);
@@ -69,6 +70,12 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
       this.model.destroy({
         success: function() {
           this.model.clear();
+          if (this.isShowView) {
+            Backbone.history.navigate(
+              "#projects/" + this.project.id + "/checklists/" + this.checklist.id,
+              { trigger: true }
+            );
+          }
         }.bind(this)
       });
     }

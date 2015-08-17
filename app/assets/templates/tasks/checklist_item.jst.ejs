@@ -17,7 +17,7 @@
 
 <span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
   <% if (!isShowView) { %>
-    <a href="#/projects/<%= project.id %>/tasks/<%= task.id %>">
+    <a href="#/projects/<%= project.id %>/checklists/<%= checklist.id %>/tasks/<%= task.id %>">
   <% } %>
     <%= task.escape("description") %>
   <% if (!isShowView) { %>
