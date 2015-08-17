@@ -13,9 +13,15 @@
              placeholder='Search for project members'>
     </div>
 
-      <ul class='search-results'></ul>
-      <ul class='assignments row'></ul>
+    <ul class='search-results'></ul>
+    <ul class='assignments row'>
+      <% task.assignedUsers().each(function (user) { %>
+        <%= JST['tasks/assignee']({ user: user, task: task }) %>
+      <% }) %>
+    </ul>
+  </div>
 
+  <div class="form-group">
     Due on:
     <div class="inner-addon left-addon">
       <i class='fa fa-calendar'></i>
