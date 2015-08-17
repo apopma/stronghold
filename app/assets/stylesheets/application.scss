@@ -106,8 +106,8 @@
   }
 }
 
-.done {
-  .task-desc { text-decoration: line-through; }
+.task-desc.done {
+  text-decoration: line-through;
 }
 
 .new-task-form {

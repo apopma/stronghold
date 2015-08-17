@@ -1,13 +1,17 @@
 Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   template: JST['tasks/checklist_item'],
   tagName: 'li',
-  className: function() { // for to style the view nicely
-    var classes = 'task col-md-7';
-    return this.model.get('done') ? classes + " done" : classes;
+  className: 'task col-md-7',
+
+  initialize: function (options) {
+    this.project = options.project;
+    this.isShowView = options.isShowView;
+    this.listenTo(this.model, "sync change", this.render);
+    this.listenTo(this.collection, "add remove", this.render);
+    // project: owning project, through owning checklist
+    // model: task
+    // collection: task.assignedUsers()
   },
-  // project: owning project, through owning checklist
-  // model: task
-  // collection: task.assignedUsers()
 
   events: {
     "click .task-toggle": "toggle",
@@ -17,13 +21,6 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     "click .edit-task": "openEditForm",
     "click .new-task-cancel": "closeEditForm",
     "click .task-update": "update"
-  },
-
-  initialize: function (options) {
-    this.project = options.project;
-    this.isShowView = options.isShowView;
-    this.listenTo(this.model, "sync update", this.render);
-    this.listenTo(this.collection, "add remove", this.render);
   },
 
   render: function () {

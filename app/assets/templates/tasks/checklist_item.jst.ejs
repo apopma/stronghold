@@ -1,4 +1,3 @@
-<% var done = isDone ? "checked" : "" %>
 <% var usernames = assignments.map(function (assignment) { %>
   <% return assignment.escape("username") %>
 <% }); %>
@@ -14,9 +13,9 @@
 
 
 <input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
-  name="done" <%= done %>>
+  name="done" <%= isDone ? "checked" : "" %>>
 
-<span class='task-desc' name='description'>
+<span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
   <% if (!isShowView) { %>
     <a href="#/projects/<%= project.id %>/tasks/<%= task.id %>">
   <% } %>
