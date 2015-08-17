@@ -1,5 +1,5 @@
 Stronghold.Views.TaskShow = Backbone.View.extend ({
-  template: JST['tasks/checklist_item'],
+  template: JST['tasks/show'],
   tagName: 'li',
   className: 'task col-md-7',
 

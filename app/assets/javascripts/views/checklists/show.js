@@ -1,5 +1,5 @@
 Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
-  template: JST['checklists/index_item'],
+  template: JST['checklists/show'],
   tagName: 'article',
   className: 'checklist-index-item col-md-12',
   // project: owning project
