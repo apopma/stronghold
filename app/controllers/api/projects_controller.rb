@@ -2,15 +2,14 @@ class Api::ProjectsController < ApplicationController
   before_action :require_login
 
   def index
-    @projects = current_user.projects
-                            .includes(:members)
-                            .includes(:assigned_users)
+    @projects = current_user.projects.includes(:members)
     render :index
   end
 
   def show
     # many includes associations to come in future phases
-    @project = Project.includes(:tasks)
+    @project = Project.includes(:checklists)
+                      .includes(:tasks)
                       .includes(:assigned_users)
                       .find(params[:id])
     render :show

@@ -1,14 +1,3 @@
 json.array! @checklists do |checklist|
-  json.extract! checklist, :id, :title, :description
-
-  json.tasks checklist.tasks do |task|
-    json.extract! task, :id, :description, :done
-    json.deadline task.deadline.strftime("%m/%d/%Y")
-
-    json.assigned_to do
-      json.array! task.assigned_users do |user|
-        json.extract! user, :id, :username, :email, :gravatar_url
-      end
-    end
-  end
+  json.partial! "api/checklists/checklist", locals: { checklist: checklist }
 end

@@ -4,30 +4,12 @@ json.members @project.members do |member|
 end
 
 json.checklists @project.checklists do |checklist|
-  json.extract! checklist, :id, :title, :description
-
-  json.tasks checklist.tasks do |task|
-    json.extract! task, :id, :description, :done
-    json.deadline task.deadline.strftime("%m/%d/%Y") if task.deadline
-
-    json.assigned_to do
-      json.array! task.assigned_users do |user|
-        json.extract! user, :id, :username, :email, :gravatar_url
-      end
-    end
-  end
+  json.partial! "api/checklists/checklist", locals: { checklist: checklist }
 end
 
 json.tasks do
   json.array! @project.tasks do |task|
-    json.extract! task, :id, :description, :done
-    json.deadline task.deadline.strftime("%m/%d/%Y") if task.deadline
-
-    json.assigned_to do
-      json.array! task.assigned_users do |user|
-        json.extract! user, :id, :username, :email, :gravatar_url
-      end
-    end
+    json.partial! "api/tasks/task", locals: { task: task }
   end
 end
 
