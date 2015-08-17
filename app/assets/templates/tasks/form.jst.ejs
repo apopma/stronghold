@@ -1,3 +1,5 @@
+<% var submitBtnClass = (viewType === "update" ? 'task-update' : 'new-task-submit')  %>
+
   <div class="form-group">
     <input type="checkbox" disabled>
     <input type="text" name="description" value='<%= task.escape("description") %>'
@@ -30,7 +32,8 @@
   </div>
 
   <div class="form-group">
-    <button type="submit" class='new-task-submit btn btn-success btn-sm' name="button">
+    <button type="submit" class='<%= submitBtnClass %> btn btn-success btn-sm'
+      name="button">
       Submit
     </button>
     or

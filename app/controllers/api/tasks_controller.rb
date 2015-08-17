@@ -23,6 +23,7 @@ class Api::TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update(task_params)
+      @task.assigned_user_ids = params[:assignees]
       render json: @task
     else
       render json: @task.errors.full_messages, status: 422

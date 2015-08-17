@@ -15,12 +15,13 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     "mouseleave": "removeOptionButtons",
     "click .delete-task": 'delete',
     "click .edit-task": "openEditForm",
-    "click .new-task-cancel": "closeEditForm"
+    "click .new-task-cancel": "closeEditForm",
+    "click .task-update": "update"
   },
 
   initialize: function (options) {
     this.project = options.project;
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync update", this.render);
     this.listenTo(this.collection, "add remove", this.render);
   },
 
@@ -77,7 +78,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
 
   openEditForm: function (event) {
     var view = new Stronghold.Views.TaskForm({
-      model: this.model, project: this.project
+      model: this.model, project: this.project, viewType: "update"
     });
     this.$el.html(view.render().$el);
   },
@@ -85,5 +86,28 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   closeEditForm: function (event) {
     event.preventDefault();
     this.render();
+  },
+
+  update: function (event) {
+    // basically submitNewTask from ChecklistIndexItem, without a new Task model
+    event.preventDefault();
+    var formData = $(event.currentTarget).parent().parent().serializeJSON();
+    delete formData.query;
+
+    var newAssignments = this.$('.assignments').children().map(function (_, el) {
+       return $(el).data("user-id");
+     });
+
+     this.model.set("assignees", $.makeArray(newAssignments));
+     this.model.save(formData, {
+       success: function () {
+         this.model.fetch(); // update the model client-side
+         this.render();
+       }.bind(this),
+
+       error: function () {
+         debugger;
+       }.bind(this)
+     })
   }
 });

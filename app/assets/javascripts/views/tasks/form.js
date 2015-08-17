@@ -8,12 +8,13 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
 
   initialize: function(options) {
     this.project = options.project;
+    this.viewType = options.viewType;
     this._usersToAssign = [];
     if (this.model.assignedUsers()) { this.prepopulateAssigneeList(); }
   },
 
   render: function () {
-    var content = this.template({ task: this.model });
+    var content = this.template({ task: this.model, viewType: this.viewType });
     this.$el.html(content);
     return this;
   },
