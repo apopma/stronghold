@@ -14,7 +14,8 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     "mouseenter": "displayOptionButtons",
     "mouseleave": "removeOptionButtons",
     "click .delete-task": 'delete',
-    "click .edit-task": "openEditForm"
+    "click .edit-task": "openEditForm",
+    "click .new-task-cancel": "closeEditForm"
   },
 
   initialize: function (options) {
@@ -78,7 +79,11 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     var view = new Stronghold.Views.TaskForm({
       model: this.model, project: this.project
     });
-    this._taskView = $(event.delegateTarget).html();
     this.$el.html(view.render().$el);
+  },
+
+  closeEditForm: function (event) {
+    event.preventDefault();
+    this.render();
   }
 });

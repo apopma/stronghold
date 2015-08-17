@@ -9,6 +9,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   initialize: function(options) {
     this.project = options.project;
     this._usersToAssign = [];
+    if (this.model.assignedUsers()) { this.prepopulateAssigneeList(); }
   },
 
   render: function () {
@@ -60,5 +61,11 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
     var idx = this._usersToAssign.indexOf(user.data("user-id"));
     this._usersToAssign.splice(idx, 1);
     user.remove();
+  },
+
+  prepopulateAssigneeList: function () {
+    this.model.assignedUsers().each(function (user) {
+      this._usersToAssign.push(user.id);
+    }.bind(this));
   }
 });
