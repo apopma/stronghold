@@ -25,7 +25,12 @@ class Api::ChecklistsController < ApplicationController
   end
 
   def destroy
-
+    @checklist = Checklist.find(params[:id])
+    if @checklist.destroy
+      render json: @checklist
+    else
+      render json: @checklist.errors.full_messages, status: 422
+    end
   end
 
   private

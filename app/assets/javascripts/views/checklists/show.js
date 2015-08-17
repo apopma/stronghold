@@ -23,7 +23,8 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   events: {
     "click .new-task": "openTaskForm",
     "click .new-task-submit": "submitNewTask",
-    "click .new-task-cancel": "cancelTaskForm"
+    "click .new-task-cancel": "cancelTaskForm",
+    "click .delete-checklist": "deleteChecklist"
   },
 
   addTaskView: function (task) {
@@ -88,6 +89,20 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
         debugger;
       }.bind(this)
     });
+  },
+
+  deleteChecklist: function (event) {
+    event.preventDefault();
+    var c = window.confirm("Really delete this checklist?");
+
+    if (c) {
+      this.model.destroy({
+        success: function () {
+          this.model.clear();
+          Backbone.history.navigate("#projects/" + this.project.id, { trigger: true });
+        }.bind(this)
+      });
+    }
   },
 
   render: function () {
