@@ -46,11 +46,19 @@
   position: relative;
 
   .projects {
-    background-color: lightblue;
-    float: left;
-
     .project-index-item {
+      background-color: lightblue;
       height: 350px;
+      margin: 5px;
+
+      .members {
+        position: absolute;
+        bottom: 5%;
+        .member-gravatar {
+          height: 40px;
+          width: 40px;
+        }
+      }
     }
   }
 }

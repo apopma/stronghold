@@ -3,6 +3,6 @@ json.array! @projects do |project|
   json.description project.description if project.description
 
   json.members project.members do |member|
-    json.extract! member, :username, :gravatar_url
+    json.extract! member, :id, :username, :gravatar_url
   end
 end
