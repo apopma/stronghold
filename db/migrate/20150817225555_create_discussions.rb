@@ -7,5 +7,8 @@ class CreateDiscussions < ActiveRecord::Migration
       t.integer :creator_id, null: false
       t.timestamps null: false
     end
+
+    add_index :discussions, :project_id
+    add_index :discussions, :creator_id
   end
 end
