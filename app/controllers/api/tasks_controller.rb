@@ -1,4 +1,6 @@
 class Api::TasksController < ApplicationController
+  before_action :format_date, only: [:create, :update]
+
   def show
     @task = Task.includes(:assigned_users).includes(:project).find(params[:id])
     render :show
@@ -7,13 +9,10 @@ class Api::TasksController < ApplicationController
   def create
     @task = current_user.created_tasks.new(task_params)
     @task.done = false # could also be a callback?
-    if params[:deadline].present? # for whatever reason this can't be mass-assigned
-      @task.deadline = Date.strptime(params[:deadline], "%m/%d/%Y")
-    end
 
     if @task.save
       @task.assigned_user_ids = params[:assignees]
-      render json: @task
+      render :show
     else
       render json: @task.errors.full_messages, status: 422
     end
@@ -24,7 +23,7 @@ class Api::TasksController < ApplicationController
 
     if @task.update(task_params)
       @task.assigned_user_ids = params[:assignees]
-      render json: @task
+      render :show
     else
       render json: @task.errors.full_messages, status: 422
     end
@@ -42,5 +41,12 @@ class Api::TasksController < ApplicationController
   private
   def task_params
     params.require(:task).permit(:description, :done, :deadline, :checklist_id)
+  end
+
+  def format_date
+    if params[:deadline].present?
+      params[:deadline] = Date.strptime(params[:deadline], "%m/%d/%Y")
+      params[:task][:deadline] = params[:deadline]
+    end
   end
 end

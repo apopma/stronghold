@@ -106,13 +106,12 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
      this.model.set("assignees", $.makeArray(newAssignments));
      this.model.save(formData, {
        success: function () {
-         this.model.fetch(); // update the model client-side
-         this.render();
+         
        }.bind(this),
 
        error: function () {
          debugger;
        }.bind(this)
-     })
+     });
   }
 });
