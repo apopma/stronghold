@@ -16,7 +16,9 @@
     </div>
 
     <ul class='search-results'></ul>
+
     <ul class='assignments row'>
+      This task will be assigned to:
       <% task.assignedUsers().each(function (user) { %>
         <%= JST['tasks/assignee']({ user: user, task: task }) %>
       <% }) %>

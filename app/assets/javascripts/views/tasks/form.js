@@ -33,6 +33,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
 
       success: function(response) {
         this.$('.search-results').empty();
+        this.$('.search-results').append("Click on a user's name to add them to the list of assignees.");
 
         response.forEach(function (searchResult) {
           var $assignment = $("<li>").html(searchResult.username);

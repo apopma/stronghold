@@ -84,7 +84,7 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   },
 
   deleteProject: function (event) {
-    event.preventDefault()
+    event.preventDefault();
     var c = window.confirm("Do you really want to abandon your evil plan?\nEverything about this project will be permanently deleted.");
     if (c) {
       this.model.destroy({
