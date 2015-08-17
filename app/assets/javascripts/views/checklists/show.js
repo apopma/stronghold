@@ -10,7 +10,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   initialize: function (options) {
     this.project = options.project;
     this.isShowView = options.isShowView;
-    
+
     this.collection.each(function (task) {
       this.addTaskView(task);
     }.bind(this));

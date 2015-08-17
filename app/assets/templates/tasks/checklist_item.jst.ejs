@@ -5,13 +5,25 @@
 
 <span class='task-options'></span>
 
+<% if (isShowView) { %>
+  <a href="#/projects/<%= project.id %>/checklists"
+       onClick='history.back();return false;'>
+    Back to previous page
+  </a> <br>
+<% } %>
+
+
 <input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
   name="done" <%= done %>>
 
 <span class='task-desc' name='description'>
-  <a href="#/projects/<%= project.id %>/tasks/<%= task.id %>">
+  <% if (!isShowView) { %>
+    <a href="#/projects/<%= project.id %>/tasks/<%= task.id %>">
+  <% } %>
     <%= task.escape("description") %>
-  </a>
+  <% if (!isShowView) { %>
+    </a>
+  <% } %>
 </span>
 
  <br>
