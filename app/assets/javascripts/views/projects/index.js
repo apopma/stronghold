@@ -13,7 +13,7 @@ Stronghold.Views.ProjectsIndex = Backbone.CompositeView.extend({
 
   addProjectView: function(project) {
     var projectSubview = new Stronghold.Views.ProjectIndexItem({ model: project });
-    this.addSubview(".projects", projectSubview);
+    this.addSubview(".projects .row", projectSubview);
   },
 
   removeProjectView: function(project) {

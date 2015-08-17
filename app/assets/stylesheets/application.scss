@@ -44,20 +44,21 @@
 
 .projects-index {
   position: relative;
+}
 
   .projects {
     .project-index-item {
       background-color: lightblue;
+      border: 1px solid black;
       height: 350px;
-      margin: 5px;
+      border-radius: 5px;
 
-      .members {
-        position: absolute;
-        bottom: 5%;
-        .member-gravatar {
-          height: 40px;
-          width: 40px;
-        }
+    .members {
+      position: absolute;
+      bottom: 5%;
+      .member-gravatar {
+        height: 40px;
+        width: 40px;
       }
     }
   }
