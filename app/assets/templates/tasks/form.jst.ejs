@@ -4,7 +4,6 @@
       placeholder="Add a new task">
   </div>
 
-
   <div class="form-group">
     Assign to:
 
@@ -15,9 +14,7 @@
     </div>
 
       <ul class='search-results'></ul>
-
       <ul class='assignments row'></ul>
-    <br>
 
     Due on:
     <div class="inner-addon left-addon">
@@ -39,6 +36,6 @@
 <script type="text/javascript">
   $(function () {
     // options?
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker({ minDate: 0 });
   });
 </script>

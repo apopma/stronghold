@@ -19,7 +19,8 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
 
   events: {
     "change .search": "searchMembers",
-    "click .search-results li": "addUserToAssignees"
+    "click .search-results li": "addUserToAssignees",
+    "click .remove-assignee": "removeUserFromAssignees"
   },
 
   searchMembers: function(event) {
@@ -52,5 +53,12 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
       this.$('.assignments').append(newAssigneeEl);
       this._usersToAssign.push(userId);
     }
+  },
+
+  removeUserFromAssignees: function (event) {
+    var user = $(event.currentTarget).parent();
+    var idx = this._usersToAssign.indexOf(user.data("user-id"));
+    this._usersToAssign.splice(idx, 1);
+    user.remove();
   }
 });

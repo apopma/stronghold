@@ -12,7 +12,8 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     "click .task-toggle": "toggle",
     "mouseenter": "displayOptionButtons",
     "mouseleave": "removeOptionButtons",
-    "click .delete-task": 'delete'
+    "click .delete-task": 'delete',
+    "click .edit-task": "edit"
   },
 
   initialize: function () {
@@ -55,7 +56,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
 
   removeOptionButtons: function (event) {
     // TODO: this creates zombie views; fix it soonest
-    this.$('.task-options').html(null);
+    this.$('.task-options').empty();
   },
 
   delete: function (event) {
@@ -67,7 +68,11 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
         success: function() {
           this.model.clear();
         }.bind(this)
-      })
+      });
     }
+  },
+
+  edit: function (event) {
+    
   }
 });
