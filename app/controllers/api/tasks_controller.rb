@@ -30,7 +30,12 @@ class Api::TasksController < ApplicationController
   end
 
   def destroy
-
+    @task = Task.find(params[:id])
+    if @task.destroy
+      render json: @task
+    else
+      render json: @task.errors.full_messages, status: 422
+    end
   end
 
   private

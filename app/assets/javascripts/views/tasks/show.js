@@ -2,7 +2,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   template: JST['tasks/checklist_item'],
   tagName: 'li',
   className: function() { // for to style the view nicely
-    var classes = 'task col-md-12';
+    var classes = 'task col-md-7';
     return this.model.get('done') ? classes + " done" : classes;
   },
   // model: task
@@ -11,7 +11,8 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   events: {
     "click .task-toggle": "toggle",
     "mouseenter": "displayOptionButtons",
-    "mouseleave": "removeOptionButtons"
+    "mouseleave": "removeOptionButtons",
+    "click .delete-task": 'delete'
   },
 
   initialize: function () {
@@ -53,7 +54,20 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   },
 
   removeOptionButtons: function (event) {
-    // TODO: ask about zombie views on these
+    // TODO: this creates zombie views; fix it soonest
     this.$('.task-options').html(null);
+  },
+
+  delete: function (event) {
+    // TODO: make the user doubleclick or click two buttons instead
+    var c = window.confirm("Really delete this task?");
+
+    if (c) {
+      this.model.destroy({
+        success: function() {
+          this.model.clear();
+        }.bind(this)
+      })
+    }
   }
 });
