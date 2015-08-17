@@ -2,7 +2,9 @@ class Api::ProjectsController < ApplicationController
   before_action :require_login
 
   def index
-    @projects = current_user.projects.includes(:members)
+    @projects = current_user.projects
+                            .includes(:members)
+                            .includes(:assigned_users)
     render :index
   end
 
