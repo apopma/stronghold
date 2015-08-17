@@ -8,12 +8,12 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   // isShowView: true when routed to projects/:project_id/checklists/:id
 
   initialize: function (options) {
+    this.project = options.project;
+    this.isShowView = options.isShowView;
+    
     this.collection.each(function (task) {
       this.addTaskView(task);
     }.bind(this));
-
-    this.project = options.project;
-    this.isShowView = options.isShowView;
 
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add", this.addTaskView);

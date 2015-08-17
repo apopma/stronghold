@@ -21,6 +21,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
 
   initialize: function (options) {
     this.project = options.project;
+    this.isShowView = options.isShowView;
     this.listenTo(this.model, "sync update", this.render);
     this.listenTo(this.collection, "add remove", this.render);
   },
@@ -28,7 +29,8 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       task: this.model, assignments: this.collection,
-      isDone: this.model.get('done')
+      project: this.project,
+      isDone: this.model.get('done'), isShowView: this.isShowView
     });
     this.$el.html(content);
     return this;
@@ -54,13 +56,12 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   },
 
   displayOptionButtons: function (event) {
-    var view = new Stronghold.Views.TaskOptions({ model: this.model });
-    this.$('.task-options').append(view.render().$el);
+    this._optionBtns = new Stronghold.Views.TaskOptions({ model: this.model });
+    this.$('.task-options').append(this._optionBtns.render().$el);
   },
 
   removeOptionButtons: function (event) {
-    // TODO: this creates zombie views; fix it soonest
-    this.$('.task-options').empty();
+    this._optionBtns.remove();
   },
 
   delete: function (event) {

@@ -18,6 +18,14 @@ Stronghold.Models.Project = Backbone.Model.extend({
     return this._checklists;
   },
 
+  tasks: function() {
+    if (!this._tasks) {
+      this._tasks = new Stronghold.Collections.Tasks([], { project: this });
+    }
+
+    return this._tasks;
+  },
+
   parse: function(response) {
     if (response.members) {
       this.members().set(response.members);
@@ -27,6 +35,11 @@ Stronghold.Models.Project = Backbone.Model.extend({
     if (response.checklists) {
       this.checklists().set(response.checklists, { parse: true });
       delete response.checklists;
+    }
+
+    if (response.tasks) {
+      this.tasks().set(response.tasks, { parse: true });
+      delete response.tasks;
     }
 
     return response;
