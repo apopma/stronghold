@@ -102,11 +102,15 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
     var newAssignments = this.$('.assignments').children().map(function (_, el) {
        return $(el).data("user-id");
      });
+     if (newAssignments.length < 1) {
+       // if the user has removed all existing assignments, destroy them server-side
+       this.model.set("destroy_assignees", true);
+     }
 
      this.model.set("assignees", $.makeArray(newAssignments));
      this.model.save(formData, {
        success: function () {
-         
+
        }.bind(this),
 
        error: function () {

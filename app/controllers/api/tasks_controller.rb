@@ -23,6 +23,7 @@ class Api::TasksController < ApplicationController
 
     if @task.update(task_params)
       @task.assigned_user_ids = params[:assignees] if params[:assignees]
+      @task.assignments.delete_all if params[:destroy_assignees]
       render :show
     else
       render json: @task.errors.full_messages, status: 422
