@@ -47,7 +47,7 @@ If I can get through searching and drag-and-drop as stretch goals, I'll also add
 [Details][phase-two]
 
 ### Phase 3: Checklists and Tasks (~2-3 days)
-Once projects are up and running, I'll begin work on the core featureset of the app. API routes to serve checklist and task data will come first, then the ChecklistsIndex composite subview, visible from the ProjectIndex page. This view will contain the six most recently-updated checklists (or all of them, if fewer than six exist), and ChecklistIndexItem/ChecklistTaskItem sub-subviews to live inside the Checklist Index. Creation/editing/deleting of checklists and tasks will be implemented using form subviews in Backbone.
+Once projects are up and running, I'll begin work on the core featureset of the app. API routes to serve checklist and task data will come first, then the ChecklistsIndex composite subview, visible from the ProjectIndex page. This view will contain the six most recently-updated checklists (or all of them, if fewer than six exist), and ChecklistShow/TaskShow sub-subviews to live inside the Checklist Index. Creation/editing/deleting of checklists and tasks will be implemented using form subviews in Backbone.
 
 I'll implement a Backbone subview to reassign users and deadlines to tasks, visible by clicking a button inside a task partial. This partial will contain a dropdown and a calendar, and a submit button which will update the database with the assignment and deadline once the user has made their selection. Users will also be able to set this info from the TaskForm subview. The assigned user and deadline will be visible from the task subview, and clicking on this information will reopen the assignment subview.
 

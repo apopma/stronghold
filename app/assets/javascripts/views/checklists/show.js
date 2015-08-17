@@ -1,4 +1,4 @@
-Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
+Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   template: JST['checklists/index_item'],
   tagName: 'article',
   className: 'checklist-index-item col-md-12',
@@ -28,7 +28,7 @@ Stronghold.Views.ChecklistIndexItem = Backbone.CompositeView.extend ({
   },
 
   addTaskView: function (task) {
-    var subSubview = new Stronghold.Views.ChecklistTaskItem({
+    var subSubview = new Stronghold.Views.TaskShow({
       model: task, checklist: this.model,
       collection: task.assignedUsers(),
       project: this.project

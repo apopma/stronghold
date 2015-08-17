@@ -24,9 +24,9 @@ Checklist, Task
 Checklists, Tasks
 
 ### Views
-ChecklistIndex (composite, contains ChecklistIndexItems)
-ChecklistIndexItem (composite, contains ChecklistTaskItems)
-ChecklistTaskItem
+ChecklistIndex (composite, contains ChecklistShows)
+ChecklistShow (composite, contains TaskShows)
+TaskShow
 ChecklistForm
 TaskForm
 TaskAssignmentForm

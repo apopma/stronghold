@@ -1,4 +1,4 @@
-Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
+Stronghold.Views.TaskShow = Backbone.View.extend ({
   template: JST['tasks/checklist_item'],
   tagName: 'li',
   className: 'task col-md-7',
@@ -94,7 +94,7 @@ Stronghold.Views.ChecklistTaskItem = Backbone.View.extend ({
   },
 
   update: function (event) {
-    // basically submitNewTask from ChecklistIndexItem, without a new Task model
+    // basically submitNewTask from ChecklistShow, without a new Task model
     event.preventDefault();
     var formData = $(event.currentTarget).parent().parent().serializeJSON();
     delete formData.query;

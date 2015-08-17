@@ -55,7 +55,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
   checklistShow: function(project_id, id) {
     var project = this.projects.getOrFetch(project_id);
     var checklist = project.checklists().getOrFetch(id);
-    var view = new Stronghold.Views.ChecklistIndexItem({
+    var view = new Stronghold.Views.ChecklistShow({
       project: project, model: checklist, collection: checklist.tasks(),
       isShowView: true
     });
@@ -68,7 +68,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     var project = this.projects.getOrFetch(project_id);
     var checklist = project.checklists().getOrFetch(checklist_id);
     var task = project.tasks().getOrFetch(id);
-    var view = new Stronghold.Views.ChecklistTaskItem({
+    var view = new Stronghold.Views.TaskShow({
       project: project, checklist: checklist,
       model: task, collection: task.assignedUsers(),
       isShowView: true
