@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
-  
+
   validates :username, :email, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates_uniqueness_of :username, :email
@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
     class_name: "Checklist", foreign_key: "creator_id", dependent: :destroy)
   has_many(:created_tasks,
     class_name: "Task", foreign_key: "creator_id", dependent: :destroy)
+  has_many(:created_discussions,
+    class_name: "Discussion", foreign_key: "creator_id", dependent: :destroy)
 
   has_many :assigned_tasks, through: :task_assignments, source: :task
   has_many :task_assignments, dependent: :destroy
