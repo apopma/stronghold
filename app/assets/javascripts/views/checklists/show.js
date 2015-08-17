@@ -21,11 +21,30 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   },
 
   events: {
+    "dblclick .info-editable": "openInfoEdit",
+    "click .info-cancel": "cancelInfoEdit",
+    "click .info-submit": "submitEditedInfo",
+
     "click .new-task": "openTaskForm",
-    "click .new-task-submit": "submitNewTask",
     "click .new-task-cancel": "cancelTaskForm",
+    "click .new-task-submit": "submitNewTask",
+
     "click .delete-checklist": "deleteChecklist"
   },
+
+  render: function () {
+    var index = this;
+    var content = this.template({
+      project: this.project,
+      checklist: this.model,
+      isShowView: this.isShowView
+     });
+    this.$el.html(content);
+    this.attachSubviews();
+    return this;
+  },
+
+  // ---------------------------------------------------------------------------
 
   addTaskView: function (task) {
     var subSubview = new Stronghold.Views.TaskShow({
@@ -39,6 +58,8 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   removeTaskView: function (task) {
     this.removeModelSubview('.tasks', task);
   },
+
+  // ---------------------------------------------------------------------------
 
   openTaskForm: function (event) {
     var form = new Stronghold.Views.TaskForm({
@@ -56,6 +77,23 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
     event.preventDefault();
     this.$(".task-create").html(this._newTaskBtn);
   },
+
+  openInfoEdit: function (event) {
+    var inputTemplate = JST['checklists/_info'];
+    var $targetEl = $(event.currentTarget); // header
+    this._prevTitle = $targetEl.find(".checklist-title").text();
+    this._prevDesc = $targetEl.find(".checklist-description").text();
+
+    $targetEl.html(inputTemplate({
+      prevTitle: this._prevTitle, prevDesc: this._prevDesc
+    }));
+  },
+
+  cancelInfoEdit: function (event) {
+    debugger;
+  },
+
+  // ---------------------------------------------------------------------------
 
   submitNewTask: function(event) {
     event.preventDefault();
@@ -90,6 +128,12 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
     });
   },
 
+  submitEditedInfo: function (event) {
+
+  },
+
+  // ---------------------------------------------------------------------------
+
   deleteChecklist: function (event) {
     event.preventDefault();
     var c = window.confirm("Really delete this checklist?");
@@ -102,17 +146,5 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
         }.bind(this)
       });
     }
-  },
-
-  render: function () {
-    var index = this;
-    var content = this.template({
-      project: this.project,
-      checklist: this.model,
-      isShowView: this.isShowView
-     });
-    this.$el.html(content);
-    this.attachSubviews();
-    return this;
   }
 });

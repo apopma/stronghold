@@ -14,8 +14,8 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     "submit form.new-invites-form": "submitNewInvitees",
 
     "dblclick .project-info": "openInfoEdit",
-    "click .submit": "submitEditedInfo",
     "click .cancel": "cancelInfoEdit",
+    "click .submit": "submitEditedInfo",
 
     "click .delete-project": "deleteProject"
   },
