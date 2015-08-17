@@ -6,7 +6,9 @@ class Api::ChecklistsController < ApplicationController
   end
 
   def show
-    @checklist = Checklist.includes(:tasks).find(params[:id])
+    @checklist = Checklist.includes(:tasks)
+                          .includes(:assigned_users)
+                          .find(params[:id])
     render :show
   end
 
