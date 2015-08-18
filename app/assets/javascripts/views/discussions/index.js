@@ -24,7 +24,7 @@ Stronghold.Views.DiscussionIndex = Backbone.CompositeView.extend ({
   // ---------------------------------------------------------------------------
 
   addDiscussionView: function(discussion) {
-    var subview = new Stronghold.Views.DiscussionShow({
+    var subview = new Stronghold.Views.DiscussionIndexItem({
       project: this.model,
       model: discussion,
       collection: discussion.comments()
