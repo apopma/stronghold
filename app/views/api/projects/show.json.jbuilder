@@ -13,4 +13,10 @@ json.tasks do
   end
 end
 
+json.discussions do
+  json.array! @project.discussions do |discussion|
+    json.partial! "api/discussions/discussion", locals: { discussion: discussion }
+  end
+end
+
 json.is_admin @project.admins.include?(current_user)
