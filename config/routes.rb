@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :projects, except: [:new, :edit] do
       resources :users, only: :index
       resources :checklists, only: :index
-      resources :discussions, only: :index
+      resources :discussions, only: [:index, :show]
       resources :tasks, only: :show
     end
 

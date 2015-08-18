@@ -14,7 +14,7 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
     this.project = options.project;
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "add", this.addCommentView);
-    this.listenTo(this.collection. "remove", this.removeCommentView);
+    this.listenTo(this.collection, "remove", this.removeCommentView);
   },
 
   render: function () {

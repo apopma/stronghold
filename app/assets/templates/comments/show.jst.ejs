@@ -1,0 +1,19 @@
+<img src="<%= commenter.escape("gravatar_url") %>" class='img-circle'/>
+
+<h4><%= commenter.escape("username") %></h4>
+
+<p>
+  <%= comment.escape("body") %>
+</p>
+
+<% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
+  <button type="button" class='comment-edit btn btn-sm btn-link'>
+    Edit
+  </button>
+<% } %>
+
+<% if (project.get("is_admin") || Stronghold.CURRENT_USER.id == commenter.id) { %>
+  <button type="button" class='comment-delete btn btn-sm btn-link'>
+    Delete
+  </button>
+<% } %>

@@ -4,4 +4,9 @@ class Api::DiscussionsController < ApplicationController
     @discussions = @project.discussions.includes(:comments)
     render :index, locals: { discussions: @discussions }
   end
+
+  def show
+    @discussion = Discussion.find(params[:id])
+    render :_discussion, locals: { discussion: @discussion }
+  end
 end

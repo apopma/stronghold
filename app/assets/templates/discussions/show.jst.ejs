@@ -1,0 +1,12 @@
+<h2><%= discussion.escape("title") %></h2>
+<h3>
+  <%= discussion.escape("body") %>
+</h3>
+
+<a href="#projects/<%= project.id %>/discussions">
+    Back to discussions
+</a>
+
+<div class="container">
+  <section class='comments row'></section>
+</div>
