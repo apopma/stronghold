@@ -7,10 +7,12 @@ Rails.application.routes.draw do
     resources :projects, except: [:new, :edit] do
       resources :users, only: :index
       resources :checklists, only: :index
+      resources :discussions, only: :index
       resources :tasks, only: :show
     end
 
     resources :users, only: :show
+    resources :discussions, only: [:show, :create, :update, :destroy]
     resources :checklists, only: [:show, :create, :update, :destroy]
     resources :tasks, only: [:show, :create, :update, :destroy]
     resources :task_assignments, only: [:create, :update, :destroy]
