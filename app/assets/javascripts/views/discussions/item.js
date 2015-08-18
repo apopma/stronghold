@@ -8,6 +8,9 @@ Stronghold.Views.DiscussionIndexItem = Backbone.View.extend ({
 
   initialize: function (options) {
     this.project = options.project;
+
+    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.collection, "sync add remove", this.render);
   },
 
   render: function () {

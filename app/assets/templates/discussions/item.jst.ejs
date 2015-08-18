@@ -1,8 +1,15 @@
-<img src="<%= creator.escape("gravatar_url") %>"/>
+<a href="#projects/<%= project_id %>/discussions/<%= discussion.id %>">
+  <img src="<%= creator.escape("gravatar_url") %>" class='img-circle'/>
 
-<%= creator.escape("username") %>
-<%= discussion.escape("title") %>
+  <span class='who'>
+    <%= creator.escape("username") %>
+  </span>
 
-<span class='badge' title='<%= numComments %> comments'>
-  <%= numComments %>
-</span>
+  <span class='what'>
+    <%= discussion.escape("title") %>
+  </span>
+
+  <span class='badge' title='<%= numComments %> comments'>
+    <%= numComments %>
+  </span>
+</a>

@@ -136,3 +136,27 @@
     float: none;
   }
 }
+
+.discussion {
+  img {
+    height: 30px;
+    width: 30px;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .who {
+    font-weight: bold;
+  }
+
+  .what {
+    font-family: sans-serif;
+  }
+}
