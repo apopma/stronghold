@@ -26,6 +26,10 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
     return this;
   },
 
+  events: {
+    "click .new-comment": "openCommentForm"
+  },
+
   // ---------------------------------------------------------------------------
 
   addCommentView: function (comment) {
@@ -39,5 +43,19 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
 
   removeCommentView: function (comment) {
     this.removeModelSubview('.comments', comment);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  openCommentForm: function (event) {
+    this._commentBtn = this.$('.comment-create').html();
+    this.$('.comment-create').empty();
+
+    var form = new Stronghold.Views.CommentForm({
+      commentableType: "Discussion", actionType: "create",
+      model: new Stronghold.Models.Comment({ commentable_id: this.model.id })
+    });
+
+    this.addSubview('.comment-create', form);
   }
 });

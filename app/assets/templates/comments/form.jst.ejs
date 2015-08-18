@@ -1,0 +1,22 @@
+<% var submitBtnClass = actionType === 'create' ? 'new-comment-submit' : 'edit-comment-submit' %>
+<div class="wysihtml5 form-content col-md-6"
+     data-placeholder="Type in your comment here..."></div>
+
+<button type="button" class='<%= submitBtnClass %>'>
+  Submit
+</button>
+or
+<button type="cancel" class='comment-form-cancel btn btn-sm btn-link'>
+  Cancel
+</button>
+
+
+<script type="text/javascript">
+  $('.wysihtml5').wysihtml5({
+    toolbar: {
+      "fa": true,
+      "image": false,
+      "link": false
+    }
+  });
+</script>
