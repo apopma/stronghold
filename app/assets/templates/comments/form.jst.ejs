@@ -1,6 +1,8 @@
 <% var submitBtnClass = actionType === 'create' ? 'new-comment-submit' : 'edit-comment-submit' %>
 <div class="wysihtml5 form-content col-md-6"
-     data-placeholder="Type in your comment here..."></div>
+     data-placeholder="Type in your comment here...">
+     <%= comment.get("body") %>
+ </div>
 
 <button type="button" class='<%= submitBtnClass %>'>
   Submit

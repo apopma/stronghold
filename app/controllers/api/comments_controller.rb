@@ -1,8 +1,6 @@
 class Api::CommentsController < ApplicationController
-  # fetching:
-
   def create
-    
+    fail
   end
 
   def update

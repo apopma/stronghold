@@ -1,4 +1,6 @@
 Stronghold.Models.Comment = Backbone.Model.extend ({
+  urlRoot: "api/comments",
+
   commenter: function() {
     if (!this._commenter) {
       this._commenter = new Stronghold.Models.User({ comment: this });

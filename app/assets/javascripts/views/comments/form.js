@@ -14,8 +14,38 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
   },
 
   render: function () {
-    var content = this.template({ actionType: this.actionType });
+    var content = this.template({
+      comment: this.model,
+      actionType: this.actionType
+    });
     this.$el.html(content);
     return this;
+  },
+
+  events: {
+    "click .new-comment-submit": "createComment"
+  },
+
+  // ---------------------------------------------------------------------------
+
+  createComment: function (event) {
+    var form = $(event.currentTarget).parent();
+    var formData = form.find(".form-content").html();
+
+    this.model.set("body", formData);
+    this.model.set("commentable_id", this.model.id);
+    this.model.set("commentable_type", this.commentableType);
+
+    this.model.save({}, {
+      success: function() {
+        this.collection.add(this.model);
+      }.bind(this),
+
+      error: function(model, resp, opts) {
+        debugger;
+      }.bind(this)
+    });
+
+    this.remove();
   }
 });
