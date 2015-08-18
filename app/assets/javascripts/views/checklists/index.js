@@ -63,7 +63,6 @@ Stronghold.Views.ChecklistIndex = Backbone.CompositeView.extend ({
   },
 
   render: function () {
-    var index = this;
     var content = this.template({ project: this.model });
     this.$el.html(content);
     this.attachSubviews();

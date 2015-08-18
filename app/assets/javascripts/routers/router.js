@@ -81,7 +81,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
 
   discussionIndex: function(project_id) {
     var project = this.projects.getOrFetch(project_id);
-    var view = new Stronghold.Views.DiscussionsIndex({
+    var view = new Stronghold.Views.DiscussionIndex({
       model: project,
       collection: project.discussions()
     });
