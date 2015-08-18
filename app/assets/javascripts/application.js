@@ -15,9 +15,9 @@
 //= require jquery-ui/datepicker
 //= require serialize_json
 //= require bootstrap
+//= require bootstrap-wysihtml5
 //= require underscore
 //= require backbone
-//= require parser_rules/simple
 //= require stronghold
 //= require_tree ../templates
 //= require_tree ./utils
