@@ -53,7 +53,10 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
     this.$('.comment-create').empty();
 
     var form = new Stronghold.Views.CommentForm({
-      commentableType: "Discussion", actionType: "create",
+      parentView: this,
+      commentable: this.model,
+      commentableType: "Discussion",
+      actionType: "create",
       model: new Stronghold.Models.Comment({ commentable_id: this.model.id })
     });
     this._commentForm = form;

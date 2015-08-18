@@ -1,16 +1,24 @@
 Stronghold.Views.CommentForm = Backbone.View.extend ({
-  template: JST['comments/form'],
-  tagName: 'form',
-  className: 'comment-form',
-  // project: owning project
-  // model: commentable (discussion, checklist, or task)
-  // collection: commentable.comments()
+  // model: comment, new or existing
+
+  // commentable: instantiating view's model, must have a comments property
+  // commentable_id is either set on view instantiation, or exists already
   // commentableType: commentable's model name
   // actionType: either 'create' or 'update'
 
+  // parentView: view which instantiated the comment form
+  //  this is passed in order to close the form after create/update
+  //  parent view must have a closeCommentForm(event) method
+
+  template: JST['comments/form'],
+  tagName: 'form',
+  className: 'comment-form',
+
   initialize: function (options) {
+    this.commentable = options.commentable;
     this.commentableType = options.commentableType;
     this.actionType = options.actionType;
+    this.parentView = options.parentView;
   },
 
   render: function () {
@@ -33,12 +41,11 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
     var formData = form.find(".form-content").html();
 
     this.model.set("body", formData);
-    this.model.set("commentable_id", this.model.id);
     this.model.set("commentable_type", this.commentableType);
 
     this.model.save({}, {
       success: function() {
-        this.collection.add(this.model);
+        this.commentable.comments().add(this.model);
       }.bind(this),
 
       error: function(model, resp, opts) {
@@ -46,6 +53,6 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
       }.bind(this)
     });
 
-    this.remove();
+    this.parentView.closeCommentForm(event);
   }
 });

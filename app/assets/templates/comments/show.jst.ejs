@@ -3,7 +3,7 @@
 <h4><%= commenter.escape("username") %></h4>
 
 <p>
-  <%= comment.escape("body") %>
+  <%= comment.get("body") %>
 </p>
 
 <% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
