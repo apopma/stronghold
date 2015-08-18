@@ -26,6 +26,14 @@ Stronghold.Models.Project = Backbone.Model.extend({
     return this._tasks;
   },
 
+  discussions: function() {
+    if (!this._discussions) {
+      this._discussions = new Stronghold.Collections.Discussions([], { project: this });
+    }
+
+    return this._discussions;
+  },
+
   parse: function(response) {
     if (response.members) {
       this.members().set(response.members);
@@ -40,6 +48,11 @@ Stronghold.Models.Project = Backbone.Model.extend({
     if (response.tasks) {
       this.tasks().set(response.tasks, { parse: true });
       delete response.tasks;
+    }
+
+    if (response.discussions) {
+      this.discussions().set(response.discussions, { parse: true });
+      delete response.discussions;
     }
 
     return response;
