@@ -17,7 +17,6 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
-//= require wysihtml
 //= require parser_rules/simple
 //= require stronghold
 //= require_tree ../templates
