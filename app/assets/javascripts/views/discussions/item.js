@@ -13,7 +13,7 @@ Stronghold.Views.DiscussionIndexItem = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       project_id: this.project.id, discussion: this.model,
-      numComments: this.collection.length
+      numComments: this.collection.length, creator: this.model.creator()
     });
     this.$el.html(content);
     return this;

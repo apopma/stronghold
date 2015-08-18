@@ -1,3 +1,8 @@
-[av] [creatorname]
+<img src="<%= creator.escape("gravatar_url") %>"/>
+
+<%= creator.escape("username") %>
 <%= discussion.escape("title") %>
-<%= numComments %> comments
+
+<span class='badge' title='<%= numComments %> comments'>
+  <%= numComments %>
+</span>
