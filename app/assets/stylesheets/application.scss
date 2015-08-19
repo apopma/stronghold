@@ -29,6 +29,31 @@
   float: left;
 }
 
+#footer {
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    border-top: 2px solid darkgray;
+
+    .footer-copyleft {
+      display: block;
+      padding: 20px;
+      float: left;
+    }
+
+    .footer-links {
+      list-style-type: none;
+      padding: 20px;
+      float: right;
+
+      li {
+        float: left;
+        padding-left: 20px;
+      }
+    }
+}
+
 .session-info img {
   position: relative;
   transform: translateY(10%);
