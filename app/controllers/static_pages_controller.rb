@@ -8,6 +8,12 @@ class StaticPagesController < ApplicationController
   def home
     # Splash page with options to sign up or sign in.
     redirect_to root_url and return if logged_in?
-    render :home
+    render :home, locals: { bg_class: random_bg_class }
+  end
+
+  private
+  def random_bg_class
+    bgs = ['bg-blueprints', 'bg-canal', 'bg-city', 'bg-fortress', 'bg-pyramids']
+    bgs.sample
   end
 end

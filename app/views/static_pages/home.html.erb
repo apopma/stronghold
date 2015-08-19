@@ -1,16 +1,24 @@
-<div class='jumbotron'>
+<div class='jumbotron <%= bg_class %>'>
   <%= render "layouts/flash" %>
 
-  <h1>Stronghold</h1>
-  <p>
-    It's the home page! <small>wow</small> <br>
+  <div class="site-info <%= bg_class %>">
+    <section class="blurb">
+      <h1>Stronghold</h1>
+      <p>
+        It's the home page! <small>wow</small> <br>
+      </p>
 
-    <a href='<%= new_user_url %>' class='btn btn-primary' role='button'>
-      Sign up
-    </a>
-    or
-    <a href="<%= new_session_url %>" class='btn btn-default' role='button'>
-      Log in
-    </a>
-  </p>
+      <%#= render "layouts/blurb", locals: { klass: bg_class } %>
+    </section>
+
+    <section class="buttons">
+      <a href='<%= new_user_url %>' class='btn btn-primary signup' role='button'>
+        Sign up
+      </a>
+
+      <a href="<%= new_session_url %>" class='btn btn-default signin' role='button'>
+        Log in
+      </a>
+    </section>
+  </div>
 </div>

@@ -22,6 +22,47 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+.jumbotron {
+  position: relative;
+  min-height: 800px;
+
+  .site-info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+  }
+
+  .buttons {
+    .signup { float: left; }
+    .signin { float: right; }
+  }
+}
+
+.jumbotron.bg-city {
+  background-image: url("/bg/bg-city.jpeg");
+}
+
+.jumbotron.bg-blueprints {
+  background-image: url("/bg/bg-blueprints.jpeg");
+}
+
+.jumbotron.bg-canal {
+  background-image: url("/bg/bg-canal.jpeg");
+}
+
+.jumbotron.bg-fortress {
+  background-image: url("/bg/bg-fortress.jpeg");
+}
+
+.jumbotron.bg-pyramids {
+  background-image: url("/bg/bg-pyramids.jpeg");
+}
+
 #sidebar {
   background-color: lightgreen;
   width: 150px;
@@ -30,28 +71,28 @@
 }
 
 #footer {
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    font-size: 14px;
-    border-top: 2px solid darkgray;
+  width: 100%;
+  height: auto;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  border-top: 2px solid darkgray;
 
-    .footer-copyleft {
-      display: block;
-      padding: 20px;
+  .footer-copyleft {
+    display: block;
+    padding: 20px;
+    float: left;
+  }
+
+  .footer-links {
+    list-style-type: none;
+    padding: 20px;
+    float: right;
+
+    li {
       float: left;
+      padding-left: 20px;
     }
-
-    .footer-links {
-      list-style-type: none;
-      padding: 20px;
-      float: right;
-
-      li {
-        float: left;
-        padding-left: 20px;
-      }
-    }
+  }
 }
 
 .session-info img {
