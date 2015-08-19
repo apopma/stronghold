@@ -9,7 +9,9 @@ window.Stronghold = {
     });
 
     var navbar = new Stronghold.Views.Navbar({ router: router });
+    var footer = new Stronghold.Views.Footer({ router: router });
     $('#navbar').html(navbar.render().$el);
+    $('#footer').html(footer.render().$el);
 
     Backbone.history.start();
 
