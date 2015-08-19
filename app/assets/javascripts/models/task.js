@@ -1,7 +1,11 @@
 Stronghold.Models.Task = Backbone.Model.extend ({
   urlRoot: "api/tasks",
-  initialize: function () {
-    // body ...
+
+  comments: function() {
+    if (!this._comments) {
+      this._comments = new Stronghold.Collections.Comments([], { task: this });
+    }
+    return this._comments;
   },
 
   assignedUsers: function() {
@@ -15,6 +19,11 @@ Stronghold.Models.Task = Backbone.Model.extend ({
       if (response.assigned_to) {
         this.assignedUsers().set(response.assigned_to);
         delete response.assigned_to;
+      }
+
+      if (response.comments) {
+        this.comments().set(response.comments);
+        delete response.comments;
       }
 
     return response;
