@@ -78,7 +78,6 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
   // ---------------------------------------------------------------------------
 
   addCommentView: function (comment) {
-    debugger;
     var commentView = new Stronghold.Views.CommentShow({
       project: this.project,
       model: comment,
