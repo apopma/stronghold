@@ -7,6 +7,14 @@ json.assigned_to do
   end
 end
 
+json.comments task.comments do |comment|
+  json.partial! "api/comments/comment", locals: { comment: comment }
+end
+
+json.creator do
+  json.partial! "api/users/user", locals: { user: task.creator }
+end
+
 json.checklist do
   json.extract! task.checklist, :id, :title
 end
