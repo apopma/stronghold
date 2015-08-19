@@ -16,10 +16,11 @@
       Back to all checklists
     </a> <br><br>
 
-    
-    <button type="button" class='delete-checklist btn btn-danger'>
-      Delete this checklist
-    </button>
+    <% if (checklist.creator().id == Stronghold.CURRENT_USER.id || project.get('is_admin')) { %>
+      <button type="button" class='delete-checklist btn btn-danger'>
+        Delete this checklist
+      </button>
+    <% } %>
   <% } %>
 
 <ul class='tasks row'>
