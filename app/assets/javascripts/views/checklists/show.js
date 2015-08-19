@@ -40,7 +40,10 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
     "click .new-task-cancel": "cancelTaskForm",
     "click .new-task-submit": "submitNewTask",
 
-    "click .delete-checklist": "deleteChecklist"
+    "click .delete-checklist": "deleteChecklist",
+
+    "click .new-comment": "openCommentForm",
+    "click .comment-form-cancel": "closeCommentForm"
   },
 
   render: function () {
@@ -176,5 +179,29 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
         }.bind(this)
       });
     }
+  },
+
+  // ---------------------------------------------------------------------------
+
+  openCommentForm: function (event) {
+    this._commentBtn = this.$('.comment-create').html();
+    this.$('.comment-create').empty();
+
+    var form = new Stronghold.Views.CommentForm({
+      parentView: this,
+      commentable: this.model,
+      commentableType: "Checklist",
+      actionType: "create",
+      model: new Stronghold.Models.Comment({ commentable_id: this.model.id })
+    });
+    this._commentForm = form;
+
+    this.addSubview('.comment-create', form);
+  },
+
+  closeCommentForm: function (event) {
+    event.preventDefault();
+    this.removeSubview('.comment-form', this._commentForm);
+    this.$('.comment-create').html(this._commentBtn);
   }
 });
