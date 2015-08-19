@@ -15,6 +15,13 @@ Stronghold.Models.Checklist = Backbone.Model.extend ({
     return this._comments;
   },
 
+  creator: function() {
+    if (!this._creator) {
+      this._creator = new Stronghold.Models.User([], { checklist: this });
+    }
+    return this._creator
+  },
+
   parse: function(response) {
     if (response.tasks) {
       this.tasks().set(response.tasks, { parse: true });
@@ -24,6 +31,11 @@ Stronghold.Models.Checklist = Backbone.Model.extend ({
     if (response.comments) {
       this.comments().set(response.comments, { parse: true });
       delete response.comments;
+    }
+
+    if (response.creator) {
+      this.creator().set(response.creator);
+      delete response.creator;
     }
 
     return response;
