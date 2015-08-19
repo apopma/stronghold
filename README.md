@@ -15,12 +15,12 @@ Stronghold is a clone of Basecamp built by and for supervillains. Users can:
     - [x] Add individual tasks within a checklist
     - [x] Assign tasks to a particular user
     - [x] Assign deadlines to tasks
-- [] Post comments:
-  - [] On a discussion board
-  - [] On a to-do list
-  - [] On a task
+- [x] Post comments:
+  - [x] On a discussion board
+  - [x] On a to-do list
+  - [x] On a task
   - [] On a text document
-  - [] As replies to top-level postings
+  - [x] As replies to top-level postings
 - [] Attach files from the local filesystem:
   - [] To the project itself
   - [] To a to-do list or checklist item
