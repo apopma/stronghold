@@ -98,7 +98,13 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
   render: function () {
     var index = this;
-    var content = this.template({ project: this.model });
+    var content = this.template({
+      project: this.model,
+      numDiscussions: this.model.discussions().length,
+      numChecklists: this.model.checklists().length,
+      numTasks: this.model.tasks().length,
+      numProjectMembers: this.model.members().length
+     });
     this.$el.html(content);
     this.attachSubviews();
     return this;

@@ -8,7 +8,10 @@
 <br>
 
 <section class='overview'>
-  N discussions | N tasks | N files | ???
+  <%= numDiscussions %> discussions |
+  <%= numChecklists %> checklists |
+  <%= numTasks %> tasks |
+  <%= numProjectMembers %> members
 </section>
 
 <section class='discussions-index'>
@@ -22,10 +25,6 @@
 <section class='files-index'>
   files index
 </section>
-
-<footer class='footer'>
-  footer
-</footer>
 
 
 <form class='new-invites-form'>
@@ -61,3 +60,7 @@
     Delete this project
   </button>
 <% } %>
+
+<footer class='footer'>
+  footer
+</footer>
