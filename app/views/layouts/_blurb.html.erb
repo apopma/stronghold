@@ -1,0 +1,26 @@
+<% blurb_header = '', blurb_text = '' %>
+
+<% case blurb_style %>
+  <% when 'bg-blueprints' %>
+    <% blurb_header = "They called you mad, but we know better." %>
+    <% blurb_text = "Don't let lesser minds get you down. Keep all your schemes organized with Stronghold." %>
+  <% when 'bg-alexander' %>
+    <% blurb_header = "The world is a mess. You need to rule it." %>
+    <% blurb_text = "Stronghold gives you all the tools you need to keep your campaigns in order." %>
+  <% when 'bg-city' %>
+    <% blurb_header = "Make them see you." %>
+    <% blurb_text = "With Stronghold on your side, it's never been easier to organize your next plan for world domination." %>
+  <% when 'bg-fortress' %>
+    <% blurb_header = "Rome wasn't built in a day." %>
+    <% blurb_text = "Stronghold gives your diabolical plots a safe place to incubate." %>
+  <% when 'bg-pyramids' %>
+    <% blurb_header = "Look upon your works, O mighty, and rejoice." %>
+    <% blurb_text = "Let Stronghold help you plan your next great endeavor." %>
+  <% else %>
+    <% blurb_header = "Project management for supervillains." %>
+    <% blurb_text = "Whether you're a minion or a mastermind, keep everybody on the same page with Stronghold." %>
+    <% blurb_text += " Evil plans have never been so easy." %>
+<% end %>
+
+<h1><%= blurb_header %></h1>
+<h2><%= blurb_text %></h2>

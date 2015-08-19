@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
 
   private
   def random_bg_class
-    bgs = ['bg-blueprints', 'bg-canal', 'bg-city', 'bg-fortress', 'bg-pyramids']
+    bgs = ['bg-blueprints', 'bg-alexander', 'bg-city', 'bg-fortress', 'bg-pyramids']
     bgs.sample
   end
 end

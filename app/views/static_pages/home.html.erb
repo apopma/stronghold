@@ -3,12 +3,7 @@
 
   <div class="site-info <%= bg_class %>">
     <section class="blurb">
-      <h1>Stronghold</h1>
-      <p>
-        It's the home page! <small>wow</small> <br>
-      </p>
-
-      <%#= render "layouts/blurb", locals: { klass: bg_class } %>
+      <%= render "layouts/blurb", blurb_style: bg_class %>
     </section>
 
     <section class="buttons">
