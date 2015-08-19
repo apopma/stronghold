@@ -73,7 +73,6 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     var view = new Stronghold.Views.TaskShow({
       project: project, checklist: checklist,
       model: task, collection: task.assignedUsers(),
-      isShowView: true
     });
     this._swapView(view);
   },

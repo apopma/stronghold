@@ -3,7 +3,7 @@ Stronghold.Models.Comment = Backbone.Model.extend ({
 
   commenter: function() {
     if (!this._commenter) {
-      this._commenter = new Stronghold.Models.User({ comment: this });
+      this._commenter = new Stronghold.Models.User();
     }
 
     return this._commenter;

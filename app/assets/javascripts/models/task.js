@@ -29,7 +29,7 @@ Stronghold.Models.Task = Backbone.Model.extend ({
       }
 
       if (response.comments) {
-        this.comments().set(response.comments);
+        this.comments().set(response.comments, { parse: true });
         delete response.comments;
       }
 

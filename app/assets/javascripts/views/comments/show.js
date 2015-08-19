@@ -17,9 +17,11 @@ Stronghold.Views.CommentShow = Backbone.View.extend ({
   },
 
   render: function () {
+    debugger
     var content = this.template({
       project: this.project,
-      comment: this.model, commenter: this.model.commenter()
+      comment: this.model,
+      commenter: this.model.commenter()
     });
     this.$el.html(content);
     return this;

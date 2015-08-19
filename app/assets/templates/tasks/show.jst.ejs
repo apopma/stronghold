@@ -4,43 +4,41 @@
 
 <span class='task-options'></span>
 
-<% if (isShowView) { %>
+<section class='task-show'>
   <a href="#/projects/<%= project.id %>/checklists"
        onClick='history.back();return false;'>
     Back to previous page
   </a> <br>
-<% } %>
 
 
-<input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
-  name="done" <%= isDone ? "checked" : "" %>>
+  <input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
+    name="done" <%= isDone ? "checked" : "" %>>
 
-<span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
-  <% if (!isShowView) { %>
-    <a href="#/projects/<%= project.id %>/checklists/<%= checklist.id %>/tasks/<%= task.id %>">
-  <% } %>
+  <span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
     <%= task.escape("description") %>
-  <% if (!isShowView) { %>
-    </a>
-  <% } %>
-</span>
-
- <br>
-
-<span class='task-assignments' name='assigned_users'>
-  Assigned to: <%= usernames.join(", ") %>
-</span>
-
-<br>
-
-<% if (task.get("deadline")) { %>
-  <span class='task-deadline' name='deadline'>
-    Due on: <%= task.escape("deadline") %>
   </span>
-<% } %>
 
-<% if (isShowView) { %>
-  <p>
-    this is a task show view! comments and things will go here
-  </p>
-<% } %>
+   <br>
+
+  <span class='task-assignments' name='assigned_users'>
+    Assigned to: <%= usernames.join(", ") %>
+  </span>
+
+  <br>
+
+  <% if (task.get("deadline")) { %>
+    <span class='task-deadline' name='deadline'>
+      Due on: <%= task.escape("deadline") %>
+    </span>
+  <% } %>
+</section>
+
+<h4>Comments on this task</h4>
+<section class='comments row'>
+</section>
+
+<div class="comment-create">
+  <button type="button" class='new-comment btn btn-primary'>
+    Post a new comment
+  </button>
+</div>

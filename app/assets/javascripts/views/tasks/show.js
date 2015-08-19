@@ -1,36 +1,49 @@
-Stronghold.Views.TaskShow = Backbone.View.extend ({
+Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
+  // project: owning project, through owning checklist
+  // model: task
+  // collection: task.assignedUsers()
+
   template: JST['tasks/show'],
-  tagName: 'li',
-  className: 'task col-md-7',
+  className: 'task',
 
   initialize: function (options) {
     this.project = options.project;
     this.checklist = options.checklist;
-    this.isShowView = options.isShowView;
+
+    this.model.comments().each(function (comment) {
+      this.addCommentView(comment);
+    }.bind(this));
+
     this.listenTo(this.model, "sync change", this.render);
     this.listenTo(this.collection, "add remove", this.render);
-    // project: owning project, through owning checklist
-    // model: task
-    // collection: task.assignedUsers()
+
+    this.listenTo(this.model.comments(), "add", this.addCommentView);
+    this.listenTo(this.model.comments(), "remove", this.removeCommentView);
   },
 
   events: {
     "click .task-toggle": "toggle",
+    "click .task-update": "update",
+    "click .delete-task": "delete",
+
     "mouseenter": "displayOptionButtons",
     "mouseleave": "removeOptionButtons",
-    "click .delete-task": 'delete',
+
     "click .edit-task": "openEditForm",
     "click .new-task-cancel": "closeEditForm",
-    "click .task-update": "update"
+
+    "click .new-comment": "openCommentForm",
+    "click .comment-form-cancel": "closeCommentForm"
   },
 
   render: function () {
     var content = this.template({
       task: this.model, assignments: this.collection,
       project: this.project, checklist: this.checklist,
-      isDone: this.model.get('done'), isShowView: this.isShowView
+      isDone: this.model.get('done'),
     });
     this.$el.html(content);
+    this.attachSubviews();
     return this;
   },
 
@@ -62,6 +75,25 @@ Stronghold.Views.TaskShow = Backbone.View.extend ({
     this._optionBtns.remove();
   },
 
+  // ---------------------------------------------------------------------------
+
+  addCommentView: function (comment) {
+    debugger;
+    var commentView = new Stronghold.Views.CommentShow({
+      project: this.project,
+      model: comment,
+      commentable: this.model,
+      commentableType: "Task"
+    });
+    this.addSubview('.comments', commentView);
+  },
+
+  removeCommentView: function (comment) {
+    this.removeModelSubview('.comments', comment);
+  },
+
+  // ---------------------------------------------------------------------------
+
   delete: function (event) {
     // TODO: make the user doubleclick or click two buttons instead
     var c = window.confirm("Really delete this task?");
@@ -70,12 +102,10 @@ Stronghold.Views.TaskShow = Backbone.View.extend ({
       this.model.destroy({
         success: function() {
           this.model.clear();
-          if (this.isShowView) {
-            Backbone.history.navigate(
-              "#projects/" + this.project.id + "/checklists/" + this.checklist.id,
-              { trigger: true }
-            );
-          }
+          Backbone.history.navigate(
+            "#projects/" + this.project.id + "/checklists/" + this.checklist.id,
+            { trigger: true }
+          );
         }.bind(this)
       });
     }
@@ -117,5 +147,29 @@ Stronghold.Views.TaskShow = Backbone.View.extend ({
          debugger;
        }.bind(this)
      });
+  },
+
+  // ---------------------------------------------------------------------------
+
+  openCommentForm: function (event) {
+    this._commentBtn = this.$('.comment-create').html();
+    this.$('.comment-create').empty();
+
+    var form = new Stronghold.Views.CommentForm({
+      parentView: this,
+      commentable: this.model,
+      commentableType: "Task",
+      actionType: "create",
+      model: new Stronghold.Models.Comment({ commentable_id: this.model.id })
+    });
+    this._commentForm = form;
+
+    this.addSubview('.comment-create', form);
+  },
+
+  closeCommentForm: function (event) {
+    event.preventDefault();
+    this.removeSubview('.comment-form', this._commentForm);
+    this.$('.comment-create').html(this._commentBtn);
   }
 });
