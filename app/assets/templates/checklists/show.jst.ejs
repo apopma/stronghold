@@ -15,6 +15,11 @@
     <a href="#projects/<%= project.escape("id") %>/checklists">
       Back to all checklists
     </a> <br><br>
+
+    
+    <button type="button" class='delete-checklist btn btn-danger'>
+      Delete this checklist
+    </button>
   <% } %>
 
 <ul class='tasks row'>
@@ -27,9 +32,6 @@
 </div>
 
 <% if (isShowView) { %>
-  <br>
-  <p>
-    this is a show view! comments and things will go here
-  </p>
-  <button type="button" class='delete-checklist btn btn-danger'>Delete this checklist</button>
+  <br><h4>Comments on this checklist</h4>
+  <section class='comments row'></section>
 <% } %>

@@ -15,9 +15,20 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
       this.addTaskView(task);
     }.bind(this));
 
+    if (this.isShowView) {
+      this.model.comments().each(function (comment) {
+        this.addCommentView(comment);
+      }.bind(this));
+    }
+
     this.listenTo(this.model, "sync change", this.render);
     this.listenTo(this.collection, "add", this.addTaskView);
     this.listenTo(this.collection, "remove", this.removeTaskView);
+
+    if (this.isShowView) {
+      this.listenTo(this.model.comments(), "add", this.addCommentView);
+      this.listenTo(this.model.comments(), "remove", this.removeCommentView);
+    }
   },
 
   events: {
@@ -57,6 +68,21 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
 
   removeTaskView: function (task) {
     this.removeModelSubview('.tasks', task);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  addCommentView: function (comment) {
+    var commentView = new Stronghold.Views.CommentShow({
+      project: this.project, model: comment,
+      commentable: this.model,
+      commentableType: "Checklist"
+    });
+    this.addSubview('.comments', commentView);
+  },
+
+  removeCommentView: function (comment) {
+    this.removeModelSubview('.comments', comment);
   },
 
   // ---------------------------------------------------------------------------
