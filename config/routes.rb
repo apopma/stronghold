@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :discussions, only: [:show, :create, :update, :destroy]
     resources :checklists, only: [:show, :create, :update, :destroy]
     resources :tasks, only: [:show, :create, :update, :destroy]
-    resources :comments, only: :create
+    resources :comments, only: [:create, :update, :destroy]
 
     resources :task_assignments, only: [:create, :update, :destroy]
     resources :project_memberships, only: [:create, :update, :destroy]

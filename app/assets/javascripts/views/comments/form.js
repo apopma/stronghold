@@ -27,11 +27,20 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
       actionType: this.actionType
     });
     this.$el.html(content);
+
+    this.$('.wysihtml5').wysihtml5({
+      toolbar: {
+        "fa": true,
+        "image": false,
+        "link": false
+      }
+    });
     return this;
   },
 
   events: {
-    "click .new-comment-submit": "createComment"
+    "click .new-comment-submit": "createComment",
+    "click .edit-comment-submit": "updateComment"
   },
 
   // ---------------------------------------------------------------------------
@@ -51,6 +60,23 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
       error: function(model, resp, opts) {
         debugger;
       }.bind(this)
+    });
+
+    this.parentView.closeCommentForm(event);
+  },
+
+  updateComment: function (event) {
+    var form = $(event.currentTarget).parent();
+    var formData = form.find(".form-content").html();
+
+    this.model.save({ body: formData }, {
+      success: function() {
+        this.model.set("body", formData);
+      }.bind(this),
+
+      error: function() {
+        debugger;
+      }
     });
 
     this.parentView.closeCommentForm(event);
