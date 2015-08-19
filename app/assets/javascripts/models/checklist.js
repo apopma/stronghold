@@ -13,7 +13,7 @@ Stronghold.Models.Checklist = Backbone.Model.extend ({
       this._comments = new Stronghold.Collections.Comments([], { checklist: this });
     }
     return this._comments;
-  }
+  },
 
   parse: function(response) {
     if (response.tasks) {
