@@ -6,20 +6,28 @@
   background-color: white;
   margin-bottom: 120px; // really 50px, but the footer has to be accounted for
   box-shadow: 0 0 6px rgba(0,0,0,0.3); // straight from Basecamp
+  border-radius: 2px;
   padding-bottom: 20px;
-}
-
-#sidebar {
-  background-color: lightgreen;
-  width: 150px;
-  height: 100%;
-  float: left;
 }
 
 .session-info img {
   position: relative;
   transform: translateY(10%);
   margin: 0 5px;
+}
+
+#navbar {
+  margin-bottom: 20px;
+  width: 100%;
+
+  .navbar {
+    width: 100%;
+    border-radius: 0;
+    border-bottom: 2px solid darkgray;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 0px;
+  }
 }
 
 .nav.navbar-nav.navbar-right {
@@ -30,11 +38,18 @@
   }
 }
 
+#sidebar {
+  background-color: lightgreen;
+  width: 150px;
+  height: 100%;
+  float: left;
+}
+
 #footer {
   position: absolute;
   box-sizing: border-box;
   border-top: 2px solid darkgray;
-  background-color: beige;
+  background-color: black;
   left: 0;
   bottom: 0;
   height: 70px;
