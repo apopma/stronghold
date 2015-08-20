@@ -18,6 +18,7 @@
 //= require bootstrap-wysihtml5
 //= require underscore
 //= require backbone
+//= require moment
 //= require stronghold
 //= require_tree ../templates
 //= require_tree ./utils

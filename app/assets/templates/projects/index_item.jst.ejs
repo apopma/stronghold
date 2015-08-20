@@ -2,7 +2,7 @@
   <a href='<%= "#projects/" + project.escape("id") %>'>
     <h3><%= project.escape("title") %></h3>
     <h5><%= project.escape("description") %></h5>
-    <h5>Updated at: <%= project.escape("updated_at") %></h5>
+    <h5>Updated at: <%= moment(project.escape("updated_at")).fromNow() %></h5>
   </a>
 
   <div class='members'>

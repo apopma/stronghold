@@ -13,6 +13,7 @@ gem 'backbone-on-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'serialize_json-rails'
 
+gem 'momentjs-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
