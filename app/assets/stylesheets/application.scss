@@ -25,6 +25,8 @@
 .jumbotron {
   position: relative;
   min-height: 800px;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .site-info {
     position: absolute;
@@ -45,22 +47,29 @@
 
 .jumbotron.bg-city {
   background-image: url("/bg/bg-city.jpeg");
+  background-position-x: 80%;
+  background-position-y: 50%;
 }
 
 .jumbotron.bg-blueprints {
   background-image: url("/bg/bg-blueprints.jpeg");
+  background-position-y: bottom;
 }
 
 .jumbotron.bg-alexander {
   background-image: url("/bg/bg-alexander.jpg");
+  background-position-y: 69%;
 }
 
 .jumbotron.bg-fortress {
   background-image: url("/bg/bg-fortress.jpeg");
+  background-position-x: 40%;
+  background-position-y: 35%;
 }
 
 .jumbotron.bg-pyramids {
   background-image: url("/bg/bg-pyramids.jpeg");
+  background-position-y: 85%;
 }
 
 #sidebar {
