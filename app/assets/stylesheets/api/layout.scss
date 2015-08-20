@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#content {
+  background-color: white;
+  margin-bottom: 120px; // really 50px, but the footer has to be accounted for
+  box-shadow: 0 0 6px rgba(0,0,0,0.3); // straight from Basecamp
+  padding-bottom: 20px;
+}
+
 #sidebar {
   background-color: lightgreen;
   width: 150px;
@@ -23,15 +30,11 @@
   }
 }
 
-#footer > div.container > * {
-  // insane hacky fix for Bootstrap li & p margins stretching out footer
-  margin: -2px 0 0 0;
-}
-
 #footer {
   position: absolute;
   box-sizing: border-box;
   border-top: 2px solid darkgray;
+  background-color: beige;
   left: 0;
   bottom: 0;
   height: 70px;
@@ -56,4 +59,9 @@
       padding-left: 20px;
     }
   }
+}
+
+#footer > div.container > * {
+  // insane hacky fix for Bootstrap li & p margins stretching out footer
+  margin: -2px 0 0 0;
 }

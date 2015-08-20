@@ -2,6 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.comments:first-child {
+  margin-top: 10px;
+}
+
+.comment {
+  border: 1px solid black;
+  padding: 15px;
+
+  img {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .commenter {
+    margin-top: 0px;
+  }
+
+  .timestamps {
+    float: right;
+    margin-top: 15px;
+  }
+}
+
 .comment-form {
   .form-content {
     min-height: 75px;

@@ -32,7 +32,8 @@ Stronghold.Views.CommentForm = Backbone.View.extend ({
       toolbar: {
         "fa": true,
         "image": false,
-        "link": false
+        "link": false,
+        "blockquote": false
       }
     });
     return this;

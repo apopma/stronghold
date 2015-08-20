@@ -8,13 +8,6 @@
   <%= comment.get("body") %>
 </p>
 
-<span class='timestamps text-muted'>
-  posted <%= moment(comment.escape("created_at")).fromNow() %>
-  <% if (comment.get('has_been_edited')) { %>
-    edited <%= moment(comment.escape("updated_at")).fromNow() %>
-  <% } %>
-</span>
-
 <span class='buttons'>
   <% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
     <button type="button" class='comment-edit btn btn-sm btn-link'>
@@ -26,5 +19,12 @@
     <button type="button" class='comment-delete btn btn-sm btn-link'>
       Delete
     </button>
+  <% } %>
+</span>
+
+<span class='timestamps text-muted'>
+  posted <%= moment(comment.escape("created_at")).fromNow() %>
+  <% if (comment.get('has_been_edited')) { %>
+    | edited <%= moment(comment.escape("updated_at")).fromNow() %>
   <% } %>
 </span>
