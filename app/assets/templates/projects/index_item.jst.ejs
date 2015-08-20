@@ -3,6 +3,9 @@
     <h3><%= project.escape("title") %></h3>
     <h5><%= project.escape("description") %></h5>
     <h5>Updated <%= moment(project.escape("updated_at")).fromNow() %></h5>
+    <h5><%= project.escape("num_members") %>
+        <%= project.get("num_members") === 1 ? "member" : "members" %>
+    </h5>
   </a>
 
   <div class='members'>
@@ -14,5 +17,9 @@
              class="member-gravatar img-circle"/>
       </a>
     <% }) %>
+
+    <% if (project.get("num_members") > 4) { %>
+      <span class='more-members'>...</span>
+    <% } %>
   </div>
 </article>

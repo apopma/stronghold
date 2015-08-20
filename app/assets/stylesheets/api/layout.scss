@@ -39,10 +39,30 @@
 }
 
 #sidebar {
-  background-color: lightgreen;
+  background-color: white;
   width: 150px;
-  height: 100%;
-  float: left;
+  min-height: 300px;
+  
+  .new-project {
+    text-align: center;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    padding-bottom: 20px;
+    margin-top: 30px;
+
+    h1 {
+      font-size: 96px;
+      color: #8bb471;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: black;
+    }
+  }
 }
 
 #footer {
