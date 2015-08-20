@@ -1,3 +1,53 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.jumbotron {
+  position: relative;
+  min-height: 800px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .site-info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+  }
+
+  .buttons {
+    .signup { float: left; }
+    .signin { float: right; }
+  }
+}
+
+.jumbotron.bg-city {
+  background-image: url("/bg/bg-city.jpeg");
+  background-position-x: 80%;
+  background-position-y: 50%;
+}
+
+.jumbotron.bg-blueprints {
+  background-image: url("/bg/bg-blueprints.jpeg");
+  background-position-y: bottom;
+}
+
+.jumbotron.bg-alexander {
+  background-image: url("/bg/bg-alexander.jpg");
+  background-position-y: 69%;
+}
+
+.jumbotron.bg-fortress {
+  background-image: url("/bg/bg-fortress.jpeg");
+  background-position-x: 40%;
+  background-position-y: 35%;
+}
+
+.jumbotron.bg-pyramids {
+  background-image: url("/bg/bg-pyramids.jpeg");
+  background-position-y: 85%;
+}

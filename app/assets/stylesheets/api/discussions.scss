@@ -1,3 +1,27 @@
 // Place all the styles related to the api/Discussions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.discussion {
+  img {
+    height: 30px;
+    width: 30px;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .who {
+    font-weight: bold;
+  }
+
+  .what {
+    font-family: sans-serif;
+  }
+}

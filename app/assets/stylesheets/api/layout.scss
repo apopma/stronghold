@@ -1,0 +1,49 @@
+// Place all the styles related to the app's layout here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#sidebar {
+  background-color: lightgreen;
+  width: 150px;
+  height: 100%;
+  float: left;
+}
+
+.session-info img {
+  position: relative;
+  transform: translateY(10%);
+  margin: 0 5px;
+}
+
+.nav.navbar-nav.navbar-right {
+  margin-right: 0px;
+  p {
+    margin: -15px 0 0 54px;
+    padding-top: 2px;
+  }
+}
+
+#footer {
+  width: 100%;
+  height: auto;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  border-top: 2px solid darkgray;
+
+  .footer-copyleft {
+    display: block;
+    padding: 20px;
+    float: left;
+  }
+
+  .footer-links {
+    list-style-type: none;
+    padding: 20px;
+    float: right;
+
+    li {
+      float: left;
+      padding-left: 20px;
+    }
+  }
+}
