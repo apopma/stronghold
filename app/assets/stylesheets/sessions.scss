@@ -1,3 +1,29 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signin {
+  position: absolute;
+  background-color: lightsteelblue;
+  background-size: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: rgba(180, 180, 180, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    padding: 20px;
+  }
+
+  .signin-cancel {
+    float: right;
+  }
+}
