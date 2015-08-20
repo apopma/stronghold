@@ -1,19 +1,27 @@
-<img src="<%= commenter.escape("gravatar_url") %>" class='img-circle'/>
+<img src="<%= commenter.escape("gravatar_url") %>" class='img-circle av'/>
 
-<h4><%= commenter.escape("username") %></h4>
+<h4 class='commenter'>
+  <%= commenter.escape("username") %>
+</h4>
 
-<p>
+<p class='comment-body'>
   <%= comment.get("body") %>
 </p>
 
-<% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
-  <button type="button" class='comment-edit btn btn-sm btn-link'>
-    Edit
-  </button>
-<% } %>
+<span class='timestamps text-muted'>
+  Posted <%= moment(comment.escape("created_at")).fromNow() %>
+</span>
 
-<% if (project.get("is_admin") || Stronghold.CURRENT_USER.id == commenter.id) { %>
-  <button type="button" class='comment-delete btn btn-sm btn-link'>
-    Delete
-  </button>
-<% } %>
+<span class='buttons'>
+  <% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
+    <button type="button" class='comment-edit btn btn-sm btn-link'>
+      Edit
+    </button>
+  <% } %>
+
+  <% if (project.get("is_admin") || Stronghold.CURRENT_USER.id == commenter.id) { %>
+    <button type="button" class='comment-delete btn btn-sm btn-link'>
+      Delete
+    </button>
+  <% } %>
+</span>
