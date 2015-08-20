@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       flash[:success] = ["Welcome to Stronghold, #{@user.username}."]
       redirect_to root_url
     else
-      flash.now[:danger] = @user.errors.full_messages
+      flash.now[:danger] = ["Sorry, something went wrong."]
+      flash.now[:danger] += @user.errors.full_messages
       render :new
     end
   end

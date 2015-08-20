@@ -1,6 +1,5 @@
 <main class='signup'>
   <section>
-    <%= render "layouts/flash" %>
     <div class="signup-text">
       <h1>Welcome to Stronghold.</h1>
       <p>
@@ -8,6 +7,7 @@
       </p>
     </div>
     <hr>
+    <%= render "layouts/flash" %>
     <div class="signup-form">
       <%= render "users/form", req_method: :get %>
     </div>
