@@ -4,6 +4,8 @@
 
 .signup {
   position: absolute;
+  background-image: url('/bg/bg-lair-sketchy.jpg');
+  background-position-x: 50%;
   background-color: lightsteelblue;
   background-size: cover;
   top: 0;
@@ -18,8 +20,9 @@
     transform: translate(-50%, -50%);
     border-radius: 5px;
     margin: 0 auto;
-    background-color: rgba(180, 180, 180, 0.4);
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    width: auto;
+    background-color: rgba(180, 180, 180, 0.8);
+    border: 1px solid black;
     padding: 20px;
   }
 
