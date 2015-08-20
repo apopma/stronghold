@@ -26,8 +26,8 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
     "click .task-update": "update",
     "click .delete-task": "delete",
 
-    "mouseenter": "displayOptionButtons",
-    "mouseleave": "removeOptionButtons",
+    "mouseenter .task-show": "displayOptionButtons",
+    "mouseleave .task-show": "removeOptionButtons",
 
     "click .edit-task": "openEditForm",
     "click .new-task-cancel": "closeEditForm",
@@ -111,14 +111,16 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
   },
 
   openEditForm: function (event) {
-    var view = new Stronghold.Views.TaskForm({
+    this.editView = new Stronghold.Views.TaskForm({
       model: this.model, project: this.project, viewType: "update"
     });
-    this.$el.html(view.render().$el);
+    this.$(".task-show").html(this.editView.render().$el);
   },
 
   closeEditForm: function (event) {
     event.preventDefault();
+    this.editView.remove();
+    delete this.editView;
     this.render();
   },
 
