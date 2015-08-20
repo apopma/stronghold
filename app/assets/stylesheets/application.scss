@@ -21,3 +21,14 @@
 
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  // margin-bottom == footer height
+  margin-bottom: 70px;
+}

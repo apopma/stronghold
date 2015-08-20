@@ -23,23 +23,33 @@
   }
 }
 
+#footer > div.container > * {
+  // insane hacky fix for Bootstrap li & p margins stretching out footer
+  margin: -2px 0 0 0;
+}
+
 #footer {
-  width: 100%;
-  height: auto;
-  background-color: #f5f5f5;
-  font-size: 14px;
+  position: absolute;
+  box-sizing: border-box;
   border-top: 2px solid darkgray;
+  left: 0;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+  font-size: 14px;
 
   .footer-copyleft {
     display: block;
-    padding: 20px;
     float: left;
+    height: 70px;
+    line-height: 70px;
   }
 
   .footer-links {
     list-style-type: none;
-    padding: 20px;
     float: right;
+    height: 70px;
+    line-height: 70px;
 
     li {
       float: left;
