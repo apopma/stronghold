@@ -9,7 +9,10 @@
 </p>
 
 <span class='timestamps text-muted'>
-  Posted <%= moment(comment.escape("created_at")).fromNow() %>
+  posted <%= moment(comment.escape("created_at")).fromNow() %>
+  <% if (comment.get('has_been_edited')) { %>
+    edited <%= moment(comment.escape("updated_at")).fromNow() %>
+  <% } %>
 </span>
 
 <span class='buttons'>
