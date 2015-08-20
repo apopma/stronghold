@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817230203) do
+ActiveRecord::Schema.define(version: 20150820222152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(version: 20150817230203) do
   add_index "discussions", ["project_id"], name: "index_discussions_on_project_id", using: :btree
 
   create_table "project_memberships", force: :cascade do |t|
-    t.integer "user_id",                    null: false
-    t.integer "project_id",                 null: false
-    t.boolean "admin",      default: false, null: false
+    t.integer  "user_id",                    null: false
+    t.integer  "project_id",                 null: false
+    t.boolean  "admin",      default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "project_memberships", ["user_id", "project_id"], name: "index_project_memberships_on_user_id_and_project_id", unique: true, using: :btree
