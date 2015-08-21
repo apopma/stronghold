@@ -1,7 +1,7 @@
 class Api::ProjectMembershipsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
-    @user = User.find_by_username_or_email(params[:query])
+    @user = User.find(params[:user_id])
     @membership = ProjectMembership.new(project: @project, user: @user)
 
     if @membership.save

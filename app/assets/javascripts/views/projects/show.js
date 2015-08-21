@@ -13,7 +13,7 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   events: {
     "typeahead:select .typeahead": "addInviteeField",
     "click .remove-invitee": "removeInviteeFromList",
-    "submit form.new-invites-form": "submitNewInvitees",
+    "click .submit-invitees": "submitNewInvitees",
 
     "dblclick .project-info": "openInfoEdit",
     "click .cancel": "cancelInfoEdit",
@@ -70,26 +70,26 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
 
   submitNewInvitees: function(event) {
     event.preventDefault();
-    this.$("input").prop("disabled", false);
 
     var project = this;
-    var formData = $(event.currentTarget).serializeJSON();
-    formData.invitees.pop(); // last element is always an empty string
 
-    // would be nice to make this a batch
-    formData.invitees.forEach(function (invitee) {
+    var inviteeFields = this.$(".invitees").children().children()
+    var invitee_ids = inviteeFields.map(function (_, invitee) {
+      return $(invitee).data("id");
+    });
+
+    _.each(invitee_ids, function(invitee) {
       var membership = new Stronghold.Models.ProjectMembership({
-        query: invitee,
-        project_id: project.model.id
+        project_id: this.model.id, user_id: invitee
       });
 
       membership.save({}, {
         success: function() {
-          // ensures project's members show up in index w/o refresh
-          project.model.members().add(membership);
+          // update memberships client-side too
+          this.model.members().add(membership);
         }.bind(this)
-      }); // TODO: inform user if records don't exist
-    });
+      });
+    }.bind(this));
 
     this.render();
   },
