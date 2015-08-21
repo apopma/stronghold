@@ -28,20 +28,19 @@
 
 
 <form class='new-invites-form'>
-  <section class='form-group invitees'>
-    <h4>Invite more people to your project</h4>
-    <p>
-      Type in some usernames or emails. Anybody you add will be able to view
-      and make changes to this project, and invite other users.
-    </p>
+  <h4>Invite more people to your project</h4>
+  <p>
+    Type in some usernames or emails. Anybody you add will be able to view
+    and make changes to this project, and invite other users.
+  </p>
 
-    <div class="invitee-field">
-      <input type="text" name="invitees[]">
-      <button class="remove-invitee">&times;</button>
-    </div>
-  </section>
+  <div class="search-bar">
+    <input type="text" class='form-control typeahead'>
+  </div>
 
-  <input type="submit" value="Add new invitees">
+  <div class="invitees"></div>
+
+  <button class='btn btn-success btn-md'>Add new invitees</button>
 </form>
 
 <% if (project.get("is_admin")) { %>
