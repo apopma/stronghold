@@ -1,4 +1,5 @@
   //TODO: add fuzzy-search for all users when searching for new invitees
+  //TODO: prevent form submission with invalid input
 
 Stronghold.Views.ProjectForm = Backbone.View.extend ({
   template: JST['projects/form'],
@@ -34,7 +35,7 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   createNewProject: function(event) {
     event.preventDefault();
     this.$("input").prop("disabled", false);
-    
+
     var formData = this.$(".project-form").serializeJSON().project;
     var newProject = new Stronghold.Models.Project();
 

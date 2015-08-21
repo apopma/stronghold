@@ -6,5 +6,5 @@ json.array! @projects do |project|
     json.extract! member, :id, :username, :gravatar_url
   end
 
-  json.num_members project.members.count
+  json.num_members project.members.size
 end
