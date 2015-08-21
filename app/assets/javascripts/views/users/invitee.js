@@ -4,7 +4,7 @@ Stronghold.Views.Invitee = Backbone.View.extend ({
   initialize: function (options) {
     this.userid = options.userid;
     this.username = options.username;
-    this.removed = options.removed;
+    this.removeFromList = options.removeFromList;
   },
 
   events: {

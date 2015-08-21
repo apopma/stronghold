@@ -58,8 +58,8 @@ Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
       data: { query: query },
       success: function(data, textStatus, jqXHR) {
         var filteredData = _.filter(data, function(user) {
-          // Don't show users if they're already being assigned a membership.
-          return !(_.contains(this._inviteesToAssign, user.id));
+          // Don't show users if they're already being assigned a membership or are the current user.
+          return !(_.contains(this._inviteesToAssign, user.id)) && (Stronghold.CURRENT_USER.id != user.id);
         }.bind(this));
 
         return asyncResults(filteredData);
