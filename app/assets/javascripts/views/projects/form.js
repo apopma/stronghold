@@ -1,3 +1,5 @@
+  //TODO: add fuzzy-search for all users when searching for new invitees
+
 Stronghold.Views.ProjectForm = Backbone.View.extend ({
   template: JST['projects/form'],
   className: 'project-form',
@@ -32,11 +34,11 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   createNewProject: function(event) {
     event.preventDefault();
     this.$("input").prop("disabled", false);
-    var formData = this.$("form").serializeJSON();
-
+    
+    var formData = this.$(".project-form").serializeJSON().project;
     var newProject = new Stronghold.Models.Project();
-    newProject.set(formData);
 
+    newProject.set(formData);
     newProject.save({}, {
       success: function() {
         this.collection.add(newProject);

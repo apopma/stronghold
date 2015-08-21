@@ -3,6 +3,7 @@ json.is_admin @project.admins.include?(current_user)
 json.members @project.members do |member|
   json.extract! member, :id, :username, :email, :gravatar_url
 end
+json.num_members @project.members.count
 
 json.checklists @project.checklists do |checklist|
   json.partial! "api/checklists/checklist", locals: { checklist: checklist }
