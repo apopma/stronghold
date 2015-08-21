@@ -89,8 +89,6 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   submitNewInvitees: function(event) {
     event.preventDefault();
 
-    var project = this;
-
     var inviteeFields = this.$(".invitees").children().children()
     var invitee_ids = inviteeFields.map(function (_, invitee) {
       return $(invitee).data("id");
