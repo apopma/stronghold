@@ -31,7 +31,12 @@ Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
   },
 
   addInviteeField: function (event) {
-    debugger;
+    var item = $(event.currentTarget);
+    var id = item.data("id");
+    var username = item.data("username");
+    var view = new Stronghold.Views.Invitee({ userid: id, username: username });
+    this.$('.search-bar .tt-input').val(""); // clear out the JSON
+    this.addSubview(".invitees", view);
   },
 
   typeaheadSource: function(query, syncResults, asyncResults) {

@@ -11,16 +11,18 @@
            placeholder='Add some extra details (optional)'>
   </div>
 
-  <section class='form-group invitees'>
+  <section class='form-group'>
     <h4>Invite other people to your project</h4>
     <p>
       Type in some usernames or emails. Anybody you add will be able to view
       and make changes to this project.
     </p>
 
-    <div class="invitee-field">
-      <input type="text" name="project[invitees][]" class='typeahead'>
+    <div class="search-bar">
+      <input type="text" name="project[invitees][]" class='form-control typeahead'>
     </div>
+
+    <div class="invitees"></div>
   </section>
 
   <button class='btn btn-success proj-submit'>Start plotting</button>
