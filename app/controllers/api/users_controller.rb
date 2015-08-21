@@ -1,11 +1,12 @@
 class Api::UsersController < ApplicationController
   def index
-    # Fuzzy-search a project's members by username or email, case insensitive.
-    if params[:query].present?
+    if params[:query].present? && params[:project_id].present?
+      # Fuzzy-search a project's members by username or email, case insensitive.
       @project = Project.find(params[:project_id])
-      results_by_name = @project.members.where("username ~* ?", params[:query])
-      results_by_email = @project.members.where("email ~* ?", params[:query])
-      @users = (results_by_name.concat results_by_email).uniq
+      @users = @project.members.search(params[:query])
+    elsif params[:query].present?
+      # Search all users.
+      @users = User.search(params[:query])
     else
       @users = User.none
     end

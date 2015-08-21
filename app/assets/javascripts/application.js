@@ -19,6 +19,7 @@
 //= require underscore
 //= require backbone
 //= require moment
+//= require twitter/typeahead
 //= require stronghold
 //= require_tree ../templates
 //= require_tree ./utils

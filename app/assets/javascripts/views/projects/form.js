@@ -7,29 +7,34 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
 
   events: {
     "click .proj-submit": "createNewProject",
-    "change .invitees :last-child": "addInviteeField",
-    "click .remove-invitee": "removeInviteeField"
+    "change .invitees :last-child": "addInviteeField"
   },
 
   render: function () {
     var content = this.template();
     this.$el.html(content);
+
+    $('.typeahead').typeahead({
+      minLength: 3,
+      highlight: true
+    },
+    {
+      name: 'searched-users',
+      source: this.typeaheadSource
+    });
     return this;
   },
 
   addInviteeField: function (event) {
-    $(event.target).prop("disabled", true);
-    var $newInputField = this.newInputField();
-    this.$('.invitees').append($newInputField);
+    // $(event.target).prop("disabled", true);
+    // var $newInputField = this.newInputField();
+    // this.$('.invitees').append($newInputField);
   },
 
-  removeInviteeField: function (event) {
-    $(event.currentTarget).parent().remove();
-  },
-
-  newInputField: function() {
-    // TODO: make this not be terrible
-    return '<div class="invitee-field"> <input type="text" name="project[invitees][]"> <button class="remove-invitee">&times;</button> </div>';
+  typeaheadSource: function(query, syncResults, asyncResults) {
+    $.ajax({
+      
+    });
   },
 
   createNewProject: function(event) {

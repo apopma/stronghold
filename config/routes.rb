@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :tasks, only: :show
     end
 
-    resources :users, only: :show
+    resources :users, only: [:index, :show]
     resources :discussions, only: [:show, :create, :update, :destroy]
     resources :checklists, only: [:show, :create, :update, :destroy]
     resources :tasks, only: [:show, :create, :update, :destroy]
