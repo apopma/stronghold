@@ -8,10 +8,10 @@
 <br>
 
 <section class='overview'>
-  <%= numDiscussions %> discussions |
-  <%= numChecklists %> checklists |
-  <%= numTasks %> tasks |
-  <%= numProjectMembers %> members
+  <%= numDiscussions %> <%= numDiscussions !== 1 ? "discussions" : "discussion" %> |
+  <%= numChecklists %> <%= numChecklists !== 1 ? "checklists" : "checklist" %> |
+  <%= numTasks %> <%= numTasks !== 1 ? "tasks" : "task" %> |
+  <%= numProjectMembers %> <%= numProjectMembers !== 1 ? "members" : "member" %>
 </section>
 
 <section class='discussions-index'>
