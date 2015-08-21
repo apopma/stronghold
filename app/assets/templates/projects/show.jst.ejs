@@ -16,16 +16,27 @@
 
 <section class='discussions-index'>
   <a href="#projects/<%= project.id %>/discussions">Discussions index</a>
+
+  <div class='store discussions-store'>
+    <!-- show the first six discussions -->
+  </div>
+
+  <% if (numDiscussions > 6) { %>
+    <%= numDiscussions - 6 %> more discussions
+  <% } %>
 </section>
 
 <section class='checklists-index'>
   <a href="#projects/<%= project.escape("id") %>/checklists">checklists index</a>
-</section>
 
-<section class='files-index'>
-  files index
-</section>
+  <div class="store checklists-store">
+    <!-- show the first five checklists -->
+  </div>
 
+  <% if (numChecklists > 5) { %>
+    <%= numChecklists - 5 %> more checklists
+  <% } %>
+</section>
 
 <form class='new-invites-form'>
   <h4>Invite more people to your project</h4>

@@ -2,10 +2,13 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
   template: JST['projects/show'],
   className: 'project-show',
   // model: project
-  // several collections: checklists, discussions, files
+  // model.discussions() and model.checklists()
 
   initialize: function () {
     this._inviteesToAssign = [];
+    this._discussionViews = [];
+    this._checklistViews = [];
+
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model, "sync", this.prepopulateInviteeList);
   },
@@ -46,7 +49,22 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
       source: this.typeaheadSource.bind(this)
     });
 
+    this.onRender();
     return this;
+  },
+
+  onRender: function() {
+    // Multiple copies show up otherwise; remove existing subviews first.
+    this._discussionViews.forEach(function (discussion) { discussion.remove(); });
+    this._checklistViews.forEach(function (view) { view.remove(); });
+
+    this.model.discussions().first(6).forEach(function (discussion) {
+      this.addDiscussionSubview(discussion);
+    }.bind(this));
+
+    this.model.checklists().first(5).forEach(function (checklist) {
+      this.addChecklistSubview(checklist);
+    }.bind(this));
   },
 
   // ---------------------------------------------------------------------------
@@ -100,6 +118,24 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     this.model.members().each(function (member) {
       this._inviteesToAssign.push(member.id);
     }.bind(this));
+  },
+
+  // ---------------------------------------------------------------------------
+
+  addDiscussionSubview: function(discussion) {
+    var view = new Stronghold.Views.DiscussionIndexItem({
+      project: this.model, model: discussion, collection: discussion.comments()
+    });
+    this.addSubview('.discussions-store', view);
+    this._discussionViews.push(view);
+  },
+
+  addChecklistSubview: function (checklist) {
+    var view = new Stronghold.Views.ChecklistShow({
+      project: this.model, model: checklist, collection: checklist.tasks()
+    });
+    this.addSubview('.checklists-store', view);
+    this._checklistViews.push(view);
   },
 
   // ---------------------------------------------------------------------------
