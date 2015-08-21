@@ -1,6 +1,6 @@
 Stronghold.Views.ProjectForm = Backbone.View.extend ({
   template: JST['projects/form'],
-  tagName: 'form',
+  tagName: 'div',
   className: 'project-form',
 
   initialize: function () {
@@ -37,7 +37,7 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   createNewProject: function(event) {
     event.preventDefault();
     this.$("input").prop("disabled", false);
-    var formData = this.$el.serializeJSON().project;
+    var formData = this.$el.serializeJSON();
 
     var newProject = new Stronghold.Models.Project();
     newProject.set(formData);

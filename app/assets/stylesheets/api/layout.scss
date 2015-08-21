@@ -10,6 +10,10 @@
   padding-bottom: 20px;
 }
 
+#content.form-container {
+  width: 550px;
+}
+
 .session-info img {
   position: relative;
   transform: translateY(10%);
@@ -42,7 +46,7 @@
   background-color: white;
   width: 150px;
   min-height: 300px;
-  
+
   .new-project {
     text-align: center;
     box-shadow: 0 0 6px rgba(0,0,0,0.3);

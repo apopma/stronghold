@@ -30,3 +30,25 @@
     }
   }
 }
+
+.project-form {
+  width: 500px;
+  padding-top: 20px;
+  margin: 0 auto;
+
+  input {
+    width: 100%;
+  }
+
+  .invitee-field input {
+    width: 94%;
+  }
+
+  .proj-submit {
+    float: left;
+  }
+
+  .proj-cancel {
+    float: right;
+  }
+}
