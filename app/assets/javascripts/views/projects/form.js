@@ -1,9 +1,9 @@
-  //TODO: add fuzzy-search for all users when searching for new invitees
-  //TODO: prevent form submission with invalid input
+// TODO: prevent form submission with invalid input
 
 Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
   template: JST['projects/form'],
   className: 'project-form',
+  // collection: router's master list of projects
 
   events: {
     "click .proj-submit": "createNewProject",
@@ -69,14 +69,22 @@ Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
 
   createNewProject: function(event) {
     event.preventDefault();
-    this.$("input").prop("disabled", false);
 
-    var formData = this.$(".project-form").serializeJSON().project;
+    var formData = this.$(".project-form").serializeJSON();
+    formData.invitees = this._inviteesToAssign;
     var newProject = new Stronghold.Models.Project();
 
     newProject.set(formData);
     newProject.save({}, {
       success: function() {
+        var members = this._inviteesToAssign.map(function (id) {
+          return newProject.members().getOrFetch(id);
+        }.bind(this));
+
+        // update the project's client-side model with its new members + current user
+        _.each(members, function(member) { newProject.members().add(member); });
+        newProject.members().add(newProject.members().getOrFetch(Stronghold.CURRENT_USER.id));
+
         this.collection.add(newProject);
         Backbone.history.navigate("projects/" + newProject.id, { trigger: true });
       }.bind(this),

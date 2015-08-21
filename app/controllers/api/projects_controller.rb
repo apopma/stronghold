@@ -16,13 +16,10 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-    @project.creator = current_user
+    @project = current_user.created_projects.new(project_params)
 
     if @project.save
-      invitee_ids = User.where(username: params[:invitees]).pluck(:id)
-      @project.member_ids = @project.member_ids.concat invitee_ids
-
+      @project.member_ids = @project.member_ids.concat params[:invitees]
       render :show
     else
       render json: @project.errors.full_messages, status: 422
