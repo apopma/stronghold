@@ -8,13 +8,22 @@
 
   .projects {
     .card {
-      background-color: lightblue;
-      border: 1px solid black;
+      background-color: white;
       height: 350px;
       border-radius: 5px;
       padding: 10px;
       margin-bottom: 20px;
       box-shadow: 0 0 6px rgba(0,0,0,0.3); // straight from Basecamp
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        text-decoration: none;
+        color: black;
+      }
     }
 
     h3 { margin-top: 0; }

@@ -20,6 +20,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     this.projects.fetch();
     var view = new Stronghold.Views.ProjectsIndex({ collection: this.projects });
     this._swapView(view);
+    $("#content").addClass('projects-container');
   },
 
   projectShow: function(id) {
@@ -105,6 +106,11 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     var content = view.render().$el;
     this.$rootEl.html(content);
     this._currentView = view;
+    this._removeContentClasses();
+  },
+
+  _removeContentClasses: function() {
     $("#content").removeClass("form-container");
+    $("#content").removeClass("projects-container");
   }
 });

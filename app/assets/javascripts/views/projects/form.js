@@ -1,14 +1,9 @@
 Stronghold.Views.ProjectForm = Backbone.View.extend ({
   template: JST['projects/form'],
-  tagName: 'div',
   className: 'project-form',
 
-  initialize: function () {
-
-  },
-
   events: {
-    "submit": "createNewProject",
+    "click .proj-submit": "createNewProject",
     "change .invitees :last-child": "addInviteeField",
     "click .remove-invitee": "removeInviteeField"
   },
@@ -26,7 +21,7 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   },
 
   removeInviteeField: function (event) {
-    event.preventDefault();
+    $(event.currentTarget).parent().remove();
   },
 
   newInputField: function() {
@@ -37,7 +32,7 @@ Stronghold.Views.ProjectForm = Backbone.View.extend ({
   createNewProject: function(event) {
     event.preventDefault();
     this.$("input").prop("disabled", false);
-    var formData = this.$el.serializeJSON();
+    var formData = this.$("form").serializeJSON();
 
     var newProject = new Stronghold.Models.Project();
     newProject.set(formData);
