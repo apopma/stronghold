@@ -1,39 +1,48 @@
   //TODO: add fuzzy-search for all users when searching for new invitees
   //TODO: prevent form submission with invalid input
 
-Stronghold.Views.ProjectForm = Backbone.View.extend ({
+Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
   template: JST['projects/form'],
   className: 'project-form',
 
   events: {
     "click .proj-submit": "createNewProject",
-    "change .invitees :last-child": "addInviteeField"
+    "click .tt-suggestion": "addInviteeField"
   },
 
   render: function () {
     var content = this.template();
     this.$el.html(content);
+    this.attachSubviews();
 
-    $('.typeahead').typeahead({
+    this.$('.typeahead').typeahead({
       minLength: 3,
       highlight: true
     },
     {
       name: 'searched-users',
+      templates: {
+        suggestion: JST["users/search_item"]
+      },
       source: this.typeaheadSource
     });
+
     return this;
   },
 
   addInviteeField: function (event) {
-    // $(event.target).prop("disabled", true);
-    // var $newInputField = this.newInputField();
-    // this.$('.invitees').append($newInputField);
+    debugger;
   },
 
   typeaheadSource: function(query, syncResults, asyncResults) {
     $.ajax({
-      
+      url: "/api/users",
+      data: { query: query },
+      success: function(data, textStatus, jqXHR) {
+        return asyncResults(data.map(function (attrs) {
+          return attrs;
+        }));
+      }
     });
   },
 
