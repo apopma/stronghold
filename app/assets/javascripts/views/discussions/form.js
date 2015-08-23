@@ -61,7 +61,18 @@ Stronghold.Views.DiscussionForm = Backbone.View.extend ({
   },
 
   update: function(event) {
-    debugger;
+    event.preventDefault();
+    var form = $(event.currentTarget).parent();
+    var formData = form.serializeJSON();
+    formData.body = form.find(".form-content").html();
+
+    this.model.save(formData, {
+      success: function() {
+        this.model.set("title", formData.title);
+        this.model.set("body", formData.body);
+      }.bind(this)
+    });
+    this.removeFromParentView();
   },
 
   cancel: function(event) {

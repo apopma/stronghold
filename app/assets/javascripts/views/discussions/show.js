@@ -12,7 +12,10 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
       this.addCommentView(comment);
     }.bind(this));
 
-    this.listenTo(this.model, "sync", this.render);
+    this._discussionInfo = new Stronghold.Views.DiscussionInfo({ model: this.model });
+    this.addSubview(".discussion-info", this._discussionInfo);
+
+    this.listenTo(this.model, "sync change", this.render);
     this.listenTo(this.collection, "add", this.addCommentView);
     this.listenTo(this.collection, "remove", this.removeCommentView);
   },
@@ -81,13 +84,15 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
       actionType: "update"
     });
 
-    this._discussionInfo = this.$('.discussion-info').html();
-    this.$('.discussion-info').empty();
+    this.removeSubview(".discussion-info", this._discussionInfo);
     this.addSubview(".discussion-info", this._discussionForm);
   },
 
-  removeDiscussionForm: function (event) {
+  removeDiscussionForm: function () {
+    // something about composite view just does not play nice with non-view html
+    // every other attempt to reinsert the model's info into the DOM failed
+    // so now it's a subview inserted on initialize and removed/readded here
     this.removeSubview(".discussion-info", this._discussionForm);
-    this.$(".discussion-info").html(this._discussionInfo);
+    this.addSubview(".discussion-info", this._discussionInfo);
   }
 });

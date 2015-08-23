@@ -21,7 +21,13 @@ class Api::DiscussionsController < ApplicationController
   end
 
   def update
+    @discussion = Discussion.find(params[:id])
 
+    if @discussion.update(discussion_params)
+      render :_discussion, locals: { discussion: @discussion }
+    else
+      render json: @discussion.errors.full_messages, status: 422
+    end
   end
 
   private
