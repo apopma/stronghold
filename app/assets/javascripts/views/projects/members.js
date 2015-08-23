@@ -1,7 +1,7 @@
 Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
   template: JST['projects/members'],
   tagName: 'aside',
-  className: 'project-members',
+  className: 'project-members row',
   // model: project
   // collection: project.members()
 
@@ -50,11 +50,11 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
     var view = new Stronghold.Views.ProjectMember({
       project: this.model, model: member
     });
-    this.addSubview(".members", view);
+    this.addSubview(".members-container", view);
   },
 
   removeMemberView: function(member) {
-    this.removeModelSubview(".members", member);
+    this.removeModelSubview(".members-container", member);
   },
 
   // ---------------------------------------------------------------------------

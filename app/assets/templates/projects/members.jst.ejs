@@ -1,31 +1,24 @@
-<section class='members'>
+<div class="container">
+  <h1>All members of <%= project.escape('title') %></h1>
+  <section class='members-container row'>
 
+  </section>
+</div>
+
+<section class='project-invites col-md-12'>
+  <form class='new-invites-form'>
+    <h4>Invite more people to your project</h4>
+    <p>
+      Type in some usernames or emails. Anybody you add will be able to view
+      and make changes to this project, and invite other users.
+    </p>
+
+    <div class="search-bar">
+      <input type="text" class='form-control typeahead'>
+    </div>
+
+    <div class="invitees"></div>
+
+    <button class='submit-invitees btn btn-success btn-md'>Add new invitees</button>
+  </form>
 </section>
-
-<form class='new-invites-form'>
-  <h4>Invite more people to your project</h4>
-  <p>
-    Type in some usernames or emails. Anybody you add will be able to view
-    and make changes to this project, and invite other users.
-  </p>
-
-  <div class="search-bar">
-    <input type="text" class='form-control typeahead'>
-  </div>
-
-  <div class="invitees"></div>
-
-  <button class='submit-invitees btn btn-success btn-md'>Add new invitees</button>
-</form>
-
-<% if (project.get("is_admin")) { %>
-  <br><br>
-  <p>
-    <h5>Add administrators to this project</h5>
-    Admins can create other admins, remove admin rights, and delete the entire project.
-  </p>
-
-  <p>
-    <h5>Remove administrators</h5>
-  </p>
-<% } %>
