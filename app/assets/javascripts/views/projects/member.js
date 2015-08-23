@@ -4,12 +4,15 @@ Stronghold.Views.ProjectMember = Backbone.View.extend ({
   className: 'member col-md-12',
   // project: project
   // model: user
+  // parentView: members index
 
   initialize: function (options) {
     this.project = options.project;
     this.membership = options.membership;
+    this.parentView = options.parentView;
 
     this.listenTo(this.project, "sync change", this.render);
+    this.listenTo(this.model, "sync change", this.render);
   },
 
   events: {
@@ -42,6 +45,7 @@ Stronghold.Views.ProjectMember = Backbone.View.extend ({
       data: membership,
 
       success: function() {
+        this.parentView.removeInviteeFromList($(event.currentTarget).data("id"));
         this.remove();
       }.bind(this)
     });

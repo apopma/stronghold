@@ -48,12 +48,16 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
 
   addMemberView: function(member) {
     var view = new Stronghold.Views.ProjectMember({
-      project: this.model, model: member
+      project: this.model, model: member, parentView: this
     });
     this.addSubview(".members-container", view);
   },
 
   removeMemberView: function(member) {
+    var idx = this._inviteesToAssign.indexOf(member.id);
+    console.log(this._inviteesToAssign);
+    this._inviteesToAssign.splice(idx, 1);
+    console.log(this._inviteesToAssign);
     this.removeModelSubview(".members-container", member);
   },
 
@@ -84,15 +88,15 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
       return $(invitee).data("id");
     });
 
-    _.each(invitee_ids, function(invitee) {
+    _.each(invitee_ids, function(invitee_id) {
       var membership = new Stronghold.Models.ProjectMembership({
-        project_id: this.model.id, user_id: invitee
+        project_id: this.model.id, user_id: invitee_id
       });
 
       membership.save({}, {
         success: function() {
           // update memberships client-side too
-          this.model.members().add(membership);
+          this.collection.getOrFetch(invitee_id);
         }.bind(this)
       });
     }.bind(this));
@@ -106,6 +110,8 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
     this.collection.each(function (member) {
       this._inviteesToAssign.push(member.id);
     }.bind(this));
+
+    console.log(this._inviteesToAssign);
   },
 
   typeaheadSource: function(query, syncResults, asyncResults) {

@@ -9,7 +9,6 @@ Stronghold.Views.ProjectShow = Backbone.CompositeView.extend ({
     this._checklistViews = [];
 
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model, "sync", this.prepopulateInviteeList);
   },
 
   events: {
