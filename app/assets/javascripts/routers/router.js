@@ -9,9 +9,9 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     "projects/new": "newProject",
     "projects/:id": "projectShow",
     "projects/:id/edit": "editProject",
+    "projects/:id/members": "projectMembers",
     "projects/:id/checklists": "checklistIndex",
     "projects/:id/discussions": "discussionIndex",
-    "projects/:id/members": "memberShow",
     "projects/:project_id/checklists/:id": "checklistShow",
     "projects/:project_id/discussions/:id": "discussionShow",
     "projects/:project_id/checklists/:checklist_id/tasks/:id": "taskShow"
@@ -38,11 +38,9 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     $("#content").addClass('form-container');
   },
 
-  // ---------------------------------------------------------------------------
-
-  memberShow: function(id) {
+  projectMembers: function(id) {
     var project = this.projects.getOrFetch(id);
-    var view = new Stronghold.Views.MemberShow({
+    var view = new Stronghold.Views.MembersIndex({
       model: project, collection: project.members()
     });
     this._swapView(view);

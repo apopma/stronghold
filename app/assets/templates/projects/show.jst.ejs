@@ -11,7 +11,9 @@
   <%= numDiscussions %> <%= numDiscussions !== 1 ? "discussions" : "discussion" %> |
   <%= numChecklists %> <%= numChecklists !== 1 ? "checklists" : "checklist" %> |
   <%= numTasks %> <%= numTasks !== 1 ? "tasks" : "task" %> |
-  <%= numProjectMembers %> <%= numProjectMembers !== 1 ? "members" : "member" %>
+  <a href="#projects/<%= project.id %>/members">
+    <%= numProjectMembers %> <%= numProjectMembers !== 1 ? "members" : "member" %>
+  </a>
 </section>
 
 <section class='discussions-index'>
@@ -38,33 +40,8 @@
   <% } %>
 </section>
 
-<form class='new-invites-form'>
-  <h4>Invite more people to your project</h4>
-  <p>
-    Type in some usernames or emails. Anybody you add will be able to view
-    and make changes to this project, and invite other users.
-  </p>
 
-  <div class="search-bar">
-    <input type="text" class='form-control typeahead'>
-  </div>
-
-  <div class="invitees"></div>
-
-  <button class='submit-invitees btn btn-success btn-md'>Add new invitees</button>
-</form>
-
-<% if (project.get("is_admin")) { %>
-  <br><br>
-  <p>
-    <h5>Add administrators to this project</h5>
-    Admins can create other admins, remove admin rights, and delete the entire project.
-  </p>
-
-  <p>
-    <h5>Remove administrators</h5>
-  </p>
-
+<% if (project.get('is_admin')) { %>
   <p><em>Danger Zone</em></p>
   <button class='btn btn-danger btn-md delete-project' type="button">
     Delete this project
