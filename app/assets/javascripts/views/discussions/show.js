@@ -32,7 +32,8 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
   events: {
     "click .new-comment": "openCommentForm",
     "click .comment-form-cancel": "closeCommentForm",
-    "dblclick .info-editable": "openDiscussionForm"
+    "dblclick .info-editable": "openDiscussionForm",
+    "click .delete-discussion": "delete"
   },
 
   // ---------------------------------------------------------------------------
@@ -94,5 +95,22 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
     // so now it's a subview inserted on initialize and removed/readded here
     this.removeSubview(".discussion-info", this._discussionForm);
     this.addSubview(".discussion-info", this._discussionInfo);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  delete: function(event) {
+    event.preventDefault();
+    var c = window.confirm("Really delete this discussion?");
+
+    if (c) {
+      this.model.destroy({
+        success: function() {
+          this.model.clear();
+          Backbone.history.navigate("#projects/" + this.project.id + "/discussions",
+          { trigger: true });
+        }.bind(this)
+      });
+    }
   }
 });
