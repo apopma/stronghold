@@ -1,7 +1,8 @@
 <% var submitBtnClass = actionType === 'create' ? 'new-discussion-submit' : 'edit-discussion-submit' %>
 
 <h3>
-  <input type="text" name="title" placeholder="Name your discussion">
+  <input type="text" name="title" placeholder="Name your discussion"
+         value="<%= discussion.escape("title") %>">
 </h3>
 
 <div class="wysihtml5 form-content col-md-6"

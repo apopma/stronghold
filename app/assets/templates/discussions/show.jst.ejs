@@ -1,8 +1,10 @@
 <div class="col-md-12">
-  <h2><%= discussion.escape("title") %></h2>
-  <h3>
-    <%= discussion.get("body") %>
-  </h3>
+  <div class="discussion-info info-editable">
+    <h2><%= discussion.escape("title") %></h2>
+    <h3>
+      <%= discussion.get("body") %>
+    </h3>
+  </div>
 
   <a href="#projects/<%= project.id %>/discussions">
       Back to discussions

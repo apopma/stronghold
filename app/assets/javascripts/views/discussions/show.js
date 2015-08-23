@@ -28,7 +28,8 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
 
   events: {
     "click .new-comment": "openCommentForm",
-    "click .comment-form-cancel": "closeCommentForm"
+    "click .comment-form-cancel": "closeCommentForm",
+    "dblclick .info-editable": "openDiscussionForm"
   },
 
   // ---------------------------------------------------------------------------
@@ -68,5 +69,25 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
     event.preventDefault();
     this.removeSubview('.comment-form', this._commentForm);
     this.$('.comment-create').html(this._commentBtn);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  openDiscussionForm: function (event) {
+    this._discussionForm = new Stronghold.Views.DiscussionForm({
+      model: this.model,
+      project: this.project,
+      removeFromParentView: this.removeDiscussionForm.bind(this),
+      actionType: "update"
+    });
+
+    this._discussionInfo = this.$('.discussion-info').html();
+    this.$('.discussion-info').empty();
+    this.addSubview(".discussion-info", this._discussionForm);
+  },
+
+  removeDiscussionForm: function (event) {
+    this.removeSubview(".discussion-info", this._discussionForm);
+    this.$(".discussion-info").html(this._discussionInfo);
   }
 });
