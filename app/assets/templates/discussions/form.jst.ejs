@@ -1,9 +1,14 @@
-<input type="text" name="title" placeholder="Name your discussion">
+<% var submitBtnClass = actionType === 'create' ? 'new-discussion-submit' : 'edit-discussion-submit' %>
+
+<h3>
+  <input type="text" name="title" placeholder="Name your discussion">
+</h3>
+
 <div class="wysihtml5 form-content col-md-6"
      data-placeholder="Give it a description (optional)..."
      ><% if (discussion.get('body')) { %><%= discussion.get('body') %><% } %></div>
 
-<button type="submit" class='discussion-submit btn btn-success btn-sm'>
+<button type="submit" class='<%= submitBtnClass %> btn btn-success btn-sm'>
   Create the discussion
 </button>
 or
