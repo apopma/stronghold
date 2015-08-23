@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
 
     resources :task_assignments, only: [:create, :update, :destroy]
-    resources :project_memberships, only: [:create, :update, :destroy]
+    resources :project_memberships, only: [:create]
+    delete 'project_memberships', to: 'project_memberships#destroy'
+    patch 'project_memberships', to: 'project_memberships#update'
   end
 
   resources :users, only: [:new, :create, :show, :edit, :update]

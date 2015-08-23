@@ -12,10 +12,12 @@
   <!-- No editing your own admin rights or deleting your own membership. -->
   <div class="member-controls">
     <input type="checkbox" name='admin' class='admin-toggle'
-     <%= member.get('admin') ? "checked" : "" %>>
+           data-id='<%= member.id %>'
+            <%= member.get('admin') ? "checked" : "" %>>
 
-     <a href="javascript:void(0)" class='delete-membership'>
+     <button class='btn btn-danger btn-sm delete-membership'
+             data-id='<%= member.id %>'>
        <i class='fa fa-trash fa-2x'></i>
-     </a>
+     </button>
   </div>
 <% } %>

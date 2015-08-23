@@ -18,6 +18,13 @@ class Api::ProjectMembershipsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
+    @membership = @project.project_memberships.find_by_user_id(params[:user_id])
 
+    if @membership.destroy
+      render json: @membership
+    else
+      render json: @membership.errors.full_messages, status: 422
+    end
   end
 end
