@@ -4,5 +4,5 @@ class Checklist < ActiveRecord::Base
   belongs_to :project
   has_many :tasks, dependent: :destroy
   has_many :assigned_users, -> { distinct }, through: :tasks
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 end

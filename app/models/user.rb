@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :assigned_tasks, through: :task_assignments, source: :task
   has_many :task_assignments, dependent: :destroy
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   scope :search, lambda { |query| where("username ~* :query OR email ~* :query", { query: query }) }
 
   def self.find_by_credentials(creds)
