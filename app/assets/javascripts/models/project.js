@@ -3,11 +3,17 @@ Stronghold.Models.Project = Backbone.Model.extend({
 
   members: function() {
     if (!this._members) {
-      // should the set property be model instead of project?
       this._members = new Stronghold.Collections.ProjectMembers([], { project: this });
     }
 
     return this._members;
+  },
+
+  memberships: function() {
+    if (!this._memberships) {
+      this._memberships = new Stronghold.Collections.ProjectMemberships([], { project: this });
+    }
+    return this._memberships;
   },
 
   checklists: function() {
@@ -38,6 +44,11 @@ Stronghold.Models.Project = Backbone.Model.extend({
     if (response.members) {
       this.members().set(response.members);
       delete response.members;
+    }
+
+    if (response.memberships) {
+      this.memberships().set(response.memberships);
+      delete response.memberships;
     }
 
     if (response.checklists) {

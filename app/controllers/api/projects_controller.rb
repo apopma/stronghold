@@ -7,9 +7,10 @@ class Api::ProjectsController < ApplicationController
   end
 
   def show
-    # many includes associations to come in future phases
-    @project = Project.includes(:checklists)
-                      .includes(:tasks)
+    @project = Project.includes(:members)
+                      .includes(checklists: :comments)
+                      .includes(tasks: :comments)
+                      .includes(discussions: :comments)
                       .includes(:assigned_users)
                       .find(params[:id])
     render :show

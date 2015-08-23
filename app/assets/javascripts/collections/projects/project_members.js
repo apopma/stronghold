@@ -2,10 +2,6 @@ Stronghold.Collections.ProjectMembers = Backbone.Collection.extend ({
   model: Stronghold.Models.User,
   url: "api/users",
 
-  initialize: function () {
-    // body ...
-  },
-
   getOrFetch: function (id) {
     var model = this.get(id);
 

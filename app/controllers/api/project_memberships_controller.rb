@@ -1,4 +1,10 @@
 class Api::ProjectMembershipsController < ApplicationController
+  def index
+    @project = Project.find(params[:project_id])
+    @memberships = @project.project_memberships
+    render :index, locals: { project_memberships: @memberships }
+  end
+
   def create
     @project = Project.find(params[:project_id])
     @user = User.find(params[:user_id])

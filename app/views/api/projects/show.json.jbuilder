@@ -2,6 +2,7 @@ json.extract! @project, :id, :title, :description, :updated_at
 json.is_admin @project.admins.include?(current_user)
 json.members @project.members do |member|
   json.extract! member, :id, :username, :email, :gravatar_url
+  json.admin @project.admins.include?(member)
 end
 json.num_members @project.members.count
 

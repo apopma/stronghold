@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :checklists, only: :index
       resources :discussions, only: [:index, :show]
       resources :tasks, only: :show
+      resources :project_memberships, only: :index
     end
 
     resources :users, only: [:index, :show]
