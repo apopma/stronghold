@@ -1,0 +1,12 @@
+<input type="text" name="title" placeholder="Name your discussion">
+<div class="wysihtml5 form-content col-md-6"
+     data-placeholder="Give it a description (optional)..."
+     ><% if (discussion.get('body')) { %><%= discussion.get('body') %><% } %></div>
+
+<button type="submit" class='discussion-submit btn btn-success btn-sm'>
+  Create the discussion
+</button>
+or
+<button type="cancel" class='discussion-cancel btn btn-link' name='button'>
+  Cancel
+</button>

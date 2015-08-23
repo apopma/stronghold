@@ -14,6 +14,11 @@ Stronghold.Views.DiscussionIndex = Backbone.CompositeView.extend ({
     this.listenTo(this.collection, "remove", this.removeDiscussionView);
   },
 
+  events: {
+    "click .new-discussion": "openDiscussionForm",
+
+  },
+
   render: function () {
     var content = this.template({ project: this.model });
     this.$el.html(content);
@@ -34,5 +39,17 @@ Stronghold.Views.DiscussionIndex = Backbone.CompositeView.extend ({
 
   removeDiscussionView: function(discussion) {
     this.removeModelSubview(".discussions", discussion);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  openDiscussionForm: function(event) {
+    var form = new Stronghold.Views.DiscussionForm({
+      model: new Stronghold.Models.Discussion(),
+      project: this.model, collection: this.collection
+    });
+    this._newDiscussionBtn = this.$('.discussion-create').html();
+    this.$('.discussion-create').empty();
+    this.addSubview(".discussion-create", form);
   }
 });
