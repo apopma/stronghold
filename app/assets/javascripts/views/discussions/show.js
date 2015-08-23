@@ -1,7 +1,7 @@
 Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
   template: JST['discussions/show'],
   tagName: 'section',
-  className: 'row discussion-show',
+  className: 'discussion-show',
   // project: owning project
   // model: discussion
   // collection: discussion.comments()
