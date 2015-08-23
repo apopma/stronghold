@@ -4,8 +4,18 @@
 <div class="member-info">
   <strong class='member-username'><%= member.escape("username") %></strong>
   <%= member.escape("email") %>
+  <strong><%= member.escape('admin') %></strong>
 </div>
 
-<strong><%= member.escape('admin') %></strong>
 
-<!-- <input type="checkbox" name="name" value="" class='admin-toggle'> -->
+<% if (project.get('is_admin') && Stronghold.CURRENT_USER.id != member.id) { %>
+  <!-- No editing your own admin rights or deleting your own membership. -->
+  <div class="member-controls">
+    <input type="checkbox" name='admin' class='admin-toggle'
+     <%= member.get('admin') ? "checked" : "" %>>
+
+     <a href="javascript:void(0)" class='delete-membership'>
+       <i class='fa fa-trash fa-2x'></i>
+     </a>
+  </div>
+<% } %>

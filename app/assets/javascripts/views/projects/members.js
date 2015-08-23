@@ -103,7 +103,7 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
   prepopulateInviteeList: function() {
     if (this._inviteesToAssign.length !== 0) { return; }
 
-    this.model.members().each(function (member) {
+    this.collection.each(function (member) {
       this._inviteesToAssign.push(member.id);
     }.bind(this));
   },
