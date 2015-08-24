@@ -1,29 +1,26 @@
 <% var infoClasses = isShowView ? "info info-editable" : "info" %>
+<% var titleHeaderTag = isShowView ? "h1" : "h4" %>
 
 <header class='<%= infoClasses %>'>
   <% if (!isShowView) { %>
     <a href="#projects/<%= project.escape('id') %>/checklists/<%= checklist.escape('id') %>">
   <% } %>
 
-  <h4 class='checklist-title'><%= checklist.escape("title") %></h4>
+  <<%= titleHeaderTag %> class='checklist-title'><%= checklist.escape("title") %></<%= titleHeaderTag %>>
   <h5 class='checklist-description'><%= checklist.escape("description") %></h5>
 
   <% if (!isShowView) { %>
     </a>
   <% } %>
-</header>
 
-<% if (isShowView) { %>
-  <a href="#projects/<%= project.escape("id") %>/checklists">
-    Back to all checklists
-  </a> <br><br>
-
-  <% if (checklist.creator().id == Stronghold.CURRENT_USER.id || project.get('is_admin')) { %>
-    <button type="button" class='delete-checklist btn btn-danger'>
-      Delete this checklist
-    </button>
+  <% if (isShowView) { %>
+    <a href="#/projects/<%= project.id %>/checklists"
+       onClick='history.back();return false;'
+       class='btn btn-default btn-xs'>
+      Back to previous page
+    </a>
   <% } %>
-<% } %>
+</header>
 
 <ul class='tasks row'>
 </ul>
@@ -35,7 +32,8 @@
 </div>
 
 <% if (isShowView) { %>
-  <br><h4>Comments on this checklist</h4>
+  <hr>
+  <h4>Comments on this checklist</h4>
   <section class='comments row'></section>
 
   <div class="comment-create">
@@ -43,4 +41,11 @@
       Post a new comment
     </button>
   </div>
+
+  <% if (checklist.creator().id == Stronghold.CURRENT_USER.id || project.get('is_admin')) { %>
+    <br><br><hr>
+    <button type="button" class='delete-checklist btn btn-danger btn-xs'>
+      Delete this checklist
+    </button>
+  <% } %>
 <% } %>

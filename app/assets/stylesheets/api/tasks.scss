@@ -12,6 +12,10 @@
   }
 }
 
+.task-show > .task-options > .options-bar {
+  margin-left: -45px;
+}
+
 .new-task-form {
   padding: 10px;
   background-color: aliceblue;
@@ -70,8 +74,8 @@
 
 .task {
   position: relative;
-  // padding: 5px 0 5px 25px;
   list-style-type: none;
+  margin-left: 10px;
 
   .options-bar {
     position: absolute;

@@ -11,12 +11,6 @@
         name="done" <%= isDone ? "checked" : "" %>>
 
       <%= task.escape("description") %>
-
-      <a href="#/projects/<%= project.id %>/checklists"
-         onClick='history.back();return false;'
-         class='btn btn-default btn-xs'>
-        Back to previous page
-      </a>
     </h1>
   </div>
 
@@ -36,6 +30,12 @@
       </div>
     <% } %>
   </aside>
+
+  <a href="#/projects/<%= project.id %>/checklists"
+     onClick='history.back();return false;'
+     class='btn btn-default btn-xs'>
+    Back to previous page
+  </a>
 </section>
 
 <hr>

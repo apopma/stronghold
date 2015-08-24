@@ -1,12 +1,15 @@
 <h1>All checklists for <%= project.escape("title") %></h1>
-<a href="#projects/<%= project.escape('id') %>">Back to project</a> <br>
+<a href="#projects/<%= project.escape('id') %>" class='btn btn-default btn-xs'>
+  Back to project
+</a> <br>
+
+<section class='checklists row'>
+  checklist subviews go here!
+</section>
+
 
 <div class='checklist-create'>
   <button class="new-checklist btn btn-primary btn-sm" type="button">
     New checklist
   </button>
 </div>
-
-<section class='checklists row'>
-  checklist subviews go here!
-</section>

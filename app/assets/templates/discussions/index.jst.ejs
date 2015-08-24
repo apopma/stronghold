@@ -1,13 +1,16 @@
 <h1>All discussions for <%= project.escape("title") %></h1>
-<a href="#projects/<%= project.id %>">Back to project</a> <br>
+<a href="#projects/<%= project.id %>" class='btn btn-default btn-xs'>
+  Back to project
+</a>
+<br>
+
+<div class="container">
+  <section class='discussions row'>
+  </section>
+</div>
 
 <div class="discussion-create">
   <button class="new-discussion btn btn-primary btn-sm" type="button">
     New discussion
   </button>
-</div>
-
-<div class="container">
-  <section class='discussions row'>
-  </section>
 </div>
