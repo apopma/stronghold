@@ -45,6 +45,9 @@ Stronghold.Views.DiscussionForm = Backbone.View.extend ({
     var form = $(event.currentTarget).parent();
     var formData = form.serializeJSON();
     formData.body = form.find(".form-content").html();
+    if (this.$(".wysihtml5").data("placeholder") === formData.body) {
+      formData.body = null; // set empty body if none given
+    }
 
     this.model.set(formData);
     this.model.save({ project_id: this.project.id }, {
@@ -65,6 +68,9 @@ Stronghold.Views.DiscussionForm = Backbone.View.extend ({
     var form = $(event.currentTarget).parent();
     var formData = form.serializeJSON();
     formData.body = form.find(".form-content").html();
+    if (this.$(".wysihtml5").data("placeholder") === formData.body) {
+      formData.body = null; // set empty body if none given
+    }
 
     this.model.save(formData, {
       success: function() {

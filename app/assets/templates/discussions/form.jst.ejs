@@ -10,7 +10,7 @@
      ><% if (discussion.get('body')) { %><%= discussion.get('body') %><% } %></div>
 
 <button type="submit" class='<%= submitBtnClass %> btn btn-success btn-sm'>
-  Create the discussion
+  <%= actionType === 'create' ? "Create the" : "Update this" %> discussion
 </button>
 or
 <button type="cancel" class='discussion-cancel btn btn-link' name='button'>

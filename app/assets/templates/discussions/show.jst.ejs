@@ -1,11 +1,15 @@
 <div class="col-md-12 discussion-info">
 </div>
 
-<a href="#projects/<%= project.id %>/discussions" class='btn btn-default'>
-    Back to discussions
+<a href="#/projects/<%= project.id %>/discussions"
+   onClick='history.back();return false;'
+   class='btn btn-default btn-xs'>
+  Back to previous page
 </a>
-<button class='delete-discussion btn btn-danger'>Delete this discussion</button>
 
+<hr>
+
+<h4>Comments on this discussion</h4>
 <section class='comments row'></section>
 
 <div class="comment-create">
@@ -13,3 +17,9 @@
     Post a new comment
   </button>
 </div>
+
+<hr>
+
+<button class='delete-discussion btn btn-danger btn-xs'>
+  Delete this discussion
+</button>
