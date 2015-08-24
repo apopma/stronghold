@@ -4,9 +4,9 @@
   <%= commenter.escape("username") %>
 </h4>
 
-<p class='comment-body'>
+<section class='comment-body'>
   <%= comment.get("body") %>
-</p>
+</section>
 
 <span class='buttons'>
   <% if (Stronghold.CURRENT_USER.id == commenter.id) { %>
