@@ -1,7 +1,7 @@
 Stronghold.Views.TaskItem = Backbone.View.extend ({
   template: JST['tasks/item'],
   tagName: 'li',
-  className: 'task col-md-7',
+  className: 'task col-md-12',
 
   initialize: function (options) {
     this.project = options.project;

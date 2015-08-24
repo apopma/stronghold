@@ -1,39 +1,56 @@
 <% var submitBtnClass = (viewType === "update" ? 'task-update' : 'new-task-submit')  %>
-
-  <div class="form-group">
-    <input type="checkbox" disabled>
-    <input type="text" name="description" value='<%= task.escape("description") %>'
-      placeholder="Add a new task">
-  </div>
-
-  <div class="form-group">
-    Assign to:
-      <input type="text" name="query" class='form-control typeahead'
-             placeholder='Search for project members'>
-             
-    <ul class='assignments row'>
-      This task will be assigned to:
-      <% task.assignedUsers().each(function (user) { %>
-        <%= JST['tasks/assignee']({ user: user, task: task }) %>
-      <% }) %>
-    </ul>
-  </div>
-
-  <div class="form-group">
-    Due on:
-    <div class="inner-addon left-addon">
-      <i class='fa fa-calendar'></i>
-      <input type="text" name="deadline" class='datepicker' value='<%= task.escape('deadline') %>'>
+  <section class="form-group row">
+    <div class="col-md-12 desc-col">
+      <input type="checkbox" disabled <%= task.get('done') ? "checked" : "" %>>
+      <input type="text" value='<%= task.escape("description") %>'
+             name="description" class='desc-input'
+             placeholder="Name the task">
     </div>
-  </div>
+  </section>
 
-  <div class="form-group">
-    <button type="submit" class='<%= submitBtnClass %> btn btn-success btn-sm'
-      name="button">
-      Submit
-    </button>
-    or
-    <button type="cancel" class='new-task-cancel btn btn-danger btn-link' name="button">
-      cancel
-    </button>
-  </div>
+  <section class='row'>
+    <div class="col-md-4 members-col">
+      <div class="form-group">
+        Assign to:
+          <input type="text" name="query" class='form-control typeahead'
+                 placeholder='Search for project members'>
+
+        <section class='assignments row'>
+          <div class='col-md-12'>
+            This task will be assigned to:
+          </div>
+
+          <div class="assignment-elements row">
+            <% task.assignedUsers().each(function (user) { %>
+              <%= JST['tasks/assignee']({ user: user, task: task }) %>
+            <% }) %>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="col-md-4 deadline-col">
+      Due on:
+      <div class="form-group">
+        <div class="inner-addon left-addon">
+          <i class='fa fa-calendar'></i>
+          <input type="text" name="deadline" class='datepicker' value='<%= task.escape('deadline') %>'>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class='row'>
+    <div class="col-md-12 buttons-col">
+      <div class="form-group">
+        <button type="submit" class='<%= submitBtnClass %> btn btn-success btn-sm'
+          name="button">
+          Submit
+        </button>
+        or
+        <button type="cancel" class='new-task-cancel btn btn-link' name="button">
+          cancel
+        </button>
+      </div>
+    </div>
+  </section>

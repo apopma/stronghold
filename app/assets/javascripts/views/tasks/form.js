@@ -53,25 +53,6 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
     });
   },
 
-  searchMembers: function(event) {
-    // var query = this.$('.search').val();
-    // $.ajax({
-    //   url: ("api/projects/" + this.project.id + "/users"),
-    //   data: { query: query },
-    //
-    //   success: function(response) {
-    //     this.$('.search-results').empty();
-    //     this.$('.search-results').append("Click on a user's name to add them to the list of assignees.");
-    //
-    //     response.forEach(function (searchResult) {
-    //       var $assignment = $("<li>").html(searchResult.username);
-    //       $assignment.attr("data-id", searchResult.id);
-    //       this.$('.search-results').append($assignment);
-    //     }.bind(this));
-    //   }.bind(this)
-    // });
-  },
-
   addUserToAssignees: function (event, item) {
     var userId = item.id;
     var user = this.project.members().get(userId);
@@ -97,7 +78,5 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
     this.model.assignedUsers().each(function (user) {
       this._usersToAssign.push(user.id);
     }.bind(this));
-    console.log("Assignee list for task '" + this.model.get('description') + "' " + this.model.id + ":");
-    console.log(this._usersToAssign);
   }
 });

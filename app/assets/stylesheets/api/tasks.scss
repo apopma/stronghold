@@ -2,7 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.task-show > .new-task-form {
+  margin-top: 15px;
+}
+
+.tasks > .task > .new-task-form {
+  .desc-input {
+    width: 50%; // style input width in checklist item forms
+  }
+}
+
 .new-task-form {
+  padding: 10px;
+  background-color: aliceblue;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+
   .inner-addon {
     // custom CSS to allow FA icons in input fields
     position: relative;
@@ -13,8 +28,38 @@
     }
   }
 
-  .search {
-    min-width: 15pc;
+  .desc-col {
+    margin-top: 5px;
+
+    .desc-input {
+      font-size: 16px;
+      padding-left: 5px;
+      width: 49%; // style input width in task show forms
+    }
+  }
+
+  .assignee {
+    background-color: darkgray;
+    width: auto;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 0px 5px;
+  }
+
+  .remove-assignee {
+    float: none;
+  }
+
+  .assignments {
+    margin-top: 10px;
+  }
+
+  .assignment-elements {
+    margin-left: 10px;
+  }
+
+  .deadline-col {
+    margin-top: -12px;
   }
 }
 
@@ -52,19 +97,6 @@
 
 .task-desc.done {
   text-decoration: line-through;
-}
-
-.new-task-form {
-  .assignee {
-    background-color: tan;
-    width: auto;
-    margin: 0 5px;
-    padding: 2px 5px;
-  }
-
-  .remove-assignee {
-    float: none;
-  }
 }
 
 .task-info {
