@@ -77,10 +77,10 @@ Stronghold.Views.TaskItem = Backbone.View.extend ({
   update: function (event) {
     // basically submitNewTask from ChecklistShow, without a new Task model
     event.preventDefault();
-    var formData = $(event.currentTarget).parent().parent().serializeJSON();
+    var formData = this.$('.new-task-form').serializeJSON();
     delete formData.query;
 
-    var newAssignments = this.$('.assignments').children().map(function (_, el) {
+    var newAssignments = this.$('.assignment-elements').children().map(function (_, el) {
        return $(el).data("user-id");
      });
      if (newAssignments.length < 1) {

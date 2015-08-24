@@ -47,6 +47,8 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
     return this;
   },
 
+  // ---------------------------------------------------------------------------
+
   toggle: function (event) {
     var newDoneState = $(event.currentTarget).prop("checked");
     var task = $(event.currentTarget).parent();
@@ -65,6 +67,43 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
       }.bind(this)
     });
   },
+
+  update: function (event) {
+    // basically submitNewTask from ChecklistShow, without a new Task model
+    event.preventDefault();
+    var formData = this.$('.new-task-form').serializeJSON();
+    delete formData.query;
+
+    var newAssignments = this.$('.assignment-elements').children().map(function (_, el) {
+       return $(el).data("user-id");
+     });
+     if (newAssignments.length < 1) {
+       // if the user has removed all existing assignments, destroy them server-side
+       this.model.set("destroy_assignees", true);
+     }
+
+     this.model.set("assignees", $.makeArray(newAssignments));
+     this.model.save(formData, {});
+  },
+
+  delete: function (event) {
+    // TODO: make the user doubleclick or click two buttons instead
+    var c = window.confirm("Really delete this task?");
+
+    if (c) {
+      this.model.destroy({
+        success: function() {
+          this.model.clear();
+          Backbone.history.navigate(
+            "#projects/" + this.project.id + "/checklists/" + this.checklist.id,
+            { trigger: true }
+          );
+        }.bind(this)
+      });
+    }
+  },
+
+  // ---------------------------------------------------------------------------
 
   displayOptionButtons: function (event) {
     this._optionBtns = new Stronghold.Views.TaskOptions({ model: this.model });
@@ -93,23 +132,6 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
 
   // ---------------------------------------------------------------------------
 
-  delete: function (event) {
-    // TODO: make the user doubleclick or click two buttons instead
-    var c = window.confirm("Really delete this task?");
-
-    if (c) {
-      this.model.destroy({
-        success: function() {
-          this.model.clear();
-          Backbone.history.navigate(
-            "#projects/" + this.project.id + "/checklists/" + this.checklist.id,
-            { trigger: true }
-          );
-        }.bind(this)
-      });
-    }
-  },
-
   openEditForm: function (event) {
     this.editView = new Stronghold.Views.TaskForm({
       model: this.model, project: this.project, viewType: "update"
@@ -122,32 +144,6 @@ Stronghold.Views.TaskShow = Backbone.CompositeView.extend ({
     this.editView.remove();
     delete this.editView;
     this.render();
-  },
-
-  update: function (event) {
-    // basically submitNewTask from ChecklistShow, without a new Task model
-    event.preventDefault();
-    var formData = $(event.currentTarget).parent().parent().serializeJSON();
-    delete formData.query;
-
-    var newAssignments = this.$('.assignments').children().map(function (_, el) {
-       return $(el).data("user-id");
-     });
-     if (newAssignments.length < 1) {
-       // if the user has removed all existing assignments, destroy them server-side
-       this.model.set("destroy_assignees", true);
-     }
-
-     this.model.set("assignees", $.makeArray(newAssignments));
-     this.model.save(formData, {
-       success: function () {
-
-       }.bind(this),
-
-       error: function () {
-         debugger;
-       }.bind(this)
-     });
   },
 
   // ---------------------------------------------------------------------------

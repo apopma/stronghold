@@ -62,7 +62,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
 
     // if the list of users to assign doesn't already include this user, add it
     if ($.inArray(userId, this._usersToAssign) === -1) {
-      this.$('.assignments').append(newAssigneeEl);
+      this.$('.assignment-elements').append(newAssigneeEl);
       this._usersToAssign.push(userId);
     }
   },

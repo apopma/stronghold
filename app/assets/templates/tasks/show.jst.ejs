@@ -30,7 +30,7 @@
     <% if (task.get("deadline")) { %>
       <div class='task-deadline' name='deadline'>
         <h5>
-          Due: <%= moment([task.escape("deadline")], "MM/DD/YYYY").fromNow() %>
+          Due <%= moment([task.escape("deadline")], "MM/DD/YYYY").fromNow() %>
           (<%= task.escape("deadline") %>)
         </h5>
       </div>
