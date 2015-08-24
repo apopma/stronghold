@@ -8,15 +8,9 @@
 
   <div class="form-group">
     Assign to:
-
-    <div class="inner-addon left-addon">
-        <i class="fa fa-search"></i>
-      <input type="text" name="query" class='search'
+      <input type="text" name="query" class='form-control typeahead'
              placeholder='Search for project members'>
-    </div>
-
-    <ul class='search-results'></ul>
-
+             
     <ul class='assignments row'>
       This task will be assigned to:
       <% task.assignedUsers().each(function (user) { %>
@@ -43,10 +37,3 @@
       cancel
     </button>
   </div>
-
-<script type="text/javascript">
-  $(function () {
-    // options?
-    $(".datepicker").datepicker({ minDate: 0 });
-  });
-</script>

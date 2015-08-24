@@ -16,36 +16,64 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   render: function () {
     var content = this.template({ task: this.model, viewType: this.viewType });
     this.$el.html(content);
+
+    this.$(".datepicker").datepicker({ minDate: 0 });
+    this.$('.typeahead').typeahead({
+      minLength: 3,
+      highlight: true
+    },
+    { // dataset options
+      name: 'searched-users',
+      limit: 10, // actually 5; bugfix mandates this being (2 * actual limit)
+      display: function(obj) { return obj.username; },
+      templates: { suggestion: JST["users/search_item"] },
+      source: this.typeaheadSource.bind(this)
+    });
+
     return this;
   },
 
   events: {
-    "change .search": "searchMembers",
-    "click .search-results li": "addUserToAssignees",
+    "typeahead:select .typeahead": "addUserToAssignees",
     "click .remove-assignee": "removeUserFromAssignees"
   },
 
-  searchMembers: function(event) {
-    var query = this.$('.search').val();
+  typeaheadSource: function(query, syncResults, asyncResults) {
     $.ajax({
-      url: ("api/projects/" + this.project.id + "/users"),
-      data: { query: query },
-
-      success: function(response) {
-        this.$('.search-results').empty();
-        this.$('.search-results').append("Click on a user's name to add them to the list of assignees.");
-
-        response.forEach(function (searchResult) {
-          var $assignment = $("<li>").html(searchResult.username);
-          $assignment.attr("data-id", searchResult.id);
-          this.$('.search-results').append($assignment);
+      url: "/api/users",
+      data: { query: query, project_id: this.project.id },
+      success: function(data, textStatus, jqXHR) {
+        var filteredData = _.filter(data, function(user) {
+          // Don't show users if they're already assigned.
+          return !_.contains(this._usersToAssign, user.id);
         }.bind(this));
+
+        return asyncResults(filteredData);
       }.bind(this)
     });
   },
 
-  addUserToAssignees: function (event) {
-    var userId = $(event.target).data("id");
+  searchMembers: function(event) {
+    // var query = this.$('.search').val();
+    // $.ajax({
+    //   url: ("api/projects/" + this.project.id + "/users"),
+    //   data: { query: query },
+    //
+    //   success: function(response) {
+    //     this.$('.search-results').empty();
+    //     this.$('.search-results').append("Click on a user's name to add them to the list of assignees.");
+    //
+    //     response.forEach(function (searchResult) {
+    //       var $assignment = $("<li>").html(searchResult.username);
+    //       $assignment.attr("data-id", searchResult.id);
+    //       this.$('.search-results').append($assignment);
+    //     }.bind(this));
+    //   }.bind(this)
+    // });
+  },
+
+  addUserToAssignees: function (event, item) {
+    var userId = item.id;
     var user = this.project.members().get(userId);
     var newAssigneeEl = JST['tasks/assignee']({
       user: user, task: this.model
@@ -69,5 +97,7 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
     this.model.assignedUsers().each(function (user) {
       this._usersToAssign.push(user.id);
     }.bind(this));
+    console.log("Assignee list for task '" + this.model.get('description') + "' " + this.model.id + ":");
+    console.log(this._usersToAssign);
   }
 });
