@@ -29,7 +29,18 @@ Stronghold.Views.ProjectMember = Backbone.View.extend ({
   // ---------------------------------------------------------------------------
 
   toggle: function() {
+    var newAdminState = $(event.target).prop("checked");
+    var membership = {
+      user_id: $(event.target).data("id"),
+      project_id: this.project.id,
+      admin: newAdminState
+    };
 
+    $.ajax({
+      url: "api/project_memberships",
+      method: "PATCH",
+      data: membership
+    });
   },
 
   destroy: function (event) {

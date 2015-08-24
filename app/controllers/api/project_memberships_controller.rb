@@ -17,6 +17,17 @@ class Api::ProjectMembershipsController < ApplicationController
     end
   end
 
+  def update
+    @project = Project.find(params[:project_id])
+    @membership = @project.project_memberships.find_by_user_id(params[:user_id])
+
+    if @membership.update(admin: YAML.load(params[:admin])) # convert to boolean
+      render :member, locals: { member: @membership.user, membership: @membership }
+    else
+      render json: @membership.errors.full_messages, status: 422
+    end
+  end
+
   def destroy
     @project = Project.find(params[:project_id])
     @membership = @project.project_memberships.find_by_user_id(params[:user_id])
