@@ -127,11 +127,11 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
 
   submitNewTask: function(event) {
     event.preventDefault();
-    var form = $(event.currentTarget).parent().parent();
+    var form = this.$(".new-task-form");
     var formData = form.serializeJSON();
     delete formData.query;
 
-    var newAssignments = this.$('.assignments').children().map(function (_, el) {
+    var newAssignments = this.$('.assignment-elements').children().map(function (_, el) {
        return $(el).data("user-id");
      });
 
