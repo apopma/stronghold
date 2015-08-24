@@ -4,7 +4,7 @@ Stronghold.Views.Invitee = Backbone.View.extend ({
   initialize: function (options) {
     this.userid = options.userid;
     this.username = options.username;
-    this.removeFromList = options.removeFromList;
+    this.parentView = options.parentView;
   },
 
   events: {
@@ -13,8 +13,9 @@ Stronghold.Views.Invitee = Backbone.View.extend ({
 
   removeInviteeField: function(event) {
     event.preventDefault();
-    this.removeFromList(); // Remove the view's ID from parent's internal list.
-    this.remove(); // Remove the view from the DOM.
+    var id = $(event.currentTarget).data("id");
+    this.parentView.removeInviteeFromList(id);
+    this.parentView.removeSubview(".invitees", this);
   },
 
   render: function () {

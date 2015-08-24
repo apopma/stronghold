@@ -40,7 +40,6 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
 
   events: {
     "typeahead:select .typeahead": "addInviteeField",
-    "click .remove-invitee": "removeInviteeFromList",
     "click .submit-invitees": "submitNewInvitees"
   },
 
@@ -55,9 +54,7 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
 
   removeMemberView: function(member) {
     var idx = this._inviteesToAssign.indexOf(member.id);
-    console.log(this._inviteesToAssign);
     this._inviteesToAssign.splice(idx, 1);
-    console.log(this._inviteesToAssign);
     this.removeModelSubview(".members-container", member);
   },
 
@@ -67,10 +64,10 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
     var id = item.id;
     var username = item.username;
     var view = new Stronghold.Views.Invitee({
-      removeFromList: this.removeInviteeFromList.bind(this, id),
+      parentView: this,
       userid: id, username: username });
 
-    this.$(".typeahead").typeahead("val", ""); // Clear out the search bar
+    this.$(".tt-input").typeahead("val", null); // Clear out the search bar
     this._inviteesToAssign.push(id);    // Store the ID so it's not added twice
     this.addSubview(".invitees", view);
   },
@@ -83,7 +80,7 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
   submitNewInvitees: function(event) {
     event.preventDefault();
 
-    var inviteeFields = this.$(".invitees").children().children()
+    var inviteeFields = this.$(".invitees").children().children();
     var invitee_ids = inviteeFields.map(function (_, invitee) {
       return $(invitee).data("id");
     });
@@ -101,7 +98,8 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
       });
     }.bind(this));
 
-    this.render();
+    // badwrong patch for an unfuckingfixable multiple-copies-of-invitees bug
+    Backbone.history.navigate("#projects/" + this.model.id, { trigger: true });
   },
 
   prepopulateInviteeList: function() {
