@@ -4,33 +4,41 @@
 
 <section class='task-show'>
   <span class='task-options'></span>
-  <a href="#/projects/<%= project.id %>/checklists"
-       onClick='history.back();return false;'>
-    Back to previous page
-  </a> <br>
 
+  <div class='task-desc <%= isDone ? "done" : "" %>' name='description'>
+    <h1>
+      <input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
+        name="done" <%= isDone ? "checked" : "" %>>
 
-  <input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
-    name="done" <%= isDone ? "checked" : "" %>>
+      <%= task.escape("description") %>
 
-  <span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
-    <%= task.escape("description") %>
-  </span>
+      <a href="#/projects/<%= project.id %>/checklists"
+         onClick='history.back();return false;'
+         class='btn btn-default btn-xs'>
+        Back to previous page
+      </a>
+    </h1>
+  </div>
 
-   <br>
+  <aside class="task-info">
+    <div class='task-assignments' name='assigned_users'>
+      <h5>
+        Assigned to: <%= usernames.join(", ") %>
+      </h5>
+    </div>
 
-  <span class='task-assignments' name='assigned_users'>
-    Assigned to: <%= usernames.join(", ") %>
-  </span>
-
-  <br>
-
-  <% if (task.get("deadline")) { %>
-    <span class='task-deadline' name='deadline'>
-      Due on: <%= task.escape("deadline") %>
-    </span>
-  <% } %>
+    <% if (task.get("deadline")) { %>
+      <div class='task-deadline' name='deadline'>
+        <h5>
+          Due: <%= moment([task.escape("deadline")], "MM/DD/YYYY").fromNow() %>
+          (<%= task.escape("deadline") %>)
+        </h5>
+      </div>
+    <% } %>
+  </aside>
 </section>
+
+<hr>
 
 <h4>Comments on this task</h4>
 <section class='comments row'>
