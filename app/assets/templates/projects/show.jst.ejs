@@ -5,8 +5,7 @@
   </div>
 </header>
 
-<br>
-
+<hr>
 <section class='overview'>
   <%= numDiscussions %> <%= numDiscussions !== 1 ? "discussions" : "discussion" %> |
   <%= numChecklists %> <%= numChecklists !== 1 ? "checklists" : "checklist" %> |
@@ -15,34 +14,41 @@
     <%= numProjectMembers %> <%= numProjectMembers !== 1 ? "members" : "member" %>
   </a>
 </section>
+<hr>
 
 <section class='discussions-index'>
-  <a href="#projects/<%= project.id %>/discussions">Discussions index</a>
+  <h4>
+    <a href="#projects/<%= project.id %>/discussions">Discussions</a>
+  </h4>
 
-  <div class='store discussions-store'>
+  <div class='store discussions-store row'>
     <!-- show the first six discussions -->
   </div>
 
   <% if (numDiscussions > 6) { %>
-    <%= numDiscussions - 6 %> more discussions
+    <%= numDiscussions - 6 %> more <%= (numDiscussions - 6) === 1 ? "discussion" : "discussions" %>
   <% } %>
 </section>
 
+<hr>
+
 <section class='checklists-index'>
-  <a href="#projects/<%= project.escape("id") %>/checklists">checklists index</a>
+  <h4>
+    <a href="#projects/<%= project.escape("id") %>/checklists">Checklists</a>
+  </h4>
 
   <div class="store checklists-store">
     <!-- show the first five checklists -->
   </div>
 
   <% if (numChecklists > 5) { %>
-    <%= numChecklists - 5 %> more checklists
+    <%= numChecklists - 5 %> more <%= (numChecklists - 5) === 1 ? "checklist" : "checklists" %>
   <% } %>
 </section>
 
+<hr>
 
 <% if (project.get('is_admin')) { %>
-  <p><em>Danger Zone</em></p>
   <button class='btn btn-danger btn-md delete-project' type="button">
     Delete this project
   </button>

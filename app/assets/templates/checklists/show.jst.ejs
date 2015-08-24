@@ -7,21 +7,23 @@
 
   <h4 class='checklist-title'><%= checklist.escape("title") %></h4>
   <h5 class='checklist-description'><%= checklist.escape("description") %></h5>
-</header>
 
   <% if (!isShowView) { %>
     </a>
-  <% } else { %>
-    <a href="#projects/<%= project.escape("id") %>/checklists">
-      Back to all checklists
-    </a> <br><br>
-
-    <% if (checklist.creator().id == Stronghold.CURRENT_USER.id || project.get('is_admin')) { %>
-      <button type="button" class='delete-checklist btn btn-danger'>
-        Delete this checklist
-      </button>
-    <% } %>
   <% } %>
+</header>
+
+<% if (isShowView) { %>
+  <a href="#projects/<%= project.escape("id") %>/checklists">
+    Back to all checklists
+  </a> <br><br>
+
+  <% if (checklist.creator().id == Stronghold.CURRENT_USER.id || project.get('is_admin')) { %>
+    <button type="button" class='delete-checklist btn btn-danger'>
+      Delete this checklist
+    </button>
+  <% } %>
+<% } %>
 
 <ul class='tasks row'>
 </ul>

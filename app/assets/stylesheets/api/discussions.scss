@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .discussion {
+  margin: 5px 0;
+
   img {
     height: 30px;
     width: 30px;
@@ -34,4 +36,8 @@
   .btn-default {
     float: left;
   }
+}
+
+.discussions-store {
+  margin-bottom: 10px;
 }
