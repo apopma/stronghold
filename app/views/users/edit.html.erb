@@ -1,2 +1,13 @@
-<%= render "layouts/flash" %>
-<%= render "users/form", req_method: :patch %>
+<main class='signup'>
+  <section>
+    <div class="signup-text">
+      <h1>Edit your info</h1>
+    </div>
+    <hr>
+
+    <%= render "layouts/flash" %>
+    <div class="signup-form">
+      <%= render "users/form", req_method: :patch %>
+    </div>
+  </section>
+</main>

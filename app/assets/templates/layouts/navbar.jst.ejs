@@ -12,12 +12,10 @@
 <ul class='nav navbar-nav navbar-right'>
   <li>
     <aside class='session-info'>
-        <a href="<%= 'users/' + Stronghold.CURRENT_USER.id %>">
-        <img src="<%= Stronghold.CURRENT_USER.gravatar_url %>"
-             alt="http://www.gravatar.com/avatar/?d=mm"
-             class='img-circle'
-             height='40', width='40' />
-       </a>
+      <img src="<%= Stronghold.CURRENT_USER.gravatar_url %>"
+           alt="http://www.gravatar.com/avatar/?d=mm"
+           class='img-circle'
+           height='40', width='40' />
 
         Logged in as <strong><%= Stronghold.CURRENT_USER.username %>.</strong>
 
