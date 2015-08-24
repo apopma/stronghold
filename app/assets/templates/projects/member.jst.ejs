@@ -1,22 +1,29 @@
-<img src="<%= member.escape('gravatar_url') %>" class='member-gravatar'
-     alt="<%= member.escape('username') %>" />
+<div class="row">
+  <span class='col-md-2'>
+    <img src="<%= member.escape('gravatar_url') %>" class='member-gravatar'
+         alt="<%= member.escape('username') %>" />
+  </span>
 
-<div class="member-info">
-  <strong class='member-username'><%= member.escape("username") %></strong>
-  <%= member.escape("email") %>
+  <span class='col-md-2'>
+    <strong class='member-username'><%= member.escape("username") %></strong>
+  </span>
+
+  <span class='col-md-2'><%= member.escape("email") %></span>
+  <span class='col-md-2'></span>
+
+  <% if (project.get('is_admin') && Stronghold.CURRENT_USER.id != member.id) { %>
+    <!-- No editing your own admin rights or deleting your own membership. -->
+    <span class='col-md-2'>
+      <input type="checkbox" name='admin' class='admin-toggle'
+             data-id='<%= member.id %>'
+             <%= member.get('admin') ? "checked" : "" %>>
+    </span>
+
+    <span class='col-md-2'>
+       <button class='btn btn-danger btn-sm delete-membership'
+               data-id='<%= member.id %>'>
+         <i class='fa fa-trash fa-2x'></i>
+       </button>
+    </span>
+  <% } %>
 </div>
-
-
-<% if (project.get('is_admin') && Stronghold.CURRENT_USER.id != member.id) { %>
-  <!-- No editing your own admin rights or deleting your own membership. -->
-  <div class="member-controls">
-    <input type="checkbox" name='admin' class='admin-toggle'
-           data-id='<%= member.id %>'
-            <%= member.get('admin') ? "checked" : "" %>>
-
-     <button class='btn btn-danger btn-sm delete-membership'
-             data-id='<%= member.id %>'>
-       <i class='fa fa-trash fa-2x'></i>
-     </button>
-  </div>
-<% } %>

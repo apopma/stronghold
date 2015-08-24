@@ -50,15 +50,18 @@ Stronghold.Views.ProjectMember = Backbone.View.extend ({
       project_id: this.project.id
     };
 
-    $.ajax({
-      url: "api/project_memberships",
-      method: "DELETE",
-      data: membership,
+    var c = window.confirm("Really remove this user's membership?");
+    if (c) {
+      $.ajax({
+        url: "api/project_memberships",
+        method: "DELETE",
+        data: membership,
 
-      success: function() {
-        this.parentView.removeInviteeFromList($(event.currentTarget).data("id"));
-        this.remove();
-      }.bind(this)
-    });
+        success: function() {
+          this.parentView.removeInviteeFromList($(event.currentTarget).data("id"));
+          this.remove();
+        }.bind(this)
+      });
+    }
   }
 });

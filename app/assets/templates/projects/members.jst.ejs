@@ -1,5 +1,20 @@
-<div class="container">
-  <h1>All members of <%= project.escape('title') %></h1>
+<div class="container-fluid">
+  <h1>
+    All members for <%= project.escape('title') %> <br>
+    <a href="#projects/<%= project.id %>" class='btn btn-default btn-xs'>
+      Back to project
+    </a>
+  </h1>
+
+  <div class="members-info row">
+    <span class='col-md-2'><strong>Gravatar</strong></span>
+    <span class='col-md-2'><strong>Username</strong></span>
+    <span class='col-md-2'><strong>Email</strong></span>
+    <span class='col-md-2'></span>
+    <span class='col-md-2'><strong>Admin?</strong></span>
+    <span class='col-md-2'><strong>Remove user</strong></span>
+  </div>
+  <hr>
   <section class='members-container row'>
 
   </section>
