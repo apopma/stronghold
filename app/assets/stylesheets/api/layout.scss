@@ -98,22 +98,9 @@
   font-size: 14px;
 
   .footer-copyleft {
-    display: block;
-    float: left;
-    height: 70px;
+    text-align: center;
+    vertical-align: middle;
     line-height: 70px;
-  }
-
-  .footer-links {
-    list-style-type: none;
-    float: right;
-    height: 70px;
-    line-height: 70px;
-
-    li {
-      float: left;
-      padding-left: 20px;
-    }
   }
 }
 
