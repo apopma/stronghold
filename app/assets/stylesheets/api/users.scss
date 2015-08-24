@@ -1,3 +1,16 @@
 // Place all the styles related to the api/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.member {
+  margin-bottom: 5px;
+}
+
+.member > .row {
+  display: flex;
+  align-items: center;
+}
+
+.member-gravatar {
+  border-radius: 50%;
+}

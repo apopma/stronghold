@@ -1,7 +1,7 @@
 <header>
   <div class="project-info">
     <h1 class='project-title'><%= project.escape("title") %></h1>
-    <h3 class='project-description'><%= project.escape("description") %></h3>
+    <h2 class='project-description'><%= project.escape("description") %></h2>
   </div>
 </header>
 
@@ -17,9 +17,9 @@
 <hr>
 
 <section class='discussions-index'>
-  <h4>
+  <h3>
     <a href="#projects/<%= project.id %>/discussions">Discussions</a>
-  </h4>
+  </h3>
 
   <div class='store discussions-store row'>
     <!-- show the first six discussions -->
@@ -33,9 +33,9 @@
 <hr>
 
 <section class='checklists-index'>
-  <h4>
+  <h3>
     <a href="#projects/<%= project.escape("id") %>/checklists">Checklists</a>
-  </h4>
+  </h3>
 
   <div class="store checklists-store">
     <!-- show the first five checklists -->
