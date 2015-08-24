@@ -4,12 +4,16 @@ Stronghold.Views.ProjectIndexItem = Backbone.View.extend ({
   className: "col-md-4 project-index-item",
 
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.members(), "add", this.render);
+    this.listenTo(this.model, "sync change", this.render);
+    this.listenTo(this.model.members(), "sync add remove", this.render);
   },
 
   render: function () {
-    var content = this.template({ project: this.model, members: this.model.members() });
+    var content = this.template({
+      project: this.model,
+      members: this.model.members(),
+      numMembers: this.model.members().length
+     });
     this.$el.html(content);
     return this;
   }
