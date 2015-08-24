@@ -3,10 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .jumbotron {
-  position: relative;
-  min-height: 800px;
+  position: absolute;
   background-repeat: no-repeat;
+  background-color: lightsteelblue;
   background-size: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 0px !important;
 
   .site-info {
     position: absolute;
