@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.first
     login!(@user)
     flash[:info] = ["Welcome to Stronghold! Tip of the day:"]
-    flash[:info] += ["You can double-click on titles to edit them."]
+    flash[:info] += ["You can double-click on most titles to edit them."]
     redirect_to root_url
   end
 
