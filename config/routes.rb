@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :show, :edit, :update]
+  get "guest", to: "users#guest", as: "guest_signin"
   resource :session, only: [:new, :create, :destroy]
 end

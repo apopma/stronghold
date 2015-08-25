@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_is_current_user!, only: [:edit, :update]
-  before_action :require_login, except: [:new, :create]
+  before_action :require_login, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -41,6 +41,14 @@ class UsersController < ApplicationController
       flash.now[:danger] = @user.errors.full_messages
       render :edit
     end
+  end
+
+  def guest
+    @user = User.first
+    login!(@user)
+    flash[:info] = ["Welcome to Stronghold! Tip of the day:"]
+    flash[:info] += ["You can double-click on titles to edit them."]
+    redirect_to root_url
   end
 
   private

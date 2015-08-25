@@ -7,11 +7,15 @@
     </section>
 
     <section class="buttons">
-      <a href='<%= new_user_url %>' class='btn btn-primary btn-signup' role='button'>
+      <a href='<%= new_user_url %>' class='btn btn-primary btn-signup'>
         Sign up
       </a>
 
-      <a href="<%= new_session_url %>" class='btn btn-default btn-signin' role='button'>
+      <a href="<%= guest_signin_url %>" class='btn btn-info btn-signin'>
+        Guest login
+      </a>
+
+      <a href="<%= new_session_url %>" class='btn btn-default btn-signin'>
         Log in
       </a>
 
