@@ -5,8 +5,8 @@
     <span class="text-muted">
       <h5><%= project.escape("description") %></h5>
       <h5>Updated <%= moment(project.escape("updated_at")).fromNow() %></h5>
-      <h5><%= numMembers %>
-          <%= numMembers === 1 ? "member" : "members" %>
+      <h5><%= project.get("num_members") %>
+          <%= project.get("num_members") == 1 ? "member" : "members" %>
       </h5>
     </span>
   </a>
