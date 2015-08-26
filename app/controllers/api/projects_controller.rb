@@ -18,6 +18,7 @@ class Api::ProjectsController < ApplicationController
 
   def create
     @project = current_user.created_projects.new(project_params)
+    params[:invitees] = [] if params[:invitees].nil?
 
     if @project.save
       @project.member_ids = @project.member_ids.concat params[:invitees]
