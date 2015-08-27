@@ -14,7 +14,10 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   },
 
   render: function () {
-    var content = this.template({ task: this.model, viewType: this.viewType });
+    var content = this.template({
+      task: this.model,
+      members: this.project.members(), 
+      viewType: this.viewType });
     this.$el.html(content);
 
     this.$(".datepicker").datepicker({ minDate: 0 });
