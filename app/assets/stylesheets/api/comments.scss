@@ -11,11 +11,13 @@
 
   img {
     float: left;
-    margin-right: 10px;
+    margin-right: 25px;
   }
 
   .commenter {
+    position: relative;
     margin-top: 0px;
+    left: -15px;
   }
 
   .timestamps {
