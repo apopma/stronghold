@@ -14,13 +14,16 @@
         Assign to:
           <!-- <input type="text" name="query" class='form-control typeahead'
                  placeholder='Search for project members'> -->
-                  <select class="" name="">
-                    <% members.each(function (member) { %>
-                      <option value="<%= member.escape("username") %>">
-                        <%= member.escape("username") %>
-                      </option>
-                    <% }) %>
-                  </select>
+        <select class="members-list">
+          <option value="" selected>Select a project member...</option>
+
+          <% members.each(function (member) { %>
+            <option value="<%= member.escape("username") %>"
+                    data-id="<%= member.id %>">
+              <%= member.escape("username") %>
+            </option>
+          <% }) %>
+        </select>
 
         <section class='assignments row'>
           <div class='col-md-12'>

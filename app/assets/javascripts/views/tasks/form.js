@@ -16,57 +16,34 @@ Stronghold.Views.TaskForm = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       task: this.model,
-      members: this.project.members(), 
+      members: this.project.members(),
       viewType: this.viewType });
     this.$el.html(content);
 
     this.$(".datepicker").datepicker({ minDate: 0 });
-    this.$('.typeahead').typeahead({
-      minLength: 3,
-      highlight: true
-    },
-    { // dataset options
-      name: 'searched-users',
-      limit: 10, // actually 5; bugfix mandates this being (2 * actual limit)
-      display: function(obj) { return obj.username; },
-      templates: { suggestion: JST["users/search_item"] },
-      source: this.typeaheadSource.bind(this)
-    });
-
     return this;
   },
 
   events: {
-    "typeahead:select .typeahead": "addUserToAssignees",
+    "change .members-list": "addUserToAssignees",
     "click .remove-assignee": "removeUserFromAssignees"
   },
 
-  typeaheadSource: function(query, syncResults, asyncResults) {
-    $.ajax({
-      url: "/api/users",
-      data: { query: query, project_id: this.project.id },
-      success: function(data, textStatus, jqXHR) {
-        var filteredData = _.filter(data, function(user) {
-          // Don't show users if they're already assigned.
-          return !_.contains(this._usersToAssign, user.id);
-        }.bind(this));
+  addUserToAssignees: function (event) {
+    if (event.target.value === "") { return; } // ignore the placeholder
 
-        return asyncResults(filteredData);
-      }.bind(this)
+    var user = this.project.members().findWhere({
+      username: event.target.value
     });
-  },
 
-  addUserToAssignees: function (event, item) {
-    var userId = item.id;
-    var user = this.project.members().get(userId);
     var newAssigneeEl = JST['tasks/assignee']({
       user: user, task: this.model
     });
 
     // if the list of users to assign doesn't already include this user, add it
-    if ($.inArray(userId, this._usersToAssign) === -1) {
+    if ($.inArray(user.id, this._usersToAssign) === -1) {
       this.$('.assignment-elements').append(newAssigneeEl);
-      this._usersToAssign.push(userId);
+      this._usersToAssign.push(user.id);
     }
   },
 
