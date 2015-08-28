@@ -16,6 +16,6 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render :show, locals: { user: @user }
+    render :show, locals: { user: @user, full_info: true }
   end
 end

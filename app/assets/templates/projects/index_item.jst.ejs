@@ -13,7 +13,7 @@
 
   <div class='members'>
     <% members.forEach(function (member) { %>
-      <a href="users/<%= member.id %>">
+      <a href="#users/<%= member.id %>">
         <img src="<%= member.escape("gravatar_url") %>"
              alt="<%= member.escape("username") %>"
              title=" <%= member.escape("username") %>"

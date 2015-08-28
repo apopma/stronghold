@@ -1,4 +1,4 @@
-Stronghold.Routers.Router = Backbone.Router.extend ({
+  Stronghold.Routers.Router = Backbone.Router.extend ({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.projects = new Stronghold.Collections.Projects();
@@ -6,6 +6,7 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
 
   routes: {
     "": "projectsIndex",
+    "users/:id": "userShow",
     "projects/new": "newProject",
     "projects/:id": "projectShow",
     "projects/:id/edit": "editProject",
@@ -98,6 +99,15 @@ Stronghold.Routers.Router = Backbone.Router.extend ({
     var view = new Stronghold.Views.DiscussionShow({
       project: project, model: discussion, collection: discussion.comments()
     });
+    this._swapView(view);
+  },
+
+  // ---------------------------------------------------------------------------
+
+  userShow: function (id) {
+    var user = new Stronghold.Models.User({ id: id });
+    user.fetch();
+    var view = new Stronghold.Views.UserShow({ model: user });
     this._swapView(view);
   },
 

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch 'project_memberships', to: 'project_memberships#update'
   end
 
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update]
   get "guest", to: "users#guest", as: "guest_signin"
   resource :session, only: [:new, :create, :destroy]
 end
