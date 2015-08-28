@@ -10,13 +10,9 @@
   <%= isDone ? "checked" : "" %>>
 
 <span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
-  <% if (task.get("not_member?")) { %>
+  <a href="#/projects/<%= project.id %>/checklists/<%= checklist.id %>/tasks/<%= task.id %>">
     <%= task.escape("description") %>
-  <% } else { %>
-    <a href="#/projects/<%= project.id %>/checklists/<%= checklist.id %>/tasks/<%= task.id %>">
-      <%= task.escape("description") %>
-    </a>
-  <% } %>
+  </a>
 </span>
 
  <br>

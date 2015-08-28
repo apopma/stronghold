@@ -21,11 +21,14 @@ Stronghold.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addTaskView: function (task) {
+    if (task.get("not_member?")) { return; }
+
     var item = new Stronghold.Views.TaskItem({
       model: task, checklist: task.checklist(),
       collection: task.assignedUsers(),
       project: task.project(),
     });
+
     this.addSubview('.user-tasks', item);
   },
 

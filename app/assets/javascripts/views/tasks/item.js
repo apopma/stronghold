@@ -36,13 +36,11 @@ Stronghold.Views.TaskItem = Backbone.View.extend ({
   // ---------------------------------------------------------------------------
 
   displayOptionButtons: function (event) {
-    if (this.model.get("not_member?")) { return; }
     this._optionBtns = new Stronghold.Views.TaskOptions({ model: this.model });
     this.$('.task-options').append(this._optionBtns.render().$el);
   },
 
   removeOptionButtons: function (event) {
-    if (this.model.get("not_member?")) { return; }
     this._optionBtns.remove();
   },
 

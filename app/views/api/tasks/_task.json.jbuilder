@@ -5,7 +5,7 @@ json.deadline task.deadline.strftime("%m/%d/%Y") if task.deadline
 
 if user_view
   # If the current user isn't a member on this task's project,
-  # disallow viewing links to the task show page or toggling the task.
+  # don't even show the view for this task.
   json.not_member? !current_user.projects.include?(task.project)
 
   json.project do
