@@ -107,7 +107,9 @@
   userShow: function (id) {
     var user = new Stronghold.Models.User({ id: id });
     user.fetch();
-    var view = new Stronghold.Views.UserShow({ model: user });
+    var view = new Stronghold.Views.UserShow({
+      model: user, collection: user.assignedTasks()
+    });
     this._swapView(view);
   },
 
