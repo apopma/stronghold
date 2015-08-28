@@ -1,5 +1,17 @@
+user_view ||= false
+
 json.extract! task, :id, :description, :done
 json.deadline task.deadline.strftime("%m/%d/%Y") if task.deadline
+
+if user_view
+  # If the current user isn't a member on this task's project,
+  # disallow viewing links to the task show page or toggling the task.
+  json.not_member? !current_user.projects.include?(task.project)
+
+  json.project do
+    json.extract! task.project, :id
+  end
+end
 
 json.assigned_to do
   json.array! task.assigned_users do |user|
@@ -7,15 +19,9 @@ json.assigned_to do
   end
 end
 
-unless no_comments
+unless user_view
   json.comments task.comments do |comment|
     json.partial! "api/comments/comment", locals: { comment: comment }
-  end
-end
-
-if with_project
-  json.project do
-    json.extract! task.project, :id
   end
 end
 

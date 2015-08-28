@@ -4,13 +4,19 @@
 
 <span class='task-options'></span>
 
-<input type="checkbox" data-id="<%= task.id %>" class="task-toggle"
-  name="done" <%= isDone ? "checked" : "" %>>
+<input type="checkbox" data-id="<%= task.id %>"
+  class="task-toggle" name="done"
+  <%= task.get("not_member?") ? "disabled" : "" %>
+  <%= isDone ? "checked" : "" %>>
 
 <span class='task-desc <%= isDone ? "done" : "" %>' name='description'>
+  <% if (task.get("not_member?")) { %>
+    <%= task.escape("description") %>
+  <% } else { %>
     <a href="#/projects/<%= project.id %>/checklists/<%= checklist.id %>/tasks/<%= task.id %>">
       <%= task.escape("description") %>
     </a>
+  <% } %>
 </span>
 
  <br>

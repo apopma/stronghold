@@ -57,6 +57,11 @@ Stronghold.Models.Task = Backbone.Model.extend ({
       delete response.project;
     }
 
+    if (response.checklist) {
+      this.checklist().set(response.checklist);
+      delete response.checklist;
+    }
+
     return response;
   }
 });

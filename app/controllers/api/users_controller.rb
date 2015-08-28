@@ -15,7 +15,9 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:assigned_tasks)
+                .includes(:projects)
+                .find(params[:id])
     render :show, locals: { user: @user, full_info: true }
   end
 end
