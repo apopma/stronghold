@@ -1,7 +1,22 @@
 <section class='user-info'>
-  <%= user.escape("username") %>
-  <%= user.escape("email") %>
-  <%= user.escape("gravatar_url") %>
+  <h1>
+    <img src="<%= user.escape("gravatar_url") %>" alt="<%= user.escape("username") %>" />
+    <strong><%= user.escape("username") %></strong>
+  </h1>
+  
+  <h3>
+    <a href="mailto:<%= user.escape("email") %>"><%= user.escape("email") %></a>
+  </h3>
 </section>
+
+<hr>
+
+<h2>
+  <% if (Stronghold.CURRENT_USER.id == user.id) { %>
+    My Tasks
+  <% } else { %>
+    <%= user.escape("username") %>'s Tasks
+  <% } %>
+</h2>
 
 <section class='user-tasks'></section>
