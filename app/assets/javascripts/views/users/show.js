@@ -23,8 +23,8 @@ Stronghold.Views.UserShow = Backbone.CompositeView.extend({
   addTaskView: function (task) {
     var item = new Stronghold.Views.TaskItem({
       model: task, checklist: task.checklist(),
-      collection: this.collection,
-      project: task.project()
+      collection: task.assignedUsers(),
+      project: task.project(),
     });
     this.addSubview('.user-tasks', item);
   },
