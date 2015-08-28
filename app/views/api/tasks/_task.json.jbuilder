@@ -9,7 +9,7 @@ if user_view
   json.not_member? !current_user.projects.include?(task.project)
 
   json.project do
-    json.extract! task.project, :id
+    json.extract! task.project, :id, :title
   end
 end
 
