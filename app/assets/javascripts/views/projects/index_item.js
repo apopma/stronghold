@@ -11,7 +11,7 @@ Stronghold.Views.ProjectIndexItem = Backbone.View.extend ({
   render: function () {
     var content = this.template({
       project: this.model,
-      members: this.model.members(),
+      members: this.model.members().first(4),
       numMembers: this.model.members().length
      });
     this.$el.html(content);

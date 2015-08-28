@@ -12,7 +12,7 @@
   </a>
 
   <div class='members'>
-    <% project.members().each(function (member) { %>
+    <% members.forEach(function (member) { %>
       <a href="users/<%= member.id %>">
         <img src="<%= member.escape("gravatar_url") %>"
              alt="<%= member.escape("username") %>"
