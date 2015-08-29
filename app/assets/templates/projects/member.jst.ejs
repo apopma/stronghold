@@ -1,7 +1,9 @@
 <div class="row">
   <span class='col-md-2'>
-    <img src="<%= member.escape('gravatar_url') %>" class='member-gravatar'
-         alt="<%= member.escape('username') %>" />
+    <a href="#users/<%= member.id %>">
+      <img src="<%= member.escape('gravatar_url') %>" class='member-gravatar'
+           alt="<%= member.escape('username') %>"/>
+    </a>
   </span>
 
   <span class='col-md-2'>
@@ -13,7 +15,7 @@
       <%= member.escape("email") %>
     </a>
   </span>
-  
+
   <span class='col-md-2'></span>
 
   <% if (project.get('is_admin') && Stronghold.CURRENT_USER.id != member.id) { %>
