@@ -1,13 +1,14 @@
 <% var infoClasses = isShowView ? "info info-editable" : "info" %>
 <% var titleHeaderTag = isShowView ? "h1" : "h4" %>
+<% var descHeaderTag = isShowView ? "h4" : "h5" %>
 
 <header class='<%= infoClasses %>'>
   <% if (!isShowView) { %>
     <a href="#projects/<%= project.escape('id') %>/checklists/<%= checklist.escape('id') %>">
   <% } %>
 
-  <<%= titleHeaderTag %> class='checklist-title'><%= checklist.escape("title") %></<%= titleHeaderTag %>>
-  <h5 class='checklist-description'><%= checklist.escape("description") %></h5>
+  <<%= titleHeaderTag %> class='checklist-title'><strong><%= checklist.escape("title") %></strong></<%= titleHeaderTag %>>
+  <<%= descHeaderTag %> class='checklist-description'><%= checklist.escape("description") %></<%= descHeaderTag %>>
 
   <% if (!isShowView) { %>
     </a>

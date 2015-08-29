@@ -11,8 +11,10 @@
     <span class='col-md-2'><strong>Username</strong></span>
     <span class='col-md-2'><strong>Email</strong></span>
     <span class='col-md-2'></span>
-    <span class='col-md-2'><strong>Admin?</strong></span>
-    <span class='col-md-2'><strong>Remove user</strong></span>
+    <% if (project.get("is_admin")) { %>
+      <span class='col-md-2'><strong>Admin?</strong></span>
+      <span class='col-md-2'><strong>Remove user</strong></span>
+    <% } %>
   </div>
   <hr>
   <section class='members-container row'>

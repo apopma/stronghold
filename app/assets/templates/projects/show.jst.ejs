@@ -1,6 +1,6 @@
 <header>
   <div class="project-info">
-    <h1 class='project-title'><%= project.escape("title") %></h1>
+    <h1 class='project-title'><strong><%= project.escape("title") %></strong></h1>
     <h2 class='project-description'><%= project.escape("description") %></h2>
   </div>
 </header>
@@ -18,7 +18,9 @@
 
 <section class='discussions-index'>
   <h3>
-    <a href="#projects/<%= project.id %>/discussions">Discussions</a>
+    <strong>
+      <a href="#projects/<%= project.id %>/discussions">Discussions</a>
+    </strong>
   </h3>
 
   <div class='store discussions-store row'>
@@ -34,7 +36,9 @@
 
 <section class='checklists-index'>
   <h3>
-    <a href="#projects/<%= project.escape("id") %>/checklists">Checklists</a>
+    <strong>
+      <a href="#projects/<%= project.escape("id") %>/checklists">Checklists</a>
+    </strong>
   </h3>
 
   <div class="store checklists-store">
@@ -46,9 +50,9 @@
   <% } %>
 </section>
 
-<hr>
 
 <% if (project.get('is_admin')) { %>
+<hr>
   <button class='btn btn-danger btn-md delete-project' type="button">
     Delete this project
   </button>
