@@ -1,6 +1,8 @@
-<a href="#projects/<%= project_id %>/discussions/<%= discussion.id %>">
+<a href="#users/<%= creator.id %>">
   <img src="<%= creator.escape("gravatar_url") %>" class='img-circle'/>
+</a>
 
+<a href="#projects/<%= project_id %>/discussions/<%= discussion.id %>">
   <span class='who'>
     <%= creator.escape("username") %>
   </span>

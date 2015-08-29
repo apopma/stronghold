@@ -16,8 +16,15 @@
 
   .commenter {
     position: relative;
+    text-decoration: none;
+    color: black;
     margin-top: 0px;
     left: -15px;
+  }
+
+  .commenter:hover {
+    text-decoration: none;
+    color: black;
   }
 
   .timestamps {

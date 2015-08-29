@@ -18,7 +18,7 @@
        class='btn btn-default btn-xs'>
        <%= project.escape("title") %>
     </a>
-    
+
     <a href="#/projects/<%= project.id %>/checklists"
        onClick='history.back();return false;'
        class='btn btn-default btn-xs'>
@@ -38,7 +38,7 @@
 
 <% if (isShowView) { %>
   <hr>
-  <h4>Comments on this checklist</h4>
+  <h4><strong>Comments on this checklist</strong></h4>
   <section class='comments row'></section>
 
   <div class="comment-create">

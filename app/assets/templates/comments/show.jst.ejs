@@ -1,8 +1,10 @@
-<img src="<%= commenter.escape("gravatar_url") %>" class='img-circle av'/>
+<a href="#users/<%= commenter.id %>">
+  <img src="<%= commenter.escape("gravatar_url") %>" class='img-circle av'/>
 
-<h4 class='commenter'>
-  <%= commenter.escape("username") %>
-</h4>
+  <h4 class='commenter'>
+    <strong><%= commenter.escape("username") %></strong>
+  </h4>
+</a>
 
 <section class='comment-body'>
   <%= comment.get("body") %>
