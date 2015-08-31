@@ -1,4 +1,4 @@
-# Stronghold
+# [Stronghold](http://volcanolair.me)
 
 [Heroku link][heroku]
 
