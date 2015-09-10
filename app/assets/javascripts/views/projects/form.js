@@ -39,7 +39,7 @@ Stronghold.Views.ProjectForm = Backbone.CompositeView.extend ({
     var id = item.id;
     var username = item.username;
     var view = new Stronghold.Views.Invitee({
-      removeFromList: this.removeInviteeFromList.bind(this, id),
+      parentView: this,
       userid: id, username: username });
 
     this.$(".typeahead").typeahead("val", ""); // Clear out the search bar
