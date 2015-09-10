@@ -1,5 +1,7 @@
 class Api::ProjectsController < ApplicationController
   before_action :require_login
+  before_action :require_membership, only: [:show, :update, :destroy]
+  before_action :require_admin, only: :destroy
 
   def index
     @projects = current_user.projects.includes(:members)
@@ -50,5 +52,19 @@ class Api::ProjectsController < ApplicationController
   private
   def project_params
     params.require(:project).permit(:title, :description)
+  end
+
+  def require_membership
+    unless current_user.project_memberships
+                       .pluck(:project_id)
+                       .include?(params[:id].to_i)
+      render json: {}, status: 403
+    end
+  end
+
+  def require_admin
+    unless current_user.is_admin?(Project.find(params[:id]))
+      render json: {}, status: 403
+    end
   end
 end
