@@ -1,6 +1,7 @@
 class Api::DiscussionsController < ApplicationController
   before_action :require_membership
-  before_action :require_is_creator_or_admin, only: [:update, :destroy]
+  before_action :require_is_creator, only: :update
+  before_action :require_is_creator_or_admin, only: :destroy
 
   def index
     @project = Project.find(params[:project_id])
@@ -51,13 +52,19 @@ class Api::DiscussionsController < ApplicationController
   def require_membership
     unless current_user.projects.include?(Discussion.find(params[:id]).project)
       render json: {}, status: 403
-   end
+    end
+  end
+
+  def require_is_creator
+    unless current_user.created_discussions.pluck(:id).include?(params[:id].to_i)
+       render json: {}, status: 403
+    end
   end
 
   def require_is_creator_or_admin
     unless current_user.created_discussions.pluck(:id).include?(params[:id].to_i) ||
            current_user.is_admin?(Discussion.find(params[:id].project))
        render json: {}, status: 403
-     end
+    end
   end
 end
