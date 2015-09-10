@@ -78,6 +78,11 @@ Stronghold.Views.DiscussionShow = Backbone.CompositeView.extend ({
   // ---------------------------------------------------------------------------
 
   openDiscussionForm: function (event) {
+    if ((this.model.creator().id != Stronghold.CURRENT_USER.id)) {
+      // Only the discussion's creator can edit its body.
+      return false;
+    }
+
     this._discussionForm = new Stronghold.Views.DiscussionForm({
       model: this.model,
       project: this.project,
