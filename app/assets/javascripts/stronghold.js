@@ -14,7 +14,5 @@ window.Stronghold = {
     $('#footer').html(footer.render().$el);
 
     Backbone.history.start();
-
-    console.log(Stronghold.CURRENT_USER);
   }
 };
