@@ -108,8 +108,6 @@ Stronghold.Views.MembersIndex = Backbone.CompositeView.extend ({
     this.collection.each(function (member) {
       this._inviteesToAssign.push(member.id);
     }.bind(this));
-
-    console.log(this._inviteesToAssign);
   },
 
   typeaheadSource: function(query, syncResults, asyncResults) {
