@@ -16,8 +16,8 @@ User.create!([
 ])
 
 Project.create!([
-  {creator_id: 2, title: "Operation Persephone", description: "The world's biggest wonderflonium heist"},
   {creator_id: 6, title: "Operation Mohorovicic", description: "Building a volcano lair"}
+  {creator_id: 2, title: "Operation Persephone", description: "The world's biggest wonderflonium heist"},
 ])
 
 ProjectMembership.create!([
