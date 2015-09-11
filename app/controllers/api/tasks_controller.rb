@@ -1,7 +1,8 @@
 class Api::TasksController < ApplicationController
   before_action :format_date, only: [:create, :update]
-  before_action :require_membership
-  before_action :require_is_creator_or_admin, only: [:create, :update, :destroy]
+  before_action :require_membership, except: :create
+  before_action :require_membership_through_checklist, only: :create
+  before_action :require_is_creator_or_admin, only: [:update, :destroy]
 
   def show
     @task = Task.includes(:assigned_users).includes(:project).find(params[:id])
@@ -56,7 +57,13 @@ class Api::TasksController < ApplicationController
   def require_membership
     unless current_user.projects.include?(Task.find(params[:id]).project)
       render json: {}, status: 403
-   end
+    end
+  end
+
+  def require_membership_through_checklist
+    unless current_user.projects.include?(Checklist.find(params[:checklist_id]).project)
+      render json: {}, status: 403
+    end
   end
 
   def require_is_creator_or_admin

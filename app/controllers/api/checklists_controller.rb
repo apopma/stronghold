@@ -1,6 +1,7 @@
 class Api::ChecklistsController < ApplicationController
-  before_action :require_membership
-  before_action :require_is_creator_or_admin, only: [:create, :update, :destroy]
+  before_action :require_membership, except: :create
+  before_action :require_membership_through_project, only: :create
+  before_action :require_is_creator_or_admin, only: [:update, :destroy]
 
   def index
     @project = Project.find(params[:project_id])
@@ -52,12 +53,18 @@ class Api::ChecklistsController < ApplicationController
   def require_membership
     unless current_user.projects.include?(Checklist.find(params[:id]).project)
       render json: {}, status: 403
-   end
+    end
+  end
+
+  def require_membership_through_project
+    unless current_user.projects.include?(Project.find(params[:project_id]))
+      render json: {}, status: 403
+    end
   end
 
   def require_is_creator_or_admin
     unless current_user.created_checklists.pluck(:id).include?(params[:id].to_i) ||
-           current_user.is_admin?(Checklist.find(params[:id].project))
+           current_user.is_admin?(Checklist.find(params[:id]).project)
        render json: {}, status: 403
      end
   end

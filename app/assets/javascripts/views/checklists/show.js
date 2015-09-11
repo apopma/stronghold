@@ -108,14 +108,23 @@ Stronghold.Views.ChecklistShow = Backbone.CompositeView.extend ({
   },
 
   openInfoEdit: function (event) {
-    var inputTemplate = JST['checklists/_info'];
-    var $targetEl = $(event.currentTarget); // header
-    this._prevTitle = $targetEl.find(".checklist-title").text();
-    this._prevDesc = $targetEl.find(".checklist-description").text();
+    // Only the creator or an admin can edit a checklist's info.
+    if (Stronghold.CURRENT_USER.id == this.model.creator().id ||
+        this.project.get('is_admin')) {
 
-    $targetEl.html(inputTemplate({
-      prevTitle: this._prevTitle, prevDesc: this._prevDesc
-    }));
+      var inputTemplate = JST['checklists/_info'];
+      var $targetEl = $(event.currentTarget); // header
+      this._prevTitle = $targetEl.find(".checklist-title").text();
+      this._prevDesc = $targetEl.find(".checklist-description").text();
+
+      $targetEl.html(inputTemplate({
+        prevTitle: this._prevTitle, prevDesc: this._prevDesc
+      }));
+
+    } else {
+      // For non-admins or users not the creator, just do nothing.
+      return false;
+    }
   },
 
   cancelInfoEdit: function (event) {
