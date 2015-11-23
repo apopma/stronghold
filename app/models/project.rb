@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   has_many :members, through: :project_memberships, source: :user
   has_many :checklists, dependent: :destroy
   has_many :discussions, dependent: :destroy
-  has_many :tasks, through: :checklists
+  has_many :tasks, through: :checklists, dependent: :destroy
   has_many :assigned_users, -> { distinct }, through: :tasks
 
   def admins
